@@ -83,6 +83,26 @@
             background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
         }
         
+        .hiragana-h {
+            background: linear-gradient(135deg, #F56565 0%, #E53E3E 100%);
+        }
+        
+        .hiragana-m {
+            background: linear-gradient(135deg, #ED64A6 0%, #D53F8C 100%);
+        }
+        
+        .hiragana-y {
+            background: linear-gradient(135deg, #7E22CE 0%, #6B21A8 100%);
+        }
+        
+        .hiragana-r {
+            background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+        }
+        
+        .hiragana-w {
+            background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -112,7 +132,7 @@
             background-size: 20px 20px;
         }
 
-                 /* Dropdown styling dengan transisi yang lebih baik */
+        /* Dropdown styling dengan transisi yang lebih baik */
         .dropdown-menu {
             opacity: 0;
             visibility: hidden;
@@ -157,6 +177,24 @@
             top: 100%;
             left: 0;
             z-index: 1000;
+        }
+        
+        /* Responsive grid untuk hiragana cards */
+        .hiragana-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        @media (max-width: 640px) {
+            .hiragana-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 0.5rem;
+            }
+            
+            .hiragana-char {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -414,7 +452,7 @@
 
                 <!-- Tabel Hiragana -->
                 <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Tabel Hiragana Dasar</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Tabel Hiragana Lengkap</h2>
                     
                     <!-- Vokal -->
                     <div class="mb-8">
@@ -422,9 +460,9 @@
                             <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-indigo-600 font-bold">あ</span>
                             </div>
-                            Baris Vokal
+                            Baris Vokal (あ行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="hiragana-grid">
                             <div class="hiragana-vowel text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese hiragana-char mb-2">あ</div>
                                 <div class="font-semibold">a</div>
@@ -454,9 +492,9 @@
                             <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-teal-600 font-bold">か</span>
                             </div>
-                            Baris K
+                            Baris K (か行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="hiragana-grid">
                             <div class="hiragana-k text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese hiragana-char mb-2">か</div>
                                 <div class="font-semibold">ka</div>
@@ -486,9 +524,9 @@
                             <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-green-600 font-bold">さ</span>
                             </div>
-                            Baris S
+                            Baris S (さ行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="hiragana-grid">
                             <div class="hiragana-s text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese hiragana-char mb-2">さ</div>
                                 <div class="font-semibold">sa</div>
@@ -518,9 +556,9 @@
                             <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-yellow-600 font-bold">た</span>
                             </div>
-                            Baris T
+                            Baris T (た行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="hiragana-grid">
                             <div class="hiragana-t text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese hiragana-char mb-2">た</div>
                                 <div class="font-semibold">ta</div>
@@ -550,9 +588,9 @@
                             <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-orange-600 font-bold">な</span>
                             </div>
-                            Baris N
+                            Baris N (な行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="hiragana-grid">
                             <div class="hiragana-n text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese hiragana-char mb-2">な</div>
                                 <div class="font-semibold">na</div>
@@ -572,6 +610,168 @@
                             <div class="hiragana-n text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese hiragana-char mb-2">の</div>
                                 <div class="font-semibold">no</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris H -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-red-600 font-bold">は</span>
+                            </div>
+                            Baris H (は行)
+                        </h3>
+                        <div class="hiragana-grid">
+                            <div class="hiragana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">は</div>
+                                <div class="font-semibold">ha</div>
+                            </div>
+                            <div class="hiragana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ひ</div>
+                                <div class="font-semibold">hi</div>
+                            </div>
+                            <div class="hiragana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ふ</div>
+                                <div class="font-semibold">fu</div>
+                            </div>
+                            <div class="hiragana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">へ</div>
+                                <div class="font-semibold">he</div>
+                            </div>
+                            <div class="hiragana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ほ</div>
+                                <div class="font-semibold">ho</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris M -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-pink-600 font-bold">ま</span>
+                            </div>
+                            Baris M (ま行)
+                        </h3>
+                        <div class="hiragana-grid">
+                            <div class="hiragana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ま</div>
+                                <div class="font-semibold">ma</div>
+                            </div>
+                            <div class="hiragana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">み</div>
+                                <div class="font-semibold">mi</div>
+                            </div>
+                            <div class="hiragana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">む</div>
+                                <div class="font-semibold">mu</div>
+                            </div>
+                            <div class="hiragana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">め</div>
+                                <div class="font-semibold">me</div>
+                            </div>
+                            <div class="hiragana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">も</div>
+                                <div class="font-semibold">mo</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris Y -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-purple-600 font-bold">や</span>
+                            </div>
+                            Baris Y (や行)
+                        </h3>
+                        <div class="hiragana-grid">
+                            <div class="hiragana-y text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">や</div>
+                                <div class="font-semibold">ya</div>
+                            </div>
+                            <div class="hiragana-y text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ゆ</div>
+                                <div class="font-semibold">yu</div>
+                            </div>
+                            <div class="hiragana-y text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">よ</div>
+                                <div class="font-semibold">yo</div>
+                            </div>
+                            <!-- Empty spaces for alignment -->
+                            <div class="rounded-xl p-4 text-center opacity-0">
+                                <div class="text-japanese hiragana-char mb-2">　</div>
+                                <div class="font-semibold">　</div>
+                            </div>
+                            <div class="rounded-xl p-4 text-center opacity-0">
+                                <div class="text-japanese hiragana-char mb-2">　</div>
+                                <div class="font-semibold">　</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris R -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-blue-600 font-bold">ら</span>
+                            </div>
+                            Baris R (ら行)
+                        </h3>
+                        <div class="hiragana-grid">
+                            <div class="hiragana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ら</div>
+                                <div class="font-semibold">ra</div>
+                            </div>
+                            <div class="hiragana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">り</div>
+                                <div class="font-semibold">ri</div>
+                            </div>
+                            <div class="hiragana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">る</div>
+                                <div class="font-semibold">ru</div>
+                            </div>
+                            <div class="hiragana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">れ</div>
+                                <div class="font-semibold">re</div>
+                            </div>
+                            <div class="hiragana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ろ</div>
+                                <div class="font-semibold">ro</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris W dan N -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-indigo-600 font-bold">わ</span>
+                            </div>
+                            Baris W dan N (わ行)
+                        </h3>
+                        <div class="hiragana-grid">
+                            <div class="hiragana-w text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">わ</div>
+                                <div class="font-semibold">wa</div>
+                            </div>
+                            <div class="hiragana-w text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">を</div>
+                                <div class="font-semibold">wo</div>
+                            </div>
+                            <div class="hiragana-w text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ん</div>
+                                <div class="font-semibold">n</div>
+                            </div>
+                            <!-- Empty spaces for alignment -->
+                            <div class="rounded-xl p-4 text-center opacity-0">
+                                <div class="text-japanese hiragana-char mb-2">　</div>
+                                <div class="font-semibold">　</div>
+                            </div>
+                            <div class="rounded-xl p-4 text-center opacity-0">
+                                <div class="text-japanese hiragana-char mb-2">　</div>
+                                <div class="font-semibold">　</div>
                             </div>
                         </div>
                     </div>
@@ -849,7 +1049,38 @@
             { character: "に", reading: "ni", row: "n", example: "にほん (nihon) - Jepang" },
             { character: "ぬ", reading: "nu", row: "n", example: "ぬま (numa) - rawa" },
             { character: "ね", reading: "ne", row: "n", example: "ねこ (neko) - kucing" },
-            { character: "の", reading: "no", row: "n", example: "のど (nodo) - tenggorokan" }
+            { character: "の", reading: "no", row: "n", example: "のど (nodo) - tenggorokan" },
+
+            // Baris H
+            { character: "は", reading: "ha", row: "h", example: "はな (hana) - bunga/hidung" },
+            { character: "ひ", reading: "hi", row: "h", example: "ひと (hito) - orang" },
+            { character: "ふ", reading: "fu", row: "h", example: "ふね (fune) - kapal" },
+            { character: "へ", reading: "he", row: "h", example: "へや (heya) - kamar" },
+            { character: "ほ", reading: "ho", row: "h", example: "ほし (hoshi) - bintang" },
+
+            // Baris M
+            { character: "ま", reading: "ma", row: "m", example: "まど (mado) - jendela" },
+            { character: "み", reading: "mi", row: "m", example: "みず (mizu) - air" },
+            { character: "む", reading: "mu", row: "m", example: "むし (mushi) - serangga" },
+            { character: "め", reading: "me", row: "m", example: "め (me) - mata" },
+            { character: "も", reading: "mo", row: "m", example: "もり (mori) - hutan" },
+
+            // Baris Y
+            { character: "や", reading: "ya", row: "y", example: "やま (yama) - gunung" },
+            { character: "ゆ", reading: "yu", row: "y", example: "ゆき (yuki) - salju" },
+            { character: "よ", reading: "yo", row: "y", example: "よる (yoru) - malam" },
+
+            // Baris R
+            { character: "ら", reading: "ra", row: "r", example: "らいねん (rainen) - tahun depan" },
+            { character: "り", reading: "ri", row: "r", example: "りんご (ringo) - apel" },
+            { character: "る", reading: "ru", row: "r", example: "るす (rusu) - tidak ada dirumah" },
+            { character: "れ", reading: "re", row: "r", example: "れいぞうこ (reizōko) - lemari es" },
+            { character: "ろ", reading: "ro", row: "r", example: "ろうそく (rōsoku) - lilin" },
+
+            // Baris W,O,N
+            { character: "わ", reading: "wa", row: "w", example: "わに (wani) - buaya" },
+            { character: "を", reading: "wo", row: "w", example: "を (wo) - partikel objek langsung" },
+            { character: "ん", reading: "n", row: "n", example: "ほん (hon) - buku" },
         ];
 
         // Tab functionality
