@@ -83,6 +83,26 @@
             background: linear-gradient(135deg, #D69E2E 0%, #B7791F 100%);
         }
         
+        .katakana-h {
+            background: linear-gradient(135deg, #E53E3E 0%, #C53030 100%);
+        }
+        
+        .katakana-m {
+            background: linear-gradient(135deg, #D53F8C 0%, #B83280 100%);
+        }
+        
+        .katakana-y {
+            background: linear-gradient(135deg, #805AD5 0%, #6B46C1 100%);
+        }
+        
+        .katakana-r {
+            background: linear-gradient(135deg, #3182CE 0%, #2B6CB0 100%);
+        }
+        
+        .katakana-w {
+            background: linear-gradient(135deg, #38A169 0%, #2F855A 100%);
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -117,7 +137,7 @@
             color: #702459;
         }
 
-                 /* Dropdown styling dengan transisi yang lebih baik */
+        /* Dropdown styling dengan transisi yang lebih baik */
         .dropdown-menu {
             opacity: 0;
             visibility: hidden;
@@ -162,6 +182,24 @@
             top: 100%;
             left: 0;
             z-index: 1000;
+        }
+        
+        /* Responsive grid untuk katakana cards */
+        .katakana-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        @media (max-width: 640px) {
+            .katakana-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 0.5rem;
+            }
+            
+            .katakana-char {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -427,7 +465,7 @@
 
                 <!-- Tabel Katakana -->
                 <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Tabel Katakana Dasar</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Tabel Katakana Lengkap</h2>
                     
                     <!-- Vokal -->
                     <div class="mb-8">
@@ -435,9 +473,9 @@
                             <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-purple-600 font-bold">ア</span>
                             </div>
-                            Baris Vokal
+                            Baris Vokal (ア行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="katakana-grid">
                             <div class="katakana-vowel text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese katakana-char mb-2">ア</div>
                                 <div class="font-semibold">a</div>
@@ -467,9 +505,9 @@
                             <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-blue-600 font-bold">カ</span>
                             </div>
-                            Baris K
+                            Baris K (カ行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="katakana-grid">
                             <div class="katakana-k text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese katakana-char mb-2">カ</div>
                                 <div class="font-semibold">ka</div>
@@ -499,9 +537,9 @@
                             <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-green-600 font-bold">サ</span>
                             </div>
-                            Baris S
+                            Baris S (サ行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="katakana-grid">
                             <div class="katakana-s text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese katakana-char mb-2">サ</div>
                                 <div class="font-semibold">sa</div>
@@ -531,9 +569,9 @@
                             <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-orange-600 font-bold">タ</span>
                             </div>
-                            Baris T
+                            Baris T (タ行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="katakana-grid">
                             <div class="katakana-t text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese katakana-char mb-2">タ</div>
                                 <div class="font-semibold">ta</div>
@@ -563,9 +601,9 @@
                             <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
                                 <span class="text-yellow-600 font-bold">ナ</span>
                             </div>
-                            Baris N
+                            Baris N (ナ行)
                         </h3>
-                        <div class="grid grid-cols-5 gap-4 mb-6">
+                        <div class="katakana-grid">
                             <div class="katakana-n text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese katakana-char mb-2">ナ</div>
                                 <div class="font-semibold">na</div>
@@ -585,6 +623,168 @@
                             <div class="katakana-n text-white rounded-xl p-4 text-center card-hover">
                                 <div class="text-japanese katakana-char mb-2">ノ</div>
                                 <div class="font-semibold">no</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris H -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-red-600 font-bold">ハ</span>
+                            </div>
+                            Baris H (ハ行)
+                        </h3>
+                        <div class="katakana-grid">
+                            <div class="katakana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ハ</div>
+                                <div class="font-semibold">ha</div>
+                            </div>
+                            <div class="katakana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ヒ</div>
+                                <div class="font-semibold">hi</div>
+                            </div>
+                            <div class="katakana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">フ</div>
+                                <div class="font-semibold">fu</div>
+                            </div>
+                            <div class="katakana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ヘ</div>
+                                <div class="font-semibold">he</div>
+                            </div>
+                            <div class="katakana-h text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ホ</div>
+                                <div class="font-semibold">ho</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris M -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-pink-600 font-bold">マ</span>
+                            </div>
+                            Baris M (マ行)
+                        </h3>
+                        <div class="katakana-grid">
+                            <div class="katakana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">マ</div>
+                                <div class="font-semibold">ma</div>
+                            </div>
+                            <div class="katakana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ミ</div>
+                                <div class="font-semibold">mi</div>
+                            </div>
+                            <div class="katakana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ム</div>
+                                <div class="font-semibold">mu</div>
+                            </div>
+                            <div class="katakana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">メ</div>
+                                <div class="font-semibold">me</div>
+                            </div>
+                            <div class="katakana-m text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">モ</div>
+                                <div class="font-semibold">mo</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris Y -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-purple-600 font-bold">ヤ</span>
+                            </div>
+                            Baris Y (ヤ行)
+                        </h3>
+                        <div class="katakana-grid">
+                            <div class="katakana-y text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ヤ</div>
+                                <div class="font-semibold">ya</div>
+                            </div>
+                            <div class="katakana-y text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ユ</div>
+                                <div class="font-semibold">yu</div>
+                            </div>
+                            <div class="katakana-y text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ヨ</div>
+                                <div class="font-semibold">yo</div>
+                            </div>
+                            <!-- Empty spaces for alignment -->
+                            <div class="rounded-xl p-4 text-center opacity-0">
+                                <div class="text-japanese katakana-char mb-2">　</div>
+                                <div class="font-semibold">　</div>
+                            </div>
+                            <div class="rounded-xl p-4 text-center opacity-0">
+                                <div class="text-japanese katakana-char mb-2">　</div>
+                                <div class="font-semibold">　</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris R -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-blue-600 font-bold">ラ</span>
+                            </div>
+                            Baris R (ラ行)
+                        </h3>
+                        <div class="katakana-grid">
+                            <div class="katakana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ラ</div>
+                                <div class="font-semibold">ra</div>
+                            </div>
+                            <div class="katakana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">リ</div>
+                                <div class="font-semibold">ri</div>
+                            </div>
+                            <div class="katakana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ル</div>
+                                <div class="font-semibold">ru</div>
+                            </div>
+                            <div class="katakana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">レ</div>
+                                <div class="font-semibold">re</div>
+                            </div>
+                            <div class="katakana-r text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ロ</div>
+                                <div class="font-semibold">ro</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris W dan N -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-green-600 font-bold">ワ</span>
+                            </div>
+                            Baris W dan N (ワ行)
+                        </h3>
+                        <div class="katakana-grid">
+                            <div class="katakana-w text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ワ</div>
+                                <div class="font-semibold">wa</div>
+                            </div>
+                            <div class="katakana-w text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ヲ</div>
+                                <div class="font-semibold">wo</div>
+                            </div>
+                            <div class="katakana-w text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese katakana-char mb-2">ン</div>
+                                <div class="font-semibold">n</div>
+                            </div>
+                            <!-- Empty spaces for alignment -->
+                            <div class="rounded-xl p-4 text-center opacity-0">
+                                <div class="text-japanese katakana-char mb-2">　</div>
+                                <div class="font-semibold">　</div>
+                            </div>
+                            <div class="rounded-xl p-4 text-center opacity-0">
+                                <div class="text-japanese katakana-char mb-2">　</div>
+                                <div class="font-semibold">　</div>
                             </div>
                         </div>
                     </div>
@@ -864,7 +1064,7 @@
         });
     });
     
-        // Data untuk Katakana
+        // Data untuk Katakana (lengkap)
         const katakana = [
             // Vokal
             { character: "ア", reading: "a", row: "vowel", example: "アメリカ (amerika) - Amerika" },
@@ -899,7 +1099,38 @@
             { character: "ニ", reading: "ni", row: "n", example: "ニュース (nyūsu) - berita" },
             { character: "ヌ", reading: "nu", row: "n", example: "ヌードル (nūdoru) - mie" },
             { character: "ネ", reading: "ne", row: "n", example: "ネクタイ (nekutai) - dasi" },
-            { character: "ノ", reading: "no", row: "n", example: "ノート (nōto) - notebook" }
+            { character: "ノ", reading: "no", row: "n", example: "ノート (nōto) - notebook" },
+
+            // Baris H
+            { character: "ハ", reading: "ha", row: "h", example: "ハンバーガー (hanbāgā) - hamburger" },
+            { character: "ヒ", reading: "hi", row: "h", example: "ヒーター (hītā) - pemanas" },
+            { character: "フ", reading: "fu", row: "h", example: "フランス (furansu) - Perancis" },
+            { character: "ヘ", reading: "he", row: "h", example: "ヘリコプター (herikoputā) - helikopter" },
+            { character: "ホ", reading: "ho", row: "h", example: "ホテル (hoteru) - hotel" },
+
+            // Baris M
+            { character: "マ", reading: "ma", row: "m", example: "マンガ (manga) - komik" },
+            { character: "ミ", reading: "mi", row: "m", example: "ミルク (miruku) - susu" },
+            { character: "ム", reading: "mu", row: "m", example: "ムービー (mūbī) - film" },
+            { character: "メ", reading: "me", row: "m", example: "メニュー (menyū) - menu" },
+            { character: "モ", reading: "mo", row: "m", example: "モーター (mōtā) - motor" },
+
+            // Baris Y
+            { character: "ヤ", reading: "ya", row: "y", example: "ヤクルト (yakuruto) - Yakult" },
+            { character: "ユ", reading: "yu", row: "y", example: "ユーモア (yūmoa) - humor" },
+            { character: "ヨ", reading: "yo", row: "y", example: "ヨーロッパ (yōroppa) - Eropa" },
+
+            // Baris R
+            { character: "ラ", reading: "ra", row: "r", example: "ラジオ (rajio) - radio" },
+            { character: "リ", reading: "ri", row: "r", example: "リモコン (rimokon) - remote control" },
+            { character: "ル", reading: "ru", row: "r", example: "ルール (rūru) - aturan" },
+            { character: "レ", reading: "re", row: "r", example: "レストラン (resutoran) - restoran" },
+            { character: "ロ", reading: "ro", row: "r", example: "ロボット (robotto) - robot" },
+
+            // Baris W dan N
+            { character: "ワ", reading: "wa", row: "w", example: "ワイン (wain) - wine" },
+            { character: "ヲ", reading: "wo", row: "w", example: "ヲ (wo) - partikel objek langsung" },
+            { character: "ン", reading: "n", row: "n", example: "ペン (pen) - pulpen" }
         ];
 
         // Data untuk kata serapan
@@ -1077,7 +1308,7 @@
         // Quiz functionality
         let currentQuizQuestion = 0;
         let quizScore = 0;
-        const totalQuestions = 5;
+        const totalQuestions = 10;
 
         function startQuiz() {
             currentQuizQuestion = 0;

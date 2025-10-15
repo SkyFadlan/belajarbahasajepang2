@@ -63,7 +63,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-                 /* Dropdown styling dengan transisi yang lebih baik */
+        /* Dropdown styling dengan transisi yang lebih baik */
         .dropdown-menu {
             opacity: 0;
             visibility: hidden;
@@ -89,11 +89,6 @@
         }
         
         /* Animasi untuk mobile menu */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
         .mobile-submenu {
             animation: fadeIn 0.3s ease;
         }
@@ -108,6 +103,19 @@
             top: 100%;
             left: 0;
             z-index: 1000;
+        }
+        
+        /* Grid untuk kata kerja */
+        .verb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        
+        @media (max-width: 640px) {
+            .verb-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -319,8 +327,9 @@
         <div class="fade-in">
             <!-- Learn Tab Content -->
             <div id="learn-content" class="tab-content">
+                <!-- Kelompok Kata Kerja -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                    <!-- Kelompok Kata Kerja -->
+                    <!-- Grup 1 -->
                     <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
@@ -332,22 +341,51 @@
                             </div>
                         </div>
                         <p class="text-gray-600 mb-4">Kata kerja yang berakhiran -u, berubah sesuai dengan tenses.</p>
-                        <div class="space-y-3">
+                        <div class="space-y-3 max-h-80 overflow-y-auto">
                             <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">行く</span>
+                                <span class="text-japanese text-lg font-bold">いく</span>
                                 <span class="text-gray-700">iku (pergi)</span>
                             </div>
                             <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">話す</span>
+                                <span class="text-japanese text-lg font-bold">はなす</span>
                                 <span class="text-gray-700">hanasu (berbicara)</span>
                             </div>
                             <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">飲む</span>
+                                <span class="text-japanese text-lg font-bold">のむ</span>
                                 <span class="text-gray-700">nomu (minum)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">かう</span>
+                                <span class="text-gray-700">kau (membeli)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">はたらく</span>
+                                <span class="text-gray-700">hataraku (bekerja)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">あう</span>
+                                <span class="text-gray-700">au (bertemu)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">かえる</span>
+                                <span class="text-gray-700">kaeru (pulang)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">きく</span>
+                                <span class="text-gray-700">kiku (mendengar)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">かく</span>
+                                <span class="text-gray-700">kaku (menulis)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">はしる</span>
+                                <span class="text-gray-700">hashiru (berlari)</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Grup 2 -->
                     <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
@@ -359,22 +397,51 @@
                             </div>
                         </div>
                         <p class="text-gray-600 mb-4">Kata kerja yang berakhiran -iru/-eru, perubahan lebih sederhana.</p>
-                        <div class="space-y-3">
+                        <div class="space-y-3 max-h-80 overflow-y-auto">
                             <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">食べる</span>
+                                <span class="text-japanese text-lg font-bold">たべる</span>
                                 <span class="text-gray-700">taberu (makan)</span>
                             </div>
                             <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">見る</span>
+                                <span class="text-japanese text-lg font-bold">みる</span>
                                 <span class="text-gray-700">miru (melihat)</span>
                             </div>
                             <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">起きる</span>
+                                <span class="text-japanese text-lg font-bold">おきる</span>
                                 <span class="text-gray-700">okiru (bangun)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">ねる</span>
+                                <span class="text-gray-700">neru (tidur)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">おしえる</span>
+                                <span class="text-gray-700">oshieru (mengajar)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">ならう</span>
+                                <span class="text-gray-700">narau (belajar)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">おぼえる</span>
+                                <span class="text-gray-700">oboeru (mengingat)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">あびる</span>
+                                <span class="text-gray-700">abiru (mandi)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">かりる</span>
+                                <span class="text-gray-700">kariru (meminjam)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">できる</span>
+                                <span class="text-gray-700">dekiru (bisa)</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Grup 3 -->
                     <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mr-4">
@@ -386,18 +453,152 @@
                             </div>
                         </div>
                         <p class="text-gray-600 mb-4">Kata kerja tidak beraturan yang harus dihafal.</p>
-                        <div class="space-y-3">
+                        <div class="space-y-3 max-h-80 overflow-y-auto">
                             <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">する</span>
+                                <span class="text-japanese text-lg font-bold">する</span>
                                 <span class="text-gray-700">suru (melakukan)</span>
                             </div>
                             <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">来る</span>
+                                <span class="text-japanese text-lg font-bold">くる</span>
                                 <span class="text-gray-700">kuru (datang)</span>
                             </div>
                             <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
-                                <span class="text-japanese text-xl font-bold">行く</span>
-                                <span class="text-gray-700">iku (pergi)*</span>
+                                <span class="text-japanese text-lg font-bold">べんきょうする</span>
+                                <span class="text-gray-700">benkyou suru (belajar)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">そうじする</span>
+                                <span class="text-gray-700">souji suru (membersihkan)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                <span class="text-japanese text-lg font-bold">でんわする</span>
+                                <span class="text-gray-700">denwa suru (menelepon)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daftar Kata Kerja Lengkap -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Daftar Kata Kerja Lengkap</h2>
+                    <div class="verb-grid">
+                        <!-- Kata Kerja Sehari-hari -->
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-bold text-gray-800 text-lg mb-4 flex items-center">
+                                <i class="fas fa-home text-blue-500 mr-2"></i>
+                                Aktivitas Sehari-hari
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">たべる</span>
+                                    <span class="text-gray-700">taberu (makan)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">のむ</span>
+                                    <span class="text-gray-700">nomu (minum)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">ねる</span>
+                                    <span class="text-gray-700">neru (tidur)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">おきる</span>
+                                    <span class="text-gray-700">okiru (bangun)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">あらう</span>
+                                    <span class="text-gray-700">arau (mencuci)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pekerjaan dan Belajar -->
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-bold text-gray-800 text-lg mb-4 flex items-center">
+                                <i class="fas fa-briefcase text-green-500 mr-2"></i>
+                                Pekerjaan & Belajar
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">はたらく</span>
+                                    <span class="text-gray-700">hataraku (bekerja)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">べんきょうする</span>
+                                    <span class="text-gray-700">benkyou suru (belajar)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">おしえる</span>
+                                    <span class="text-gray-700">oshieru (mengajar)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">ならう</span>
+                                    <span class="text-gray-700">narau (belajar)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">かく</span>
+                                    <span class="text-gray-700">kaku (menulis)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gerakan dan Perjalanan -->
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-bold text-gray-800 text-lg mb-4 flex items-center">
+                                <i class="fas fa-walking text-purple-500 mr-2"></i>
+                                Gerakan & Perjalanan
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">いく</span>
+                                    <span class="text-gray-700">iku (pergi)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">くる</span>
+                                    <span class="text-gray-700">kuru (datang)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">かえる</span>
+                                    <span class="text-gray-700">kaeru (pulang)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">はしる</span>
+                                    <span class="text-gray-700">hashiru (berlari)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">あるく</span>
+                                    <span class="text-gray-700">aruku (berjalan)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sosial dan Komunikasi -->
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-bold text-gray-800 text-lg mb-4 flex items-center">
+                                <i class="fas fa-comments text-yellow-500 mr-2"></i>
+                                Sosial & Komunikasi
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">はなす</span>
+                                    <span class="text-gray-700">hanasu (berbicara)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">きく</span>
+                                    <span class="text-gray-700">kiku (mendengar)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">いう</span>
+                                    <span class="text-gray-700">iu (berkata)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">あう</span>
+                                    <span class="text-gray-700">au (bertemu)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-japanese">よぶ</span>
+                                    <span class="text-gray-700">yobu (memanggil)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -408,19 +609,19 @@
                     <h2 class="text-2xl font-bold text-gray-800 mb-6">Contoh Penggunaan dalam Kalimat</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-gray-50 rounded-xl p-6">
-                            <div class="text-japanese text-xl font-bold mb-3">私は本を読みます。</div>
+                            <div class="text-japanese text-xl font-bold mb-3">わたしは ほんを よみます。</div>
                             <div class="text-gray-600 mb-2">Watashi wa hon o yomimasu.</div>
                             <div class="text-gray-700 font-semibold">Saya membaca buku.</div>
                             <div class="mt-3 text-sm text-gray-500">
-                                <span class="font-semibold">Kata kerja:</span> 読む (yomu - membaca)
+                                <span class="font-semibold">Kata kerja:</span> よむ (yomu - membaca)
                             </div>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-6">
-                            <div class="text-japanese text-xl font-bold mb-3">彼は日本語を勉強します。</div>
+                            <div class="text-japanese text-xl font-bold mb-3">かれは にほんごを べんきょうします。</div>
                             <div class="text-gray-600 mb-2">Kare wa nihongo o benkyou shimasu.</div>
                             <div class="text-gray-700 font-semibold">Dia belajar bahasa Jepang.</div>
                             <div class="mt-3 text-sm text-gray-500">
-                                <span class="font-semibold">Kata kerja:</span> 勉強する (benkyou suru - belajar)
+                                <span class="font-semibold">Kata kerja:</span> べんきょうする (benkyou suru - belajar)
                             </div>
                         </div>
                     </div>
@@ -448,14 +649,14 @@
                             <div class="mb-6">
                                 <label class="block text-gray-700 font-semibold mb-3">Kata Kerja:</label>
                                 <div id="current-verb" class="text-3xl text-japanese font-bold text-center p-4 bg-gray-100 rounded-lg mb-4">
-                                    食べる
+                                    たべる
                                 </div>
-                                <div class="text-center text-gray-600 mb-2">taberu (makan)</div>
+                                <div class="text-center text-gray-600 mb-2">taberu (makan) - Grup 2</div>
                             </div>
                             
                             <div class="mb-6">
-                                <label class="block text-gray-700 font-semibold mb-3">Jawaban Anda:</label>
-                                <input type="text" id="practice-answer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-japanese text-xl" placeholder="Ketik dalam hiragana...">
+                                <label class="block text-gray-700 font-semibold mb-3">Jawaban Anda (gunakan romaji):</label>
+                                <input type="text" id="practice-answer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-xl" placeholder="Ketik dalam romaji...">
                             </div>
                             
                             <button id="check-practice" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
@@ -470,28 +671,37 @@
                             <div class="space-y-4">
                                 <div>
                                     <h4 class="font-semibold text-blue-700 mb-2">Bentuk Masu (Polite):</h4>
-                                    <div class="text-sm text-gray-700">
-                                        <div>食べる → 食べます</div>
-                                        <div>行く → 行きます</div>
-                                        <div>する → します</div>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>たべる → たべます (tabemasu)</div>
+                                        <div>いく → いきます (ikimasu)</div>
+                                        <div>する → します (shimasu)</div>
                                     </div>
                                 </div>
                                 
                                 <div>
                                     <h4 class="font-semibold text-blue-700 mb-2">Bentuk Te:</h4>
-                                    <div class="text-sm text-gray-700">
-                                        <div>食べる → 食べて</div>
-                                        <div>行く → 行って</div>
-                                        <div>する → して</div>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>たべる → たべて (tabete)</div>
+                                        <div>いく → いって (itte)</div>
+                                        <div>する → して (shite)</div>
                                     </div>
                                 </div>
                                 
                                 <div>
                                     <h4 class="font-semibold text-blue-700 mb-2">Bentuk Nai (Negatif):</h4>
-                                    <div class="text-sm text-gray-700">
-                                        <div>食べる → 食べない</div>
-                                        <div>行く → 行かない</div>
-                                        <div>する → しない</div>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>たべる → たべない (tabenai)</div>
+                                        <div>いく → いかない (ikanai)</div>
+                                        <div>する → しない (shinai)</div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-blue-700 mb-2">Bentuk Ta (Past):</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>たべる → たべた (tabeta)</div>
+                                        <div>いく → いった (itta)</div>
+                                        <div>する → した (shita)</div>
                                     </div>
                                 </div>
                             </div>
@@ -531,8 +741,8 @@
                     <!-- Quiz Question -->
                     <div id="quiz-area" class="fade-in">
                         <div class="bg-gray-50 rounded-xl p-6 mb-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4" id="quiz-question">Apa arti dari kata kerja "行く"?</h3>
-                            <div class="text-japanese text-3xl font-bold text-center mb-2" id="quiz-verb">行く</div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4" id="quiz-question">Apa arti dari kata kerja "いく"?</h3>
+                            <div class="text-japanese text-3xl font-bold text-center mb-2" id="quiz-verb">いく</div>
                             <div class="text-center text-gray-600" id="quiz-reading">iku</div>
                         </div>
 
@@ -565,63 +775,88 @@
     </div>
 
     <script>
-         // === Toggle mobile menu ===
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-    });
+        // === Toggle mobile menu ===
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
 
-    // === Toggle mobile submenus ===
-    function toggleMobileSubmenu(id) {
-        const submenu = document.getElementById(id);
-        const arrow = document.getElementById(id.split('-')[0] + '-arrow');
-        submenu.classList.toggle('hidden');
-        arrow.classList.toggle('rotate-180');
-    }
+        // === Toggle mobile submenus ===
+        function toggleMobileSubmenu(id) {
+            const submenu = document.getElementById(id);
+            const arrow = document.getElementById(id.split('-')[0] + '-arrow');
+            submenu.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
 
-    // === Dropdown Desktop (klik untuk buka, klik di luar untuk tutup) ===
-    const dropdownButtons = document.querySelectorAll('.dropdown-container > button');
+        // === Dropdown Desktop (klik untuk buka, klik di luar untuk tutup) ===
+        const dropdownButtons = document.querySelectorAll('.dropdown-container > button');
 
-    dropdownButtons.forEach(button => {
-        const menu = button.nextElementSibling;
-        const arrow = button.querySelector('.dropdown-arrow');
+        dropdownButtons.forEach(button => {
+            const menu = button.nextElementSibling;
+            const arrow = button.querySelector('.dropdown-arrow');
 
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
 
-            // Tutup semua dropdown lain
-            document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
-                if (openMenu !== menu) openMenu.classList.remove('show');
+                // Tutup semua dropdown lain
+                document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                    if (openMenu !== menu) openMenu.classList.remove('show');
+                });
+
+                // Toggle dropdown yang diklik
+                menu.classList.toggle('show');
+                arrow?.classList.toggle('rotate-180');
             });
+        });
 
-            // Toggle dropdown yang diklik
-            menu.classList.toggle('show');
-            arrow?.classList.toggle('rotate-180');
+        // Tutup semua dropdown saat klik di luar
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.dropdown-arrow.rotate-180').forEach(arrow => {
+                arrow.classList.remove('rotate-180');
+            });
         });
-    });
-
-    // Tutup semua dropdown saat klik di luar
-    document.addEventListener('click', function() {
-        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-            menu.classList.remove('show');
-        });
-        document.querySelectorAll('.dropdown-arrow.rotate-180').forEach(arrow => {
-            arrow.classList.remove('rotate-180');
-        });
-    });
-    
-        // Data untuk kuis
+        
+        // Data untuk kuis dan latihan
         const verbs = [
-            { japanese: "行く", reading: "iku", meaning: "pergi", group: 1 },
-            { japanese: "食べる", reading: "taberu", meaning: "makan", group: 2 },
-            { japanese: "見る", reading: "miru", meaning: "melihat", group: 2 },
-            { japanese: "飲む", reading: "nomu", meaning: "minum", group: 1 },
-            { japanese: "話す", reading: "hanasu", meaning: "berbicara", group: 1 },
-            { japanese: "来る", reading: "kuru", meaning: "datang", group: 3 },
+            // Grup 1
+            { japanese: "いく", reading: "iku", meaning: "pergi", group: 1 },
+            { japanese: "はなす", reading: "hanasu", meaning: "berbicara", group: 1 },
+            { japanese: "のむ", reading: "nomu", meaning: "minum", group: 1 },
+            { japanese: "かう", reading: "kau", meaning: "membeli", group: 1 },
+            { japanese: "はたらく", reading: "hataraku", meaning: "bekerja", group: 1 },
+            { japanese: "あう", reading: "au", meaning: "bertemu", group: 1 },
+            { japanese: "かえる", reading: "kaeru", meaning: "pulang", group: 1 },
+            { japanese: "きく", reading: "kiku", meaning: "mendengar", group: 1 },
+            { japanese: "かく", reading: "kaku", meaning: "menulis", group: 1 },
+            { japanese: "はしる", reading: "hashiru", meaning: "berlari", group: 1 },
+            { japanese: "あるく", reading: "aruku", meaning: "berjalan", group: 1 },
+            { japanese: "よむ", reading: "yomu", meaning: "membaca", group: 1 },
+            { japanese: "つくる", reading: "tsukuru", meaning: "membuat", group: 1 },
+            { japanese: "うる", reading: "uru", meaning: "menjual", group: 1 },
+            { japanese: "つかう", reading: "tsukau", meaning: "menggunakan", group: 1 },
+            
+            // Grup 2
+            { japanese: "たべる", reading: "taberu", meaning: "makan", group: 2 },
+            { japanese: "みる", reading: "miru", meaning: "melihat", group: 2 },
+            { japanese: "おきる", reading: "okiru", meaning: "bangun", group: 2 },
+            { japanese: "ねる", reading: "neru", meaning: "tidur", group: 2 },
+            { japanese: "おしえる", reading: "oshieru", meaning: "mengajar", group: 2 },
+            { japanese: "ならう", reading: "narau", meaning: "belajar", group: 2 },
+            { japanese: "おぼえる", reading: "oboeru", meaning: "mengingat", group: 2 },
+            { japanese: "あびる", reading: "abiru", meaning: "mandi", group: 2 },
+            { japanese: "かりる", reading: "kariru", meaning: "meminjam", group: 2 },
+            { japanese: "できる", reading: "dekiru", meaning: "bisa", group: 2 },
+            
+            // Grup 3
             { japanese: "する", reading: "suru", meaning: "melakukan", group: 3 },
-            { japanese: "読む", reading: "yomu", meaning: "membaca", group: 1 },
-            { japanese: "書く", reading: "kaku", meaning: "menulis", group: 1 },
-            { japanese: "聞く", reading: "kiku", meaning: "mendengar", group: 1 }
+            { japanese: "くる", reading: "kuru", meaning: "datang", group: 3 },
+            { japanese: "べんきょうする", reading: "benkyou suru", meaning: "belajar", group: 3 },
+            { japanese: "そうじする", reading: "souji suru", meaning: "membersihkan", group: 3 },
+            { japanese: "でんわする", reading: "denwa suru", meaning: "menelepon", group: 3 }
         ];
 
         // Tab functionality
@@ -645,16 +880,26 @@
                 // Show selected tab content
                 const tabId = this.id.replace('tab-', '') + '-content';
                 document.getElementById(tabId).classList.remove('hidden');
+                
+                // Initialize practice if practice tab is selected
+                if (this.id === 'tab-practice') {
+                    updatePracticeVerb();
+                }
             });
         });
 
         // Practice functionality
         const practiceVerbs = [
-            { japanese: "食べる", reading: "taberu", group: 2 },
-            { japanese: "行く", reading: "iku", group: 1 },
-            { japanese: "見る", reading: "miru", group: 2 },
-            { japanese: "飲む", reading: "nomu", group: 1 },
-            { japanese: "来る", reading: "kuru", group: 3 }
+            { japanese: "たべる", reading: "taberu", group: 2 },
+            { japanese: "いく", reading: "iku", group: 1 },
+            { japanese: "みる", reading: "miru", group: 2 },
+            { japanese: "のむ", reading: "nomu", group: 1 },
+            { japanese: "くる", reading: "kuru", group: 3 },
+            { japanese: "はなす", reading: "hanasu", group: 1 },
+            { japanese: "ねる", reading: "neru", group: 2 },
+            { japanese: "かう", reading: "kau", group: 1 },
+            { japanese: "する", reading: "suru", group: 3 },
+            { japanese: "おきる", reading: "okiru", group: 2 }
         ];
 
         let currentPracticeVerb = 0;
@@ -662,7 +907,8 @@
         function updatePracticeVerb() {
             const verb = practiceVerbs[currentPracticeVerb];
             document.getElementById('current-verb').textContent = verb.japanese;
-            document.querySelector('#current-verb + .text-center').textContent = `${verb.reading} (${getGroupName(verb.group)})`;
+            document.querySelector('#current-verb + .text-center').textContent = 
+                `${verb.reading} (${getGroupName(verb.group)})`;
         }
 
         function getGroupName(group) {
@@ -677,7 +923,7 @@
         function checkPracticeAnswer() {
             const verb = practiceVerbs[currentPracticeVerb];
             const practiceType = document.getElementById('practice-type').value;
-            const userAnswer = document.getElementById('practice-answer').value.trim();
+            const userAnswer = document.getElementById('practice-answer').value.trim().toLowerCase();
             const resultDiv = document.getElementById('practice-result');
             
             let correctAnswer = '';
@@ -705,7 +951,7 @@
                         <i class="fas fa-check-circle text-green-500 mr-2"></i>
                         <span class="font-semibold">Benar!</span>
                     </div>
-                    <div class="mt-2">Jawaban yang tepat: <span class="font-bold text-japanese">${correctAnswer}</span></div>
+                    <div class="mt-2">Jawaban yang tepat: <span class="font-bold">${correctAnswer}</span></div>
                 `;
                 
                 // Move to next verb after 2 seconds
@@ -722,22 +968,26 @@
                         <i class="fas fa-times-circle text-red-500 mr-2"></i>
                         <span class="font-semibold">Belum tepat.</span>
                     </div>
-                    <div class="mt-2">Jawaban yang benar: <span class="font-bold text-japanese">${correctAnswer}</span></div>
+                    <div class="mt-2">Jawaban yang benar: <span class="font-bold">${correctAnswer}</span></div>
                 `;
                 resultDiv.classList.remove('hidden');
             }
         }
 
-        // Conversion functions (simplified)
+        // Conversion functions
         function convertToMasu(verb) {
             if (verb.group === 2) {
                 return verb.reading.replace('ru', 'masu');
             } else if (verb.group === 3) {
-                if (verb.japanese === "する") return "します";
-                if (verb.japanese === "来る") return "来ます";
+                if (verb.japanese === "する") return "shimasu";
+                if (verb.japanese === "くる") return "kimasu";
             } else {
-                // Grup 1 simplification
-                const endings = {
+                // Grup 1
+                const lastChar = verb.reading.slice(-1);
+                const stem = verb.reading.slice(0, -1);
+                
+                const masuForms = {
+                    'う': 'います',
                     'く': 'きます',
                     'ぐ': 'ぎます',
                     'す': 'します',
@@ -745,48 +995,104 @@
                     'ぬ': 'にます',
                     'ぶ': 'びます',
                     'む': 'みます',
-                    'る': 'ります',
-                    'う': 'います'
+                    'る': 'ります'
                 };
-                const lastChar = verb.reading.slice(-1);
-                return verb.reading.slice(0, -1) + (endings[lastChar] || 'います');
+                
+                return stem + (masuForms[lastChar] || 'います');
             }
-            return verb.reading + 'ます';
         }
 
         function convertToTe(verb) {
-            // Simplified conversion
             if (verb.group === 2) {
                 return verb.reading.replace('ru', 'te');
-            } else if (verb.japanese === "行く") {
-                return "いって";
+            } else if (verb.group === 3) {
+                if (verb.japanese === "する") return "shite";
+                if (verb.japanese === "くる") return "kite";
             } else {
-                return verb.reading + 'て';
+                // Grup 1
+                const lastChar = verb.reading.slice(-1);
+                const stem = verb.reading.slice(0, -1);
+                
+                // Special case for いく
+                if (verb.reading === "iku") return "itte";
+                
+                const teForms = {
+                    'う': 'tte',
+                    'つ': 'tte',
+                    'る': 'tte',
+                    'む': 'nde',
+                    'ぶ': 'nde',
+                    'ぬ': 'nde',
+                    'く': 'ite',
+                    'ぐ': 'ide',
+                    'す': 'shite'
+                };
+                
+                return stem + (teForms[lastChar] || 'tte');
             }
         }
 
         function convertToNai(verb) {
             if (verb.group === 2) {
                 return verb.reading.replace('ru', 'nai');
+            } else if (verb.group === 3) {
+                if (verb.japanese === "する") return "shinai";
+                if (verb.japanese === "くる") return "konai";
             } else {
-                return verb.reading.slice(0, -1) + 'anai';
+                // Grup 1
+                const lastChar = verb.reading.slice(-1);
+                const stem = verb.reading.slice(0, -1);
+                
+                const naiForms = {
+                    'う': 'wanai',
+                    'く': 'kanai',
+                    'ぐ': 'ganai',
+                    'す': 'sanai',
+                    'つ': 'tanai',
+                    'ぬ': 'nanai',
+                    'ぶ': 'banai',
+                    'む': 'manai',
+                    'る': 'ranai'
+                };
+                
+                return stem + (naiForms[lastChar] || 'wanai');
             }
         }
 
         function convertToTa(verb) {
             if (verb.group === 2) {
                 return verb.reading.replace('ru', 'ta');
-            } else if (verb.japanese === "行く") {
-                return "いった";
+            } else if (verb.group === 3) {
+                if (verb.japanese === "する") return "shita";
+                if (verb.japanese === "くる") return "kita";
             } else {
-                return verb.reading + 'ta';
+                // Grup 1
+                const lastChar = verb.reading.slice(-1);
+                const stem = verb.reading.slice(0, -1);
+                
+                // Special case for いく
+                if (verb.reading === "iku") return "itta";
+                
+                const taForms = {
+                    'う': 'tta',
+                    'つ': 'tta',
+                    'る': 'tta',
+                    'む': 'nda',
+                    'ぶ': 'nda',
+                    'ぬ': 'nda',
+                    'く': 'ita',
+                    'ぐ': 'ida',
+                    'す': 'shita'
+                };
+                
+                return stem + (taForms[lastChar] || 'tta');
             }
         }
 
         // Quiz functionality
         let currentQuizQuestion = 0;
         let quizScore = 0;
-        const totalQuestions = 5;
+        const totalQuestions = 10;
 
         function startQuiz() {
             currentQuizQuestion = 0;
@@ -903,7 +1209,7 @@
             } else if (quizScore >= totalQuestions * 0.5) {
                 message = 'Hasil yang baik! Butuh lebih banyak latihan.';
             } else {
-                message = 'Jangan menyerah! Pelajari lagi dan coba sekali more!';
+                message = 'Jangan menyerah! Pelajari lagi dan coba sekali lagi!';
             }
             
             document.getElementById('result-message').textContent = message;

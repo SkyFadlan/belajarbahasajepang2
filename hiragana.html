@@ -1150,7 +1150,9 @@
                         button.innerHTML = `
                             <div class="font-semibold text-gray-800 text-xl">${option}</div>
                         `;
-                        button.addEventListener('click', () => checkPracticeAnswer(option === randomHiragana.reading, option, randomHiragana.reading));
+                        // mark correct answer on the button for later reference
+                        button.dataset.correct = (option === randomHiragana.reading).toString();
+                        button.addEventListener('click', () => checkPracticeAnswer(button.dataset.correct === 'true', option, randomHiragana.reading, button));
                         optionsDiv.appendChild(button);
                     });
                     break;
@@ -1198,10 +1200,18 @@
             document.getElementById('practice-result').classList.add('hidden');
         }
 
-        function checkPracticeAnswer(isCorrect, selectedAnswer, correctAnswer) {
+        function checkPracticeAnswer(isCorrect, selectedAnswer, correctAnswer, selectedButton) {
             const resultDiv = document.getElementById('practice-result');
-            
+
+            // disable all practice option buttons to prevent double answers
+            const optionButtons = document.querySelectorAll('#practice-options button');
+            optionButtons.forEach(btn => {
+                btn.style.pointerEvents = 'none';
+            });
+
             if (isCorrect) {
+                // visually mark selected correct button
+                if (selectedButton) selectedButton.classList.add('correct-answer');
                 resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
                 resultDiv.innerHTML = `
                     <div class="flex items-center">
@@ -1211,6 +1221,12 @@
                     <div class="mt-2">Jawaban Anda tepat!</div>
                 `;
             } else {
+                // highlight the correct button
+                optionButtons.forEach(btn => {
+                    if (btn.dataset.correct === 'true') btn.classList.add('correct-answer');
+                });
+
+                if (selectedButton) selectedButton.classList.add('wrong-answer');
                 resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
                 resultDiv.innerHTML = `
                     <div class="flex items-center">
@@ -1220,9 +1236,9 @@
                     <div class="mt-2">Jawaban yang benar: <strong>${correctAnswer}</strong></div>
                 `;
             }
-            
+
             resultDiv.classList.remove('hidden');
-            
+
             // Generate new question after delay
             setTimeout(() => {
                 generatePracticeQuestion();
@@ -1232,7 +1248,7 @@
         // Quiz functionality
         let currentQuizQuestion = 0;
         let quizScore = 0;
-        const totalQuestions = 5;
+        const totalQuestions = 10;
 
         function startQuiz() {
             currentQuizQuestion = 0;
@@ -1289,7 +1305,9 @@
                 const button = document.createElement('button');
                 button.className = `quiz-option p-4 rounded-lg border-2 border-gray-200 bg-white hover:bg-gray-50 transition duration-200 text-left`;
                 button.innerHTML = option.content;
-                button.addEventListener('click', () => checkQuizAnswer(option.correct, button));
+                // set dataset to mark correct option
+                button.dataset.correct = option.correct ? 'true' : 'false';
+                button.addEventListener('click', () => checkQuizAnswer(button.dataset.correct === 'true', button));
                 optionsContainer.appendChild(button);
             });
             
@@ -1363,10 +1381,9 @@
             
             // Disable all options
             options.forEach(option => {
-                option.removeEventListener('click', () => {});
                 option.style.pointerEvents = 'none';
             });
-            
+
             // Mark correct/incorrect
             if (isCorrect) {
                 selectedButton.classList.add('correct-answer');
@@ -1374,9 +1391,9 @@
                 updateQuizScore();
             } else {
                 selectedButton.classList.add('wrong-answer');
-                // Find and highlight correct answer
+                // Find and highlight correct answer using dataset
                 options.forEach(option => {
-                    if (option !== selectedButton && option.innerHTML.includes('correct')) {
+                    if (option.dataset && option.dataset.correct === 'true') {
                         option.classList.add('correct-answer');
                     }
                 });

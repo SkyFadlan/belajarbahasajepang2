@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kata Benda Jepang - NihongoMaster</title>
+    <title>Kata Benda Jepang - NihongoDesu</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -58,22 +58,6 @@
             animation: fadeIn 0.5s ease-in;
         }
         
-        .category-people {
-            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
-        }
-        
-        .category-places {
-            background: linear-gradient(135deg, #4ECDC4 0%, #6EE7E7 100%);
-        }
-        
-        .category-things {
-            background: linear-gradient(135deg, #FFD93D 0%, #FFE869 100%);
-        }
-        
-        .category-food {
-            background: linear-gradient(135deg, #6BCF7F 0%, #8CE0A2 100%);
-        }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -83,7 +67,7 @@
             font-size: 1.5rem;
         }
 
-                 /* Dropdown styling dengan transisi yang lebih baik */
+        /* Dropdown styling dengan transisi yang lebih baik */
         .dropdown-menu {
             opacity: 0;
             visibility: hidden;
@@ -109,11 +93,6 @@
         }
         
         /* Animasi untuk mobile menu */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
         .mobile-submenu {
             animation: fadeIn 0.3s ease;
         }
@@ -129,11 +108,19 @@
             left: 0;
             z-index: 1000;
         }
+        
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Navigation -->
-        <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <!-- Logo -->
@@ -318,7 +305,7 @@
         <div class="text-center mb-12 fade-in">
             <h1 class="text-4xl font-bold text-gray-800 mb-4">Kata Benda Bahasa Jepang (名詞)</h1>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Pelajari kata benda bahasa Jepang dengan sistem pembelajaran interaktif. Kuasai berbagai kategori kata benda dan penggunaannya dalam kalimat!
+                Pelajari kata benda bahasa Jepang dengan sistem pembelajaran interaktif. Kuasai kosakata sehari-hari yang penting!
             </p>
         </div>
 
@@ -341,209 +328,173 @@
             <div id="learn-content" class="tab-content">
                 <!-- Kategori Kata Benda -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <!-- Orang -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-red-500">
+                    <!-- Transportasi -->
+                    <div class="category-card bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-red-600 text-xl">👨‍👩‍👧‍👦</span>
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-car text-xl"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-800 text-lg">Orang</h3>
-                                <p class="text-red-600 text-sm">Keluarga & Profesi</p>
+                                <h3 class="font-bold text-lg">Transportasi</h3>
+                                <p class="text-blue-100 text-sm">12 kata</p>
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center p-2 bg-red-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">人</span>
-                                <span class="text-gray-700 text-sm">hito - orang</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-red-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">先生</span>
-                                <span class="text-gray-700 text-sm">sensei - guru</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-red-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">医者</span>
-                                <span class="text-gray-700 text-sm">isha - dokter</span>
-                            </div>
+                        <p class="text-blue-100 mb-4">Kendaraan dan alat transportasi sehari-hari</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">Pelajari</span>
+                            <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
 
-                    <!-- Tempat -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-blue-500">
+                    <!-- Teknologi -->
+                    <div class="category-card bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-blue-600 text-xl">🏢</span>
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-laptop text-xl"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-800 text-lg">Tempat</h3>
-                                <p class="text-blue-600 text-sm">Bangunan & Lokasi</p>
+                                <h3 class="font-bold text-lg">Teknologi</h3>
+                                <p class="text-purple-100 text-sm">10 kata</p>
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">学校</span>
-                                <span class="text-gray-700 text-sm">gakkou - sekolah</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">駅</span>
-                                <span class="text-gray-700 text-sm">eki - stasiun</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">店</span>
-                                <span class="text-gray-700 text-sm">mise - toko</span>
-                            </div>
+                        <p class="text-purple-100 mb-4">Perangkat elektronik dan teknologi</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">Pelajari</span>
+                            <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
 
-                    <!-- Benda -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-yellow-500">
+                    <!-- Sekolah -->
+                    <div class="category-card bg-gradient-to-br from-green-500 to-green-600 text-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-yellow-600 text-xl">📦</span>
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-xl"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-800 text-lg">Benda</h3>
-                                <p class="text-yellow-600 text-sm">Barang & Objek</p>
+                                <h3 class="font-bold text-lg">Sekolah</h3>
+                                <p class="text-green-100 text-sm">15 kata</p>
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center p-2 bg-yellow-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">本</span>
-                                <span class="text-gray-700 text-sm">hon - buku</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-yellow-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">車</span>
-                                <span class="text-gray-700 text-sm">kuruma - mobil</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-yellow-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">机</span>
-                                <span class="text-gray-700 text-sm">tsukue - meja</span>
-                            </div>
+                        <p class="text-green-100 mb-4">Peralatan dan tempat sekolah</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">Pelajari</span>
+                            <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
 
-                    <!-- Makanan -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-green-500">
+                    <!-- Rumah -->
+                    <div class="category-card bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-green-600 text-xl">🍱</span>
+                            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-home text-xl"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-800 text-lg">Makanan</h3>
-                                <p class="text-green-600 text-sm">Makanan & Minuman</p>
+                                <h3 class="font-bold text-lg">Rumah</h3>
+                                <p class="text-orange-100 text-sm">18 kata</p>
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">水</span>
-                                <span class="text-gray-700 text-sm">mizu - air</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">ご飯</span>
-                                <span class="text-gray-700 text-sm">gohan - nasi</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-green-50 rounded-lg">
-                                <span class="text-japanese text-lg font-bold">りんご</span>
-                                <span class="text-gray-700 text-sm">ringo - apel</span>
-                            </div>
+                        <p class="text-orange-100 mb-4">Barang-barang dan ruangan di rumah</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">Pelajari</span>
+                            <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Partikel dengan Kata Benda -->
+                <!-- Daftar Kata Benda Lengkap -->
                 <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Partikel dengan Kata Benda</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Partikel Wa -->
-                        <div class="bg-gray-50 rounded-xl p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-purple-600 font-bold text-japanese">は</span>
-                                </div>
-                                <h3 class="font-bold text-gray-800">Partikel は (wa)</h3>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Daftar Lengkap Kata Benda</h2>
+                    
+                    <!-- Transportasi -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-car text-blue-600"></i>
                             </div>
-                            <p class="text-gray-600 mb-4">Menandai topik kalimat</p>
-                            <div class="bg-white rounded-lg p-4">
-                                <div class="text-japanese text-lg font-bold mb-2">私は学生です。</div>
-                                <div class="text-gray-600">Watashi wa gakusei desu.</div>
-                                <div class="text-gray-700 font-semibold">Saya adalah pelajar.</div>
-                            </div>
+                            Transportasi
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="transportation-words">
+                            <!-- Transportasi words will be populated by JavaScript -->
                         </div>
-
-                        <!-- Partikel Ga -->
-                        <div class="bg-gray-50 rounded-xl p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-purple-600 font-bold text-japanese">が</span>
-                                </div>
-                                <h3 class="font-bold text-gray-800">Partikel が (ga)</h3>
+                    </div>
+                    
+                    <!-- Teknologi -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-purple-600 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-laptop text-purple-600"></i>
                             </div>
-                            <p class="text-gray-600 mb-4">Menandai subjek kalimat</p>
-                            <div class="bg-white rounded-lg p-4">
-                                <div class="text-japanese text-lg font-bold mb-2">猫がいます。</div>
-                                <div class="text-gray-600">Neko ga imasu.</div>
-                                <div class="text-gray-700 font-semibold">Ada kucing.</div>
-                            </div>
+                            Teknologi
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="technology-words">
+                            <!-- Technology words will be populated by JavaScript -->
                         </div>
-
-                        <!-- Partikel Wo -->
-                        <div class="bg-gray-50 rounded-xl p-6">
-                            <div class="flex items-center mb-4">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-purple-600 font-bold text-japanese">を</span>
-                                </div>
-                                <h3 class="font-bold text-gray-800">Partikel を (o)</h3>
+                    </div>
+                    
+                    <!-- Sekolah -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-green-600 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-graduation-cap text-green-600"></i>
                             </div>
-                            <p class="text-gray-600 mb-4">Menandai objek langsung</p>
-                            <div class="bg-white rounded-lg p-4">
-                                <div class="text-japanese text-lg font-bold mb-2">本を読みます。</div>
-                                <div class="text-gray-600">Hon o yomimasu.</div>
-                                <div class="text-gray-700 font-semibold">Saya membaca buku.</div>
+                            Sekolah
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="school-words">
+                            <!-- School words will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Rumah -->
+                    <div>
+                        <h3 class="text-xl font-bold text-orange-600 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-home text-orange-600"></i>
                             </div>
+                            Rumah
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="home-words">
+                            <!-- Home words will be populated by JavaScript -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Penghitungan Benda -->
-                <div class="bg-white rounded-2xl shadow-lg p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Penghitungan Benda (助数詞)</h2>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left">
-                            <thead class="bg-gray-100">
-                                <tr>
-                                    <th class="px-4 py-3 font-semibold text-gray-700">Jenis Benda</th>
-                                    <th class="px-4 py-3 font-semibold text-gray-700">Penghitung</th>
-                                    <th class="px-4 py-3 font-semibold text-gray-700">Contoh</th>
-                                    <th class="px-4 py-3 font-semibold text-gray-700">Arti</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b">
-                                    <td class="px-4 py-3 font-medium">Benda Umum Kecil</td>
-                                    <td class="px-4 py-3 text-japanese">つ</td>
-                                    <td class="px-4 py-3 text-japanese">みかん一つ</td>
-                                    <td class="px-4 py-3">satu jeruk</td>
-                                </tr>
-                                <tr class="border-b">
-                                    <td class="px-4 py-3 font-medium">Benda Panjang</td>
-                                    <td class="px-4 py-3 text-japanese">本</td>
-                                    <td class="px-4 py-3 text-japanese">ペン三本</td>
-                                    <td class="px-4 py-3">tiga pulpen</td>
-                                </tr>
-                                <tr class="border-b">
-                                    <td class="px-4 py-3 font-medium">Benda Tipis</td>
-                                    <td class="px-4 py-3 text-japanese">枚</td>
-                                    <td class="px-4 py-3 text-japanese">紙五枚</td>
-                                    <td class="px-4 py-3">lima lembar kertas</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-3 font-medium">Orang</td>
-                                    <td class="px-4 py-3 text-japanese">人</td>
-                                    <td class="px-4 py-3 text-japanese">二人</td>
-                                    <td class="px-4 py-3">dua orang</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- Contoh Penggunaan dalam Kalimat -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Contoh Penggunaan dalam Kalimat</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Kalimat Transportasi -->
+                        <div>
+                            <h3 class="font-bold text-blue-600 mb-4 text-lg">Transportasi</h3>
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 rounded-xl p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">あのくるまはあかいです。</div>
+                                    <div class="text-gray-600 mb-1">Ano kuruma wa akai desu.</div>
+                                    <div class="text-gray-700 font-semibold">Mobil itu berwarna merah.</div>
+                                </div>
+                                <div class="bg-blue-50 rounded-xl p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">じてんしゃでがっこうへいきます。</div>
+                                    <div class="text-gray-600 mb-1">Jitensha de gakkou e ikimasu.</div>
+                                    <div class="text-gray-700 font-semibold">Saya pergi ke sekolah dengan sepeda.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kalimat Teknologi -->
+                        <div>
+                            <h3 class="font-bold text-purple-600 mb-4 text-lg">Teknologi</h3>
+                            <div class="space-y-4">
+                                <div class="bg-purple-50 rounded-xl p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">このこんぴゅーたーはあたらしいです。</div>
+                                    <div class="text-gray-600 mb-1">Kono konpyuutaa wa atarashii desu.</div>
+                                    <div class="text-gray-700 font-semibold">Komputer ini baru.</div>
+                                </div>
+                                <div class="bg-purple-50 rounded-xl p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">でんわでともだちとはなしました。</div>
+                                    <div class="text-gray-600 mb-1">Denwa de tomodachi to hanashimashita.</div>
+                                    <div class="text-gray-700 font-semibold">Saya berbicara dengan teman melalui telepon.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -559,9 +510,9 @@
                             <div class="mb-6">
                                 <label class="block text-gray-700 font-semibold mb-3">Pilih Jenis Latihan:</label>
                                 <select id="practice-type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
-                                    <option value="identify">Identifikasi Kategori</option>
-                                    <option value="particle">Pilih Partikel yang Tepat</option>
-                                    <option value="counter">Penghitungan Benda</option>
+                                    <option value="meaning">Arti Kata Benda</option>
+                                    <option value="reading">Membaca Kata Benda</option>
+                                    <option value="complete">Lengkapi Kalimat</option>
                                 </select>
                             </div>
                             
@@ -584,39 +535,30 @@
                             
                             <div class="space-y-4">
                                 <div>
-                                    <h4 class="font-semibold text-green-700 mb-2">Kategori Kata Benda:</h4>
+                                    <h4 class="font-semibold text-green-700 mb-2">Tips Belajar:</h4>
                                     <div class="text-sm text-gray-700 space-y-1">
                                         <div class="flex items-center">
-                                            <span class="text-red-500 mr-2">👨‍👩‍👧‍👦</span>
-                                            <span>Orang: 先生, 医者, 学生</span>
+                                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                                            <span>Gunakan flashcard untuk menghafal</span>
                                         </div>
                                         <div class="flex items-center">
-                                            <span class="text-blue-500 mr-2">🏢</span>
-                                            <span>Tempat: 学校, 駅, 店</span>
+                                            <i class="fas fa-microphone text-blue-500 mr-2"></i>
+                                            <span>Ucapkan dengan suara keras</span>
                                         </div>
                                         <div class="flex items-center">
-                                            <span class="text-yellow-500 mr-2">📦</span>
-                                            <span>Benda: 本, 車, 机</span>
+                                            <i class="fas fa-pen text-green-500 mr-2"></i>
+                                            <span>Tulis berulang-ulang</span>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div>
-                                    <h4 class="font-semibold text-green-700 mb-2">Partikel Penting:</h4>
+                                    <h4 class="font-semibold text-green-700 mb-2">Kategori Penting:</h4>
                                     <div class="text-sm text-gray-700 space-y-1">
-                                        <div>は (wa): Menandai topik</div>
-                                        <div>が (ga): Menandai subjek</div>
-                                        <div>を (o): Menandai objek langsung</div>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="font-semibold text-green-700 mb-2">Penghitung Umum:</h4>
-                                    <div class="text-sm text-gray-700 space-y-1">
-                                        <div>つ: Untuk benda kecil umum</div>
-                                        <div>本: Untuk benda panjang</div>
-                                        <div>枚: Untuk benda tipis</div>
-                                        <div>人: Untuk orang</div>
+                                        <div>• Transportasi (12 kata)</div>
+                                        <div>• Teknologi (10 kata)</div>
+                                        <div>• Sekolah (15 kata)</div>
+                                        <div>• Rumah (18 kata)</div>
                                     </div>
                                 </div>
                             </div>
@@ -656,9 +598,9 @@
                     <!-- Quiz Question -->
                     <div id="quiz-area" class="fade-in">
                         <div class="bg-gray-50 rounded-xl p-6 mb-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4" id="quiz-question">Apa arti dari kata "本"?</h3>
-                            <div class="text-japanese text-3xl font-bold text-center mb-2" id="quiz-noun">本</div>
-                            <div class="text-center text-gray-600" id="quiz-reading">hon</div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4" id="quiz-question">Apa arti dari "くるま"?</h3>
+                            <div class="text-japanese text-3xl font-bold text-center mb-2" id="quiz-noun">くるま</div>
+                            <div class="text-center text-gray-600" id="quiz-reading">kuruma</div>
                         </div>
 
                         <!-- Quiz Options -->
@@ -690,99 +632,213 @@
     </div>
 
     <script>
-         // === Toggle mobile menu ===
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-    });
+        // === Toggle mobile menu ===
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
 
-    // === Toggle mobile submenus ===
-    function toggleMobileSubmenu(id) {
-        const submenu = document.getElementById(id);
-        const arrow = document.getElementById(id.split('-')[0] + '-arrow');
-        submenu.classList.toggle('hidden');
-        arrow.classList.toggle('rotate-180');
-    }
+        // === Toggle mobile submenus ===
+        function toggleMobileSubmenu(id) {
+            const submenu = document.getElementById(id);
+            const arrow = document.getElementById(id.split('-')[0] + '-arrow');
+            submenu.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
 
-    // === Dropdown Desktop (klik untuk buka, klik di luar untuk tutup) ===
-    const dropdownButtons = document.querySelectorAll('.dropdown-container > button');
+        // === Dropdown Desktop (klik untuk buka, klik di luar untuk tutup) ===
+        const dropdownButtons = document.querySelectorAll('.dropdown-container > button');
 
-    dropdownButtons.forEach(button => {
-        const menu = button.nextElementSibling;
-        const arrow = button.querySelector('.dropdown-arrow');
+        dropdownButtons.forEach(button => {
+            const menu = button.nextElementSibling;
+            const arrow = button.querySelector('.dropdown-arrow');
 
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
 
-            // Tutup semua dropdown lain
-            document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
-                if (openMenu !== menu) openMenu.classList.remove('show');
+                // Tutup semua dropdown lain
+                document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                    if (openMenu !== menu) openMenu.classList.remove('show');
+                });
+
+                // Toggle dropdown yang diklik
+                menu.classList.toggle('show');
+                arrow?.classList.toggle('rotate-180');
             });
+        });
 
-            // Toggle dropdown yang diklik
-            menu.classList.toggle('show');
-            arrow?.classList.toggle('rotate-180');
+        // Tutup semua dropdown saat klik di luar
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            document.querySelectorAll('.dropdown-arrow.rotate-180').forEach(arrow => {
+                arrow.classList.remove('rotate-180');
+            });
         });
-    });
-
-    // Tutup semua dropdown saat klik di luar
-    document.addEventListener('click', function() {
-        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-            menu.classList.remove('show');
-        });
-        document.querySelectorAll('.dropdown-arrow.rotate-180').forEach(arrow => {
-            arrow.classList.remove('rotate-180');
-        });
-    });
-    
-        // Data untuk kata benda
+        
+        // Data untuk kata benda (tanpa kanji, hanya hiragana)
         const nouns = [
-            // Orang
-            { japanese: "人", reading: "hito", meaning: "orang", category: "people", emoji: "👤" },
-            { japanese: "先生", reading: "sensei", meaning: "guru", category: "people", emoji: "👨‍🏫" },
-            { japanese: "医者", reading: "isha", meaning: "dokter", category: "people", emoji: "👨‍⚕️" },
-            { japanese: "学生", reading: "gakusei", meaning: "pelajar/mahasiswa", category: "people", emoji: "👨‍🎓" },
-            { japanese: "子供", reading: "kodomo", meaning: "anak-anak", category: "people", emoji: "🧒" },
+            // Transportasi
+            { japanese: "くるま", reading: "kuruma", meaning: "mobil", category: "transportasi", emoji: "🚗" },
+            { japanese: "じてんしゃ", reading: "jitensha", meaning: "sepeda", category: "transportasi", emoji: "🚲" },
+            { japanese: "ばす", reading: "basu", meaning: "bis", category: "transportasi", emoji: "🚌" },
+            { japanese: "でんしゃ", reading: "densha", meaning: "kereta", category: "transportasi", emoji: "🚃" },
+            { japanese: "ひこうき", reading: "hikouki", meaning: "pesawat", category: "transportasi", emoji: "✈️" },
+            { japanese: "ふね", reading: "fune", meaning: "kapal", category: "transportasi", emoji: "🚢" },
+            { japanese: "みち", reading: "michi", meaning: "jalan", category: "transportasi", emoji: "🛣️" },
+            { japanese: "しんごう", reading: "shingou", meaning: "lampu lalu lintas", category: "transportasi", emoji: "🚦" },
+            { japanese: "きっぷ", reading: "kippu", meaning: "tiket", category: "transportasi", emoji: "🎫" },
+            { japanese: "えき", reading: "eki", meaning: "stasiun", category: "transportasi", emoji: "🚉" },
             
-            // Tempat
-            { japanese: "学校", reading: "gakkou", meaning: "sekolah", category: "places", emoji: "🏫" },
-            { japanese: "駅", reading: "eki", meaning: "stasiun", category: "places", emoji: "🚉" },
-            { japanese: "店", reading: "mise", meaning: "toko", category: "places", emoji: "🏪" },
-            { japanese: "家", reading: "ie", meaning: "rumah", category: "places", emoji: "🏠" },
-            { japanese: "公園", reading: "kouen", meaning: "taman", category: "places", emoji: "🏞️" },
+            // Teknologi
+            { japanese: "こんぴゅーたー", reading: "konpyuutaa", meaning: "komputer", category: "teknologi", emoji: "💻" },
+            { japanese: "のーと", reading: "nooto", meaning: "notebook", category: "teknologi", emoji: "📓" },
+            { japanese: "ぱそこん", reading: "pasokon", meaning: "PC", category: "teknologi", emoji: "🖥️" },
+            { japanese: "ぷりんたー", reading: "purintaa", meaning: "printer", category: "teknologi", emoji: "🖨️" },
+            { japanese: "でんわ", reading: "denwa", meaning: "telepon", category: "teknologi", emoji: "📞" },
+            { japanese: "かみ", reading: "kami", meaning: "kertas", category: "teknologi", emoji: "📄" },
+            { japanese: "ふうとう", reading: "fuutou", meaning: "amplop", category: "teknologi", emoji: "✉️" },
+            { japanese: "はんこ", reading: "hanko", meaning: "stempel", category: "teknologi", emoji: "🖋️" },
+            { japanese: "ふぁいる", reading: "fairu", meaning: "file", category: "teknologi", emoji: "📁" },
             
-            // Benda
-            { japanese: "本", reading: "hon", meaning: "buku", category: "things", emoji: "📖" },
-            { japanese: "車", reading: "kuruma", meaning: "mobil", category: "things", emoji: "🚗" },
-            { japanese: "机", reading: "tsukue", meaning: "meja", category: "things", emoji: "🪑" },
-            { japanese: "電話", reading: "denwa", meaning: "telepon", category: "things", emoji: "📱" },
-            { japanese: "時計", reading: "tokei", meaning: "jam", category: "things", emoji: "⏰" },
+            // Sekolah
+            { japanese: "いす", reading: "isu", meaning: "kursi", category: "sekolah", emoji: "🪑" },
+            { japanese: "つくえ", reading: "tsukue", meaning: "meja", category: "sekolah", emoji: "🪑" },
+            { japanese: "おかね", reading: "okane", meaning: "uang", category: "sekolah", emoji: "💰" },
+            { japanese: "ばっぐ", reading: "baggu", meaning: "tas", category: "sekolah", emoji: "🎒" },
+            { japanese: "けいたいでんわ", reading: "keitai denwa", meaning: "telepon genggam", category: "sekolah", emoji: "📱" },
+            { japanese: "かめら", reading: "kamera", meaning: "kamera", category: "sekolah", emoji: "📷" },
+            { japanese: "かさ", reading: "kasa", meaning: "payung", category: "sekolah", emoji: "☂️" },
+            { japanese: "めがね", reading: "megane", meaning: "kacamata", category: "sekolah", emoji: "👓" },
+            { japanese: "うでどけい", reading: "udedokei", meaning: "jam tangan", category: "sekolah", emoji: "⌚" },
+            { japanese: "さいふ", reading: "saifu", meaning: "dompet", category: "sekolah", emoji: "👛" },
+            { japanese: "ますく", reading: "masuku", meaning: "masker", category: "sekolah", emoji: "😷" },
+            { japanese: "がっこう", reading: "gakkou", meaning: "sekolah", category: "sekolah", emoji: "🏫" },
+            { japanese: "ほん", reading: "hon", meaning: "buku", category: "sekolah", emoji: "📚" },
+            { japanese: "えんぴつ", reading: "enpitsu", meaning: "pensil", category: "sekolah", emoji: "✏️" },
+            { japanese: "ぺん", reading: "pen", meaning: "pulpen", category: "sekolah", emoji: "🖊️" },
+            { japanese: "けしごむ", reading: "keshigomu", meaning: "penghapus", category: "sekolah", emoji: "🧽" },
+            { japanese: "ものさし", reading: "monosashi", meaning: "penggaris", category: "sekolah", emoji: "📏" },
+            { japanese: "かばん", reading: "kaban", meaning: "tas", category: "sekolah", emoji: "💼" },
+            { japanese: "のーと", reading: "nooto", meaning: "buku catatan", category: "sekolah", emoji: "📓" },
+            { japanese: "ちょーく", reading: "chooku", meaning: "kapur", category: "sekolah", emoji: "🖍️" },
+            { japanese: "こくばん", reading: "kokuban", meaning: "papan tulis", category: "sekolah", emoji: "📋" },
+            { japanese: "せいふく", reading: "seifuku", meaning: "seragam", category: "sekolah", emoji: "👔" },
+            { japanese: "くつ", reading: "kutsu", meaning: "sepatu", category: "sekolah", emoji: "👞" },
+            { japanese: "こくばんけし", reading: "kokuban keshi", meaning: "penghapus papan tulis", category: "sekolah", emoji: "🧽" },
             
-            // Makanan
-            { japanese: "水", reading: "mizu", meaning: "air", category: "food", emoji: "💧" },
-            { japanese: "ご飯", reading: "gohan", meaning: "nasi", category: "food", emoji: "🍚" },
-            { japanese: "りんご", reading: "ringo", meaning: "apel", category: "food", emoji: "🍎" },
-            { japanese: "コーヒー", reading: "koohii", meaning: "kopi", category: "food", emoji: "☕" },
-            { japanese: "パン", reading: "pan", meaning: "roti", category: "food", emoji: "🍞" }
+            // Rumah
+            { japanese: "いえ", reading: "ie", meaning: "rumah", category: "rumah", emoji: "🏠" },
+            { japanese: "どあ", reading: "doa", meaning: "pintu", category: "rumah", emoji: "🚪" },
+            { japanese: "まど", reading: "mado", meaning: "jendela", category: "rumah", emoji: "🪟" },
+            { japanese: "いす", reading: "isu", meaning: "kursi", category: "rumah", emoji: "🪑" },
+            { japanese: "つくえ", reading: "tsukue", meaning: "meja", category: "rumah", emoji: "🪑" },
+            { japanese: "べっど", reading: "beddo", meaning: "tempat tidur", category: "rumah", emoji: "🛏️" },
+            { japanese: "たんす", reading: "tansu", meaning: "lemari", category: "rumah", emoji: "🗄️" },
+            { japanese: "でんき", reading: "denki", meaning: "listrik", category: "rumah", emoji: "💡" },
+            { japanese: "でんきらんぷ", reading: "denki ranpu", meaning: "lampu", category: "rumah", emoji: "💡" },
+            { japanese: "かーぺっと", reading: "kaapetto", meaning: "karpet", category: "rumah", emoji: "🧶" },
+            { japanese: "とけい", reading: "tokei", meaning: "jam", category: "rumah", emoji: "⏰" },
+            { japanese: "てれび", reading: "terebi", meaning: "televisi", category: "rumah", emoji: "📺" },
+            { japanese: "えあこん", reading: "eakon", meaning: "AC", category: "rumah", emoji: "❄️" },
+            { japanese: "れいぞうこ", reading: "reizouko", meaning: "kulkas", category: "rumah", emoji: "🧊" },
+            { japanese: "こんろ", reading: "konro", meaning: "kompor", category: "rumah", emoji: "🔥" },
+            { japanese: "さら", reading: "sara", meaning: "piring", category: "rumah", emoji: "🍽️" },
+            { japanese: "こっぷ", reading: "koppu", meaning: "gelas", category: "rumah", emoji: "🥛" },
+            { japanese: "すぷーん", reading: "supuun", meaning: "sendok", category: "rumah", emoji: "🥄" },
+            { japanese: "ふぉーく", reading: "fooku", meaning: "garpu", category: "rumah", emoji: "🍴" },
+            { japanese: "ないふ", reading: "naifu", meaning: "pisau", category: "rumah", emoji: "🔪" },
+            { japanese: "ほうき", reading: "houki", meaning: "sapu", category: "rumah", emoji: "🧹" }
         ];
 
-        // Data untuk partikel
-        const particles = [
-            { japanese: "は", reading: "wa", usage: "topik kalimat" },
-            { japanese: "が", reading: "ga", usage: "subjek kalimat" },
-            { japanese: "を", reading: "o", usage: "objek langsung" },
-            { japanese: "に", reading: "ni", usage: "arah/tujuan" },
-            { japanese: "で", reading: "de", usage: "tempat aksi" }
-        ];
-
-        // Data untuk penghitung
-        const counters = [
-            { counter: "つ", usage: "benda kecil umum", example: "みかん一つ (satu jeruk)" },
-            { counter: "本", usage: "benda panjang", example: "ペン三本 (tiga pulpen)" },
-            { counter: "枚", usage: "benda tipis", example: "紙五枚 (lima lembar kertas)" },
-            { counter: "人", usage: "orang", example: "二人 (dua orang)" },
-            { counter: "台", usage: "mesin/kendaraan", example: "車一台 (satu mobil)" }
-        ];
+        // Fungsi untuk menampilkan daftar kata benda di bagian belajar
+        function displayNounsList() {
+            const transportationContainer = document.getElementById('transportation-words');
+            const technologyContainer = document.getElementById('technology-words');
+            const schoolContainer = document.getElementById('school-words');
+            const homeContainer = document.getElementById('home-words');
+            
+            // Kosongkan kontainer
+            transportationContainer.innerHTML = '';
+            technologyContainer.innerHTML = '';
+            schoolContainer.innerHTML = '';
+            homeContainer.innerHTML = '';
+            
+            // Filter dan tampilkan kata benda berdasarkan kategori
+            const transportationNouns = nouns.filter(noun => noun.category === 'transportasi');
+            const technologyNouns = nouns.filter(noun => noun.category === 'teknologi');
+            const schoolNouns = nouns.filter(noun => noun.category === 'sekolah');
+            const homeNouns = nouns.filter(noun => noun.category === 'rumah');
+            
+            // Tampilkan kata benda transportasi
+            transportationNouns.forEach(noun => {
+                const card = document.createElement('div');
+                card.className = 'bg-blue-50 rounded-lg p-4 flex items-center justify-between';
+                card.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="text-japanese text-xl font-bold mr-3">${noun.japanese}</div>
+                        <div class="emoji-size">${noun.emoji}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">${noun.reading}</div>
+                        <div class="text-gray-700 font-semibold">${noun.meaning}</div>
+                    </div>
+                `;
+                transportationContainer.appendChild(card);
+            });
+            
+            // Tampilkan kata benda teknologi
+            technologyNouns.forEach(noun => {
+                const card = document.createElement('div');
+                card.className = 'bg-purple-50 rounded-lg p-4 flex items-center justify-between';
+                card.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="text-japanese text-xl font-bold mr-3">${noun.japanese}</div>
+                        <div class="emoji-size">${noun.emoji}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">${noun.reading}</div>
+                        <div class="text-gray-700 font-semibold">${noun.meaning}</div>
+                    </div>
+                `;
+                technologyContainer.appendChild(card);
+            });
+            
+            // Tampilkan kata benda sekolah
+            schoolNouns.forEach(noun => {
+                const card = document.createElement('div');
+                card.className = 'bg-green-50 rounded-lg p-4 flex items-center justify-between';
+                card.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="text-japanese text-xl font-bold mr-3">${noun.japanese}</div>
+                        <div class="emoji-size">${noun.emoji}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">${noun.reading}</div>
+                        <div class="text-gray-700 font-semibold">${noun.meaning}</div>
+                    </div>
+                `;
+                schoolContainer.appendChild(card);
+            });
+            
+            // Tampilkan kata benda rumah
+            homeNouns.forEach(noun => {
+                const card = document.createElement('div');
+                card.className = 'bg-orange-50 rounded-lg p-4 flex items-center justify-between';
+                card.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="text-japanese text-xl font-bold mr-3">${noun.japanese}</div>
+                        <div class="emoji-size">${noun.emoji}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-gray-600">${noun.reading}</div>
+                        <div class="text-gray-700 font-semibold">${noun.meaning}</div>
+                    </div>
+                `;
+                homeContainer.appendChild(card);
+            });
+        }
 
         // Tab functionality
         document.querySelectorAll('.tab-button').forEach(button => {
@@ -825,99 +881,75 @@
             optionsDiv.innerHTML = '';
             
             switch(practiceType) {
-                case 'identify':
+                case 'meaning':
                     questionDiv.innerHTML = `
                         <div class="text-center mb-4">
                             <div class="text-japanese text-3xl font-bold mb-2">${randomNoun.japanese}</div>
-                            <div class="text-gray-600">${randomNoun.reading} - "${randomNoun.meaning}"</div>
+                            <div class="text-gray-600">${randomNoun.reading}</div>
                             <div class="emoji-size mt-2">${randomNoun.emoji}</div>
                         </div>
-                        <label class="block text-gray-700 font-semibold mb-3">Kategori kata benda ini adalah:</label>
+                        <label class="block text-gray-700 font-semibold mb-3">Apa arti dari kata benda di atas?</label>
                     `;
                     
-                    const categories = [
-                        { value: 'people', label: 'Orang', color: 'red', emoji: '👨‍👩‍👧‍👦' },
-                        { value: 'places', label: 'Tempat', color: 'blue', emoji: '🏢' },
-                        { value: 'things', label: 'Benda', color: 'yellow', emoji: '📦' },
-                        { value: 'food', label: 'Makanan', color: 'green', emoji: '🍱' }
-                    ];
+                    // Generate options
+                    const options = [randomNoun.meaning];
+                    const otherNouns = nouns.filter(noun => noun.japanese !== randomNoun.japanese);
                     
-                    categories.forEach(category => {
+                    // Add 3 wrong options
+                    for (let i = 0; i < 3; i++) {
+                        const randomOption = otherNouns[Math.floor(Math.random() * otherNouns.length)];
+                        options.push(randomOption.meaning);
+                    }
+                    
+                    // Shuffle options
+                    options.sort(() => Math.random() - 0.5);
+                    
+                    // Create option buttons
+                    options.forEach(option => {
                         const button = document.createElement('button');
-                        button.className = `w-full p-4 mb-3 text-left rounded-lg border-2 border-${category.color}-200 bg-${category.color}-50 hover:bg-${category.color}-100 transition duration-200`;
+                        button.className = `w-full p-4 mb-3 text-left rounded-lg border-2 border-gray-200 bg-white hover:bg-gray-50 transition duration-200`;
                         button.innerHTML = `
-                            <div class="flex items-center">
-                                <div class="text-2xl mr-3">${category.emoji}</div>
-                                <div>
-                                    <div class="font-semibold text-gray-800">${category.label}</div>
-                                </div>
-                            </div>
+                            <div class="font-semibold text-gray-800">${option}</div>
                         `;
-                        button.addEventListener('click', () => checkPracticeAnswer(category.value === randomNoun.category, category.label, randomNoun.category));
+                        button.addEventListener('click', () => checkPracticeAnswer(option === randomNoun.meaning, option, randomNoun.meaning));
                         optionsDiv.appendChild(button);
                     });
                     break;
                     
-                case 'particle':
+                case 'reading':
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-gray-700 mb-3">Bagaimana cara membaca kata benda berikut?</div>
+                            <div class="text-japanese text-3xl font-bold mb-2">${randomNoun.japanese}</div>
+                            <div class="emoji-size mt-2">${randomNoun.emoji}</div>
+                        </div>
+                        <label class="block text-gray-700 font-semibold mb-3">Tuliskan cara membacanya dalam romaji:</label>
+                        <input type="text" id="reading-answer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="Ketik dalam romaji...">
+                    `;
+                    
+                    // Store correct answer for checking
+                    optionsDiv.dataset.correctAnswer = randomNoun.reading;
+                    break;
+                    
+                case 'complete':
                     const sentences = [
-                        { template: "私___学生です。", correctParticle: "は", meaning: "Saya adalah pelajar." },
-                        { template: "猫___います。", correctParticle: "が", meaning: "Ada kucing." },
-                        { template: "本___読みます。", correctParticle: "を", meaning: "Saya membaca buku." },
-                        { template: "学校___行きます。", correctParticle: "に", meaning: "Saya pergi ke sekolah." },
-                        { template: "家___勉強します。", correctParticle: "で", meaning: "Saya belajar di rumah." }
+                        { template: "あの___はあかいです。", noun: randomNoun, answer: randomNoun.japanese },
+                        { template: "これは___です。", noun: randomNoun, answer: randomNoun.japanese },
+                        { template: "___があります。", noun: randomNoun, answer: randomNoun.japanese }
                     ];
                     const randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
                     
                     questionDiv.innerHTML = `
                         <div class="mb-4">
-                            <div class="text-gray-700 mb-3">Pilih partikel yang tepat untuk melengkapi kalimat:</div>
+                            <div class="text-gray-700 mb-3">Lengkapi kalimat berikut dengan kata benda yang tepat:</div>
                             <div class="text-japanese text-xl font-bold text-center mb-2">${randomSentence.template}</div>
-                            <div class="text-center text-gray-600 mb-2">${randomSentence.meaning}</div>
+                            <div class="text-center text-gray-600 mb-2">${randomNoun.meaning} ${randomNoun.emoji}</div>
                         </div>
+                        <input type="text" id="sentence-answer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-japanese text-xl" placeholder="Ketik jawaban dalam bahasa Jepang...">
                     `;
                     
-                    particles.forEach(particle => {
-                        const button = document.createElement('button');
-                        button.className = `w-full p-4 mb-3 text-center rounded-lg border-2 border-purple-200 bg-purple-50 hover:bg-purple-100 transition duration-200`;
-                        button.innerHTML = `
-                            <div class="text-japanese text-2xl font-bold">${particle.japanese}</div>
-                            <div class="text-sm text-gray-600">${particle.usage}</div>
-                        `;
-                        button.addEventListener('click', () => checkPracticeAnswer(particle.japanese === randomSentence.correctParticle, particle.japanese, randomSentence.correctParticle));
-                        optionsDiv.appendChild(button);
-                    });
-                    break;
-                    
-                case 'counter':
-                    const counterItems = [
-                        { item: "みかん", counter: "つ", meaning: "jeruk" },
-                        { item: "ペン", counter: "本", meaning: "pulpen" },
-                        { item: "紙", counter: "枚", meaning: "kertas" },
-                        { item: "人", counter: "人", meaning: "orang" },
-                        { item: "車", counter: "台", meaning: "mobil" }
-                    ];
-                    const randomItem = counterItems[Math.floor(Math.random() * counterItems.length)];
-                    const numbers = ["一", "二", "三", "四", "五"];
-                    const randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
-                    
-                    questionDiv.innerHTML = `
-                        <div class="mb-4">
-                            <div class="text-gray-700 mb-3">Pilih penghitung yang tepat untuk:</div>
-                            <div class="text-japanese text-xl font-bold text-center mb-2">${randomItem.item}${randomNumber}___</div>
-                            <div class="text-center text-gray-600 mb-2">${randomItem.meaning}</div>
-                        </div>
-                    `;
-                    
-                    counters.forEach(counter => {
-                        const button = document.createElement('button');
-                        button.className = `w-full p-4 mb-3 text-center rounded-lg border-2 border-yellow-200 bg-yellow-50 hover:bg-yellow-100 transition duration-200`;
-                        button.innerHTML = `
-                            <div class="text-japanese text-2xl font-bold">${counter.counter}</div>
-                            <div class="text-sm text-gray-600">${counter.usage}</div>
-                        `;
-                        button.addEventListener('click', () => checkPracticeAnswer(counter.counter === randomItem.counter, counter.counter, randomItem.counter));
-                        optionsDiv.appendChild(button);
-                    });
+                    // Store correct answer for checking
+                    optionsDiv.dataset.correctAnswer = randomSentence.answer;
                     break;
             }
             
@@ -959,7 +991,7 @@
         // Quiz functionality
         let currentQuizQuestion = 0;
         let quizScore = 0;
-        const totalQuestions = 5;
+        const totalQuestions = 10;
 
         function startQuiz() {
             currentQuizQuestion = 0;
@@ -982,7 +1014,7 @@
                 return;
             }
             
-            const questionTypes = ['meaning', 'category', 'particle'];
+            const questionTypes = ['meaning', 'reading', 'category'];
             const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
             const currentNoun = nouns[Math.floor(Math.random() * nouns.length)];
             const options = generateQuizOptions(currentNoun, questionType);
@@ -992,11 +1024,11 @@
                 case 'meaning':
                     questionText = `Apa arti dari "${currentNoun.japanese}"?`;
                     break;
-                case 'category':
-                    questionText = `"${currentNoun.japanese}" termasuk dalam kategori apa?`;
+                case 'reading':
+                    questionText = `Bagaimana cara membaca "${currentNoun.japanese}"?`;
                     break;
-                case 'particle':
-                    questionText = `Partikel apa yang tepat untuk "${currentNoun.japanese}" dalam kalimat?`;
+                case 'category':
+                    questionText = `Termasuk kategori apa "${currentNoun.japanese}"?`;
                     break;
             }
             
@@ -1050,100 +1082,67 @@
                     }
                     break;
                     
-                case 'category':
-                    const categories = [
-                        { value: 'people', label: 'Orang', emoji: '👨‍👩‍👧‍👦', color: 'red' },
-                        { value: 'places', label: 'Tempat', emoji: '🏢', color: 'blue' },
-                        { value: 'things', label: 'Benda', emoji: '📦', color: 'yellow' },
-                        { value: 'food', label: 'Makanan', emoji: '🍱', color: 'green' }
-                    ];
-                    
+                case 'reading':
                     // Add correct option
-                    const correctCategory = categories.find(cat => cat.value === correctNoun.category);
                     options.push({
                         content: `
-                            <div class="flex items-center">
-                                <div class="text-2xl mr-3">${correctCategory.emoji}</div>
-                                <div>
-                                    <div class="font-semibold text-gray-800">${correctCategory.label}</div>
-                                </div>
+                            <div class="text-center py-2">
+                                <div class="font-semibold text-gray-800 text-lg">${correctNoun.reading}</div>
+                                <div class="emoji-size mt-1">${correctNoun.emoji}</div>
                             </div>
                         `,
                         correct: true
                     });
                     
-                    // Add wrong options from other categories
-                    categories.forEach(category => {
-                        if (category.value !== correctNoun.category) {
-                            options.push({
-                                content: `
-                                    <div class="flex items-center">
-                                        <div class="text-2xl mr-3">${category.emoji}</div>
-                                        <div>
-                                            <div class="font-semibold text-gray-800">${category.label}</div>
-                                        </div>
-                                    </div>
-                                `,
-                                correct: false
-                            });
-                        }
-                    });
+                    // Add 3 wrong options
+                    for (let i = 0; i < 3; i++) {
+                        const randomNoun = otherNouns[Math.floor(Math.random() * otherNouns.length)];
+                        options.push({
+                            content: `
+                                <div class="text-center py-2">
+                                    <div class="font-semibold text-gray-800 text-lg">${randomNoun.reading}</div>
+                                    <div class="emoji-size mt-1">${randomNoun.emoji}</div>
+                                </div>
+                            `,
+                            correct: false
+                        });
+                    }
                     break;
                     
-                case 'particle':
-                    const particleSentences = [
-                        { particle: "は", sentence: `${correctNoun.japanese}___好きです。`, meaning: "Saya suka ${correctNoun.meaning}." },
-                        { particle: "が", sentence: `${correctNoun.japanese}___あります。`, meaning: "Ada ${correctNoun.meaning}." },
-                        { particle: "を", sentence: `${correctNoun.japanese}___買います。`, meaning: "Saya membeli ${correctNoun.meaning}." },
-                        { particle: "に", sentence: `${correctNoun.japanese}___行きます。`, meaning: "Saya pergi ke ${correctNoun.meaning}." }
-                    ];
-                    const correctParticle = particleSentences[Math.floor(Math.random() * particleSentences.length)];
+                case 'category':
+                    const categories = ['transportasi', 'teknologi', 'sekolah', 'rumah'];
+                    const correctCategory = correctNoun.category;
                     
                     // Add correct option
                     options.push({
                         content: `
-                            <div class="text-center">
-                                <div class="text-japanese text-2xl font-bold mb-1">${correctParticle.particle}</div>
-                                <div class="text-sm text-gray-600">${getParticleUsage(correctParticle.particle)}</div>
+                            <div class="text-center py-2">
+                                <div class="font-semibold text-gray-800 text-lg capitalize">${correctCategory}</div>
+                                <div class="emoji-size mt-1">${correctNoun.emoji}</div>
                             </div>
                         `,
                         correct: true
                     });
                     
-                    // Add wrong options
-                    particleSentences.forEach(ps => {
-                        if (ps.particle !== correctParticle.particle) {
-                            options.push({
-                                content: `
-                                    <div class="text-center">
-                                        <div class="text-japanese text-2xl font-bold mb-1">${ps.particle}</div>
-                                        <div class="text-sm text-gray-600">${getParticleUsage(ps.particle)}</div>
-                                    </div>
-                                `,
-                                correct: false
-                            });
-                        }
-                    });
-                    
-                    // Update question with the sentence
-                    document.getElementById('quiz-question').textContent = `Partikel apa yang tepat untuk melengkapi kalimat: "${correctParticle.sentence}"`;
-                    document.getElementById('quiz-reading').textContent = correctParticle.meaning;
+                    // Add 3 wrong options from other categories
+                    const otherCategories = categories.filter(cat => cat !== correctCategory);
+                    for (let i = 0; i < 3; i++) {
+                        const randomCategory = otherCategories[i];
+                        options.push({
+                            content: `
+                                <div class="text-center py-2">
+                                    <div class="font-semibold text-gray-800 text-lg capitalize">${randomCategory}</div>
+                                    <div class="emoji-size mt-1">${correctNoun.emoji}</div>
+                                </div>
+                            `,
+                            correct: false
+                        });
+                    }
                     break;
             }
             
             // Shuffle options
             return options.sort(() => Math.random() - 0.5);
-        }
-
-        function getParticleUsage(particle) {
-            switch(particle) {
-                case "は": return "Menandai topik";
-                case "が": return "Menandai subjek";
-                case "を": return "Menandai objek langsung";
-                case "に": return "Menandai arah/tujuan";
-                case "で": return "Menandai tempat aksi";
-                default: return "";
-            }
         }
 
         function checkQuizAnswer(isCorrect, selectedButton) {
@@ -1165,7 +1164,7 @@
                 selectedButton.classList.add('wrong-answer');
                 // Find and highlight correct answer
                 options.forEach(option => {
-                    if (option !== selectedButton && option.innerHTML.includes('correct')) {
+                    if (option !== selectedButton && option.classList.contains('correct-answer')) {
                         option.classList.add('correct-answer');
                     }
                 });
@@ -1212,6 +1211,69 @@
         // Event Listeners
         document.getElementById('practice-type').addEventListener('change', generatePracticeQuestion);
         
+        document.getElementById('check-practice').addEventListener('click', function() {
+            const practiceType = document.getElementById('practice-type').value;
+            const resultDiv = document.getElementById('practice-result');
+            
+            if (practiceType === 'reading') {
+                const userAnswer = document.getElementById('reading-answer').value.trim().toLowerCase();
+                const correctAnswer = document.getElementById('practice-options').dataset.correctAnswer.toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="font-semibold">Benar!</span>
+                        </div>
+                        <div class="mt-2">Jawaban Anda tepat!</div>
+                    `;
+                } else {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                            <span class="font-semibold">Belum tepat.</span>
+                        </div>
+                        <div class="mt-2">Jawaban yang benar: <strong>${correctAnswer}</strong></div>
+                    `;
+                }
+                resultDiv.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    generatePracticeQuestion();
+                }, 2000);
+            } else if (practiceType === 'complete') {
+                const userAnswer = document.getElementById('sentence-answer').value.trim().toLowerCase();
+                const correctAnswer = document.getElementById('practice-options').dataset.correctAnswer.toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="font-semibold">Benar!</span>
+                        </div>
+                        <div class="mt-2">Kalimat yang tepat!</div>
+                    `;
+                } else {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                            <span class="font-semibold">Belum tepat.</span>
+                        </div>
+                        <div class="mt-2">Jawaban yang benar: <strong class="text-japanese">${correctAnswer}</strong></div>
+                    `;
+                }
+                resultDiv.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    generatePracticeQuestion();
+                }, 2000);
+            }
+        });
+
         document.getElementById('next-question').addEventListener('click', function() {
             currentQuizQuestion++;
             showQuizQuestion();
@@ -1221,6 +1283,9 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            // Tampilkan daftar kata benda di bagian belajar
+            displayNounsList();
+            
             // Initialize quiz when quiz tab is first clicked
             document.getElementById('tab-quiz').addEventListener('click', startQuiz);
             
