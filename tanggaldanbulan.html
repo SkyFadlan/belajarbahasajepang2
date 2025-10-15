@@ -83,10 +83,15 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
+        .calendar-container {
+            overflow-x: auto;
+        }
+        
         .calendar-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 3px;
+            min-width: 320px;
         }
         
         .calendar-day {
@@ -94,16 +99,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
+            font-size: 0.875rem;
+            min-height: 40px;
         }
         
         .calendar-header {
             background: linear-gradient(135deg, #4C51BF 0%, #667EEA 100%);
             color: white;
+            font-size: 0.75rem;
         }
 
-                 /* Dropdown styling dengan transisi yang lebih baik */
+        /* Dropdown styling dengan transisi yang lebih baik */
         .dropdown-menu {
             opacity: 0;
             visibility: hidden;
@@ -148,6 +156,38 @@
             top: 100%;
             left: 0;
             z-index: 1000;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .calendar-grid {
+                gap: 2px;
+            }
+            
+            .calendar-day {
+                font-size: 0.75rem;
+                min-height: 35px;
+                border-radius: 4px;
+            }
+            
+            .calendar-header {
+                font-size: 0.7rem;
+            }
+            
+            .japanese-char {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calendar-day {
+                min-height: 30px;
+                font-size: 0.7rem;
+            }
+            
+            .calendar-header {
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
@@ -397,151 +437,6 @@
                     </div>
                 </div>
 
-                <!-- Bulan dalam Bahasa Jepang -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">12 Bulan dalam Bahasa Jepang</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Januari - April -->
-                        <div class="space-y-4">
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">一月</div>
-                                <div class="font-semibold text-xl mb-1">ichi-gatsu</div>
-                                <div class="text-orange-100">Januari</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">二月</div>
-                                <div class="font-semibold text-xl mb-1">ni-gatsu</div>
-                                <div class="text-orange-100">Februari</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">三月</div>
-                                <div class="font-semibold text-xl mb-1">san-gatsu</div>
-                                <div class="text-orange-100">Maret</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">四月</div>
-                                <div class="font-semibold text-xl mb-1">shi-gatsu</div>
-                                <div class="text-orange-100">April</div>
-                            </div>
-                        </div>
-
-                        <!-- Mei - Agustus -->
-                        <div class="space-y-4">
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">五月</div>
-                                <div class="font-semibold text-xl mb-1">go-gatsu</div>
-                                <div class="text-orange-100">Mei</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">六月</div>
-                                <div class="font-semibold text-xl mb-1">roku-gatsu</div>
-                                <div class="text-orange-100">Juni</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">七月</div>
-                                <div class="font-semibold text-xl mb-1">shichi-gatsu</div>
-                                <div class="text-orange-100">Juli</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">八月</div>
-                                <div class="font-semibold text-xl mb-1">hachi-gatsu</div>
-                                <div class="text-orange-100">Agustus</div>
-                            </div>
-                        </div>
-
-                        <!-- September - Desember -->
-                        <div class="space-y-4">
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">九月</div>
-                                <div class="font-semibold text-xl mb-1">ku-gatsu</div>
-                                <div class="text-orange-100">September</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">十月</div>
-                                <div class="font-semibold text-xl mb-1">jū-gatsu</div>
-                                <div class="text-orange-100">Oktober</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">十一月</div>
-                                <div class="font-semibold text-xl mb-1">jūichi-gatsu</div>
-                                <div class="text-orange-100">November</div>
-                            </div>
-                            <div class="month-card text-white rounded-xl p-6 text-center card-hover">
-                                <div class="text-japanese japanese-char mb-2">十二月</div>
-                                <div class="font-semibold text-xl mb-1">jūni-gatsu</div>
-                                <div class="text-orange-100">Desember</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tanggal dalam Bahasa Jepang -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Tanggal 1-31 dalam Bahasa Jepang</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-                        <!-- Tanggal 1-10 -->
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">一日</div>
-                            <div class="font-semibold">tsuitachi</div>
-                            <div class="text-teal-100 text-sm">1</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">二日</div>
-                            <div class="font-semibold">futsuka</div>
-                            <div class="text-teal-100 text-sm">2</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">三日</div>
-                            <div class="font-semibold">mikka</div>
-                            <div class="text-teal-100 text-sm">3</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">四日</div>
-                            <div class="font-semibold">yokka</div>
-                            <div class="text-teal-100 text-sm">4</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">五日</div>
-                            <div class="font-semibold">itsuka</div>
-                            <div class="text-teal-100 text-sm">5</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">六日</div>
-                            <div class="font-semibold">muika</div>
-                            <div class="text-teal-100 text-sm">6</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">七日</div>
-                            <div class="font-semibold">nanoka</div>
-                            <div class="text-teal-100 text-sm">7</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">八日</div>
-                            <div class="font-semibold">yōka</div>
-                            <div class="text-teal-100 text-sm">8</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">九日</div>
-                            <div class="font-semibold">kokonoka</div>
-                            <div class="text-teal-100 text-sm">9</div>
-                        </div>
-                        <div class="date-card text-white rounded-lg p-4 text-center card-hover">
-                            <div class="text-japanese text-lg mb-1">十日</div>
-                            <div class="font-semibold">tōka</div>
-                            <div class="text-teal-100 text-sm">10</div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 text-center">
-                        <p class="text-gray-600 mb-4">Tanggal 11-31 menggunakan pola: [angka] + 日 (nichi)</p>
-                        <div class="bg-gray-100 rounded-lg p-4 inline-block">
-                            <div class="text-japanese text-lg">十一日 (jūichi-nichi) - 11</div>
-                            <div class="text-japanese text-lg">二十日 (hatsuka) - 20</div>
-                            <div class="text-japanese text-lg">三十一日 (sanjūichi-nichi) - 31</div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Kalender Interaktif -->
                 <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
                     <h2 class="text-2xl font-bold text-gray-800 mb-6">Kalender Interaktif</h2>
@@ -552,15 +447,17 @@
                                     <h3 class="text-xl font-bold" id="current-month">Maret 2024</h3>
                                     <div class="text-japanese text-2xl mt-2" id="current-month-japanese">三月</div>
                                 </div>
-                                <div class="calendar-grid">
-                                    <div class="calendar-day calendar-header">Min</div>
-                                    <div class="calendar-day calendar-header">Sen</div>
-                                    <div class="calendar-day calendar-header">Sel</div>
-                                    <div class="calendar-day calendar-header">Rab</div>
-                                    <div class="calendar-day calendar-header">Kam</div>
-                                    <div class="calendar-day calendar-header">Jum</div>
-                                    <div class="calendar-day calendar-header">Sab</div>
-                                    <!-- Days will be populated by JavaScript -->
+                                <div class="calendar-container">
+                                    <div class="calendar-grid">
+                                        <div class="calendar-day calendar-header">Min</div>
+                                        <div class="calendar-day calendar-header">Sen</div>
+                                        <div class="calendar-day calendar-header">Sel</div>
+                                        <div class="calendar-day calendar-header">Rab</div>
+                                        <div class="calendar-day calendar-header">Kam</div>
+                                        <div class="calendar-day calendar-header">Jum</div>
+                                        <div class="calendar-day calendar-header">Sab</div>
+                                        <!-- Days will be populated by JavaScript -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -599,6 +496,151 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulan dalam Bahasa Jepang -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">12 Bulan dalam Bahasa Jepang</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Januari - April -->
+                        <div class="space-y-3">
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">一月</div>
+                                <div class="font-semibold text-lg mb-1">ichi-gatsu</div>
+                                <div class="text-orange-100 text-sm">Januari</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">二月</div>
+                                <div class="font-semibold text-lg mb-1">ni-gatsu</div>
+                                <div class="text-orange-100 text-sm">Februari</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">三月</div>
+                                <div class="font-semibold text-lg mb-1">san-gatsu</div>
+                                <div class="text-orange-100 text-sm">Maret</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">四月</div>
+                                <div class="font-semibold text-lg mb-1">shi-gatsu</div>
+                                <div class="text-orange-100 text-sm">April</div>
+                            </div>
+                        </div>
+
+                        <!-- Mei - Agustus -->
+                        <div class="space-y-3">
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">五月</div>
+                                <div class="font-semibold text-lg mb-1">go-gatsu</div>
+                                <div class="text-orange-100 text-sm">Mei</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">六月</div>
+                                <div class="font-semibold text-lg mb-1">roku-gatsu</div>
+                                <div class="text-orange-100 text-sm">Juni</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">七月</div>
+                                <div class="font-semibold text-lg mb-1">shichi-gatsu</div>
+                                <div class="text-orange-100 text-sm">Juli</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">八月</div>
+                                <div class="font-semibold text-lg mb-1">hachi-gatsu</div>
+                                <div class="text-orange-100 text-sm">Agustus</div>
+                            </div>
+                        </div>
+
+                        <!-- September - Desember -->
+                        <div class="space-y-3">
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">九月</div>
+                                <div class="font-semibold text-lg mb-1">ku-gatsu</div>
+                                <div class="text-orange-100 text-sm">September</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">十月</div>
+                                <div class="font-semibold text-lg mb-1">jū-gatsu</div>
+                                <div class="text-orange-100 text-sm">Oktober</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">十一月</div>
+                                <div class="font-semibold text-lg mb-1">jūichi-gatsu</div>
+                                <div class="text-orange-100 text-sm">November</div>
+                            </div>
+                            <div class="month-card text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese text-2xl mb-2">十二月</div>
+                                <div class="font-semibold text-lg mb-1">jūni-gatsu</div>
+                                <div class="text-orange-100 text-sm">Desember</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tanggal dalam Bahasa Jepang -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Tanggal 1-31 dalam Bahasa Jepang</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+                        <!-- Tanggal 1-10 -->
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">一日</div>
+                            <div class="font-semibold text-sm">tsuitachi</div>
+                            <div class="text-teal-100 text-xs">1</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">二日</div>
+                            <div class="font-semibold text-sm">futsuka</div>
+                            <div class="text-teal-100 text-xs">2</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">三日</div>
+                            <div class="font-semibold text-sm">mikka</div>
+                            <div class="text-teal-100 text-xs">3</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">四日</div>
+                            <div class="font-semibold text-sm">yokka</div>
+                            <div class="text-teal-100 text-xs">4</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">五日</div>
+                            <div class="font-semibold text-sm">itsuka</div>
+                            <div class="text-teal-100 text-xs">5</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">六日</div>
+                            <div class="font-semibold text-sm">muika</div>
+                            <div class="text-teal-100 text-xs">6</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">七日</div>
+                            <div class="font-semibold text-sm">nanoka</div>
+                            <div class="text-teal-100 text-xs">7</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">八日</div>
+                            <div class="font-semibold text-sm">yōka</div>
+                            <div class="text-teal-100 text-xs">8</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">九日</div>
+                            <div class="font-semibold text-sm">kokonoka</div>
+                            <div class="text-teal-100 text-xs">9</div>
+                        </div>
+                        <div class="date-card text-white rounded-lg p-3 text-center card-hover">
+                            <div class="text-japanese text-base mb-1">十日</div>
+                            <div class="font-semibold text-sm">tōka</div>
+                            <div class="text-teal-100 text-xs">10</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-center">
+                        <p class="text-gray-600 mb-4 text-sm">Tanggal 11-31 menggunakan pola: [angka] + 日 (nichi)</p>
+                        <div class="bg-gray-100 rounded-lg p-4 inline-block">
+                            <div class="text-japanese text-sm">十一日 (jūichi-nichi) - 11</div>
+                            <div class="text-japanese text-sm">二十日 (hatsuka) - 20</div>
+                            <div class="text-japanese text-sm">三十一日 (sanjūichi-nichi) - 31</div>
                         </div>
                     </div>
                 </div>
