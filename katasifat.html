@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kata Sifat Jepang - NihongoDesu</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .text-japanese {
+            font-family: 'MS PGothic', 'Hiragino Sans', sans-serif;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .tab-active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .quiz-option {
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            transform: scale(1.02);
+        }
+        
+        .correct-answer {
+            background-color: #10B981 !important;
+            color: white !important;
+            border-color: #10B981 !important;
+        }
+        
+        .wrong-answer {
+            background-color: #EF4444 !important;
+            color: white !important;
+            border-color: #EF4444 !important;
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .adjective-i {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+        }
+        
+        .adjective-na {
+            background: linear-gradient(135deg, #4ECDC4 0%, #6EE7E7 100%);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .emoji-size {
+            font-size: 1.5rem;
+        }
+
+                 /* Dropdown styling dengan transisi yang lebih baik */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Mencegah dropdown langsung hilang saat kursor bergerak */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 10px;
+        }
+        
+        /* Animasi untuk mobile menu */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mobile-submenu {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* Styling untuk dropdown yang lebih stabil */
+        .dropdown-container {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+     <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-lg">日</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">Nihongo<span class="text-red-600">Desu</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2">Beranda</a>
+                    
+                    <!-- Abjad Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Abjad
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <a href="hiragana.html" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center">
+                                <span class="text-japanese text-lg mr-3">あ</span>
+                                Hiragana
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">46 huruf</span>
+                            </a>
+                            <a href="katakana.html" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center">
+                                <span class="text-japanese text-lg mr-3">ア</span>
+                                Katakana
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">46 huruf</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kosakata Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Kosakata
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <div class="px-4 py-2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Jenis Kata</span>
+                            </div>
+                            <a href="katakerja.html" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-running text-blue-600 text-sm"></i>
+                                </div>
+                                Kata Kerja (動詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">500+</span>
+                            </a>
+                            <a href="katasifat.html" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-star text-green-600 text-sm"></i>
+                                </div>
+                                Kata Sifat (形容詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">300+</span>
+                            </a>
+                            <a href="katabenda.html" class="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-cube text-purple-600 text-sm"></i>
+                                </div>
+                                Kata Benda (名詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">1000+</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Waktu Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Waktu
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <div class="px-4 py-2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Ekspresi Waktu</span>
+                            </div>
+                            <a href="tanggaldanbulan.html" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-calendar-alt text-orange-600 text-sm"></i>
+                                </div>
+                                Tanggal & Bulan
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">12 bulan</span>
+                            </a>
+                            <a href="haridanwaktu.html" class="block px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-clock text-indigo-600 text-sm"></i>
+                                </div>
+                                Hari & Waktu Relatif
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">7 hari</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex items-center space-x-4">
+                    <a href="#login" class="text-gray-600 hover:text-red-600 font-medium transition duration-300 hidden md:block py-2">Masuk</a>
+                    <a href="#register"
+   class="hidden md:inline-block bg-red-600 text-white px-6 py-2 rounded-full font-medium hover:bg-red-700 transition duration-300 shadow-lg hover:shadow-xl">
+    Mulai Belajar
+</a>
+
+                    
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-gray-600 hover:text-red-600 focus:outline-none" id="mobile-menu-button">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden bg-white border-t border-gray-200 py-4 hidden" id="mobile-menu">
+                <div class="space-y-2">
+                    <a href="index.html" class="block py-3 px-4 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition duration-200">Beranda</a>
+                    
+                    <!-- Mobile Abjad Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('abjad-mobile')">
+                            <span>Abjad</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="abjad-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="abjad-mobile">
+                            <a href="hiragana.html" class="block py-2 text-gray-600 hover:text-red-600 flex items-center">
+                                <span class="text-japanese text-lg mr-3">あ</span>
+                                Hiragana
+                            </a>
+                            <a href="katakana.html" class="block py-2 text-gray-600 hover:text-red-600 flex items-center">
+                                <span class="text-japanese text-lg mr-3">ア</span>
+                                Katakana
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Kosakata Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('kosakata-mobile')">
+                            <span>Kosakata</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="kosakata-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="kosakata-mobile">
+                            <a href="katakerja.html" class="block py-2 text-gray-600 hover:text-blue-600 flex items-center">
+                                <i class="fas fa-running text-blue-500 mr-3 w-5 text-center"></i>
+                                Kata Kerja
+                            </a>
+                            <a href="katasifat.html" class="block py-2 text-gray-600 hover:text-green-600 flex items-center">
+                                <i class="fas fa-star text-green-500 mr-3 w-5 text-center"></i>
+                                Kata Sifat
+                            </a>
+                            <a href="katabenda.html" class="block py-2 text-gray-600 hover:text-purple-600 flex items-center">
+                                <i class="fas fa-cube text-purple-500 mr-3 w-5 text-center"></i>
+                                Kata Benda
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Waktu Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('waktu-mobile')">
+                            <span>Waktu</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="waktu-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="waktu-mobile">
+                            <a href="tanggaldanbulan.html" class="block py-2 text-gray-600 hover:text-orange-600 flex items-center">
+                                <i class="fas fa-calendar-alt text-orange-500 mr-3 w-5 text-center"></i>
+                                Tanggal & Bulan
+                            </a>
+                            <a href="haridanwaktu.html" class="block py-2 text-gray-600 hover:text-indigo-600 flex items-center">
+                                <i class="fas fa-clock text-indigo-500 mr-3 w-5 text-center"></i>
+                                Hari & Waktu Relatif
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Kata Sifat Bahasa Jepang (形容詞)</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Pelajari kata sifat bahasa Jepang dengan sistem pembelajaran interaktif. Kuasai perbedaan antara i-adjective dan na-adjective!
+            </p>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="flex flex-wrap justify-center mb-8 bg-white rounded-2xl shadow-lg p-2 max-w-2xl mx-auto">
+            <button id="tab-learn" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 tab-active">
+                <i class="fas fa-book-open mr-2"></i>Belajar
+            </button>
+            <button id="tab-practice" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 text-gray-600 hover:text-purple-600">
+                <i class="fas fa-pencil-alt mr-2"></i>Latihan
+            </button>
+            <button id="tab-quiz" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 text-gray-600 hover:text-purple-600">
+                <i class="fas fa-trophy mr-2"></i>Kuis
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="fade-in">
+            <!-- Learn Tab Content -->
+            <div id="learn-content" class="tab-content">
+                <!-- Jenis Kata Sifat -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- I-Adjective -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-red-500">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-red-600 font-bold text-xl text-japanese">い</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-lg">I-Adjective (形容詞)</h3>
+                                <p class="text-red-600 text-sm">Berakhiran -i, bisa berdiri sendiri</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Kata sifat yang berakhiran -i dan dapat langsung digunakan sebelum kata benda tanpa partikel.</p>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                <div>
+                                    <span class="text-japanese text-xl font-bold">高い</span>
+                                    <span class="text-gray-600 ml-2">takai</span>
+                                </div>
+                                <span class="text-gray-700 font-semibold">tinggi/mahal</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                <div>
+                                    <span class="text-japanese text-xl font-bold">楽しい</span>
+                                    <span class="text-gray-600 ml-2">tanoshii</span>
+                                </div>
+                                <span class="text-gray-700 font-semibold">menyenangkan</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                <div>
+                                    <span class="text-japanese text-xl font-bold">寒い</span>
+                                    <span class="text-gray-600 ml-2">samui</span>
+                                </div>
+                                <span class="text-gray-700 font-semibold">dingin</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-red-100 rounded-lg p-4">
+                            <h4 class="font-semibold text-red-800 mb-2">Ciri-ciri:</h4>
+                            <ul class="text-sm text-red-700 space-y-1">
+                                <li>• Berakhiran -i (い)</li>
+                                <li>• Tidak perlu partikel "na"</li>
+                                <li>• Bisa menjadi predikat langsung</li>
+                                <li>• Perubahan bentuk mengikuti pola tertentu</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Na-Adjective -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-blue-500">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-blue-600 font-bold text-xl text-japanese">な</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-lg">Na-Adjective (形容動詞)</h3>
+                                <p class="text-blue-600 text-sm">Membutuhkan partikel "na"</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Kata sifat yang membutuhkan partikel "na" ketika digunakan sebelum kata benda.</p>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <div>
+                                    <span class="text-japanese text-xl font-bold">静かな</span>
+                                    <span class="text-gray-600 ml-2">shizukana</span>
+                                </div>
+                                <span class="text-gray-700 font-semibold">tenang</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <div>
+                                    <span class="text-japanese text-xl font-bold">元気な</span>
+                                    <span class="text-gray-600 ml-2">genkina</span>
+                                </div>
+                                <span class="text-gray-700 font-semibold">sehat/bersemangat</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <div>
+                                    <span class="text-japanese text-xl font-bold">便利な</span>
+                                    <span class="text-gray-600 ml-2">benrina</span>
+                                </div>
+                                <span class="text-gray-700 font-semibold">berguna</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-100 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">Ciri-ciri:</h4>
+                            <ul class="text-sm text-blue-700 space-y-1">
+                                <li>• Membutuhkan "na" sebelum kata benda</li>
+                                <li>• Bentuk kamus tidak berakhiran -i</li>
+                                <li>• Perubahan seperti kata benda</li>
+                                <li>• Banyak berasal dari bahasa asing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contoh Penggunaan dalam Kalimat -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Contoh Penggunaan dalam Kalimat</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- I-Adjective Examples -->
+                        <div>
+                            <h3 class="font-bold text-red-600 mb-4 text-lg">I-Adjective</h3>
+                            <div class="space-y-4">
+                                <div class="bg-red-50 rounded-xl p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">この山は<strong>高い</strong>です。</div>
+                                    <div class="text-gray-600 mb-1">Kono yama wa <strong>takai</strong> desu.</div>
+                                    <div class="text-gray-700 font-semibold">Gunung ini <strong>tinggi</strong>.</div>
+                                </div>
+                                <div class="bg-red-50 rounded-xl p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2"><strong>楽しい</strong>映画を見ました。</div>
+                                    <div class="text-gray-600 mb-1"><strong>Tanoshii</strong> eiga o mimashita.</div>
+                                    <div class="text-gray-700 font-semibold">Saya menonton film yang <strong>menyenangkan</strong>.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Na-Adjective Examples -->
+                        <div>
+                            <h3 class="font-bold text-blue-600 mb-4 text-lg">Na-Adjective</h3>
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 rounded-xl p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">ここは<strong>静かな</strong>場所です。</div>
+                                    <div class="text-gray-600 mb-1">Koko wa <strong>shizukana</strong> basho desu.</div>
+                                    <div class="text-gray-700 font-semibold">Ini adalah tempat yang <strong>tenang</strong>.</div>
+                                </div>
+                                <div class="bg-blue-50 rounded-xl p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">彼は<strong>元気な</strong>人です。</div>
+                                    <div class="text-gray-600 mb-1">Kare wa <strong>genkina</strong> hito desu.</div>
+                                    <div class="text-gray-700 font-semibold">Dia adalah orang yang <strong>bersemangat</strong>.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perubahan Bentuk -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Perubahan Bentuk Kata Sifat</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-3 font-semibold text-gray-700">Bentuk</th>
+                                    <th class="px-4 py-3 font-semibold text-red-600">I-Adjective (高い)</th>
+                                    <th class="px-4 py-3 font-semibold text-blue-600">Na-Adjective (静か)</th>
+                                    <th class="px-4 py-3 font-semibold text-gray-700">Arti</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-medium">Present Positif</td>
+                                    <td class="px-4 py-3 text-japanese">高いです</td>
+                                    <td class="px-4 py-3 text-japanese">静かです</td>
+                                    <td class="px-4 py-3">tinggi/tenang</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-medium">Present Negatif</td>
+                                    <td class="px-4 py-3 text-japanese">高くないです</td>
+                                    <td class="px-4 py-3 text-japanese">静かじゃないです</td>
+                                    <td class="px-4 py-3">tidak tinggi/tenang</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="px-4 py-3 font-medium">Past Positif</td>
+                                    <td class="px-4 py-3 text-japanese">高かったです</td>
+                                    <td class="px-4 py-3 text-japanese">静かでした</td>
+                                    <td class="px-4 py-3">dulu tinggi/tenang</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-medium">Past Negatif</td>
+                                    <td class="px-4 py-3 text-japanese">高くなかったです</td>
+                                    <td class="px-4 py-3 text-japanese">静かじゃなかったです</td>
+                                    <td class="px-4 py-3">dulu tidak tinggi/tenang</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Tab Content -->
+            <div id="practice-content" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Latihan Menggunakan Kata Sifat</h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Practice Form -->
+                        <div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-3">Pilih Jenis Latihan:</label>
+                                <select id="practice-type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                    <option value="identify">Identifikasi Jenis Kata Sifat</option>
+                                    <option value="conjugate">Ubah Bentuk Kata Sifat</option>
+                                    <option value="complete">Lengkapi Kalimat</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6" id="practice-question">
+                                <!-- Question will be populated by JavaScript -->
+                            </div>
+                            
+                            <div class="mb-6" id="practice-options">
+                                <!-- Options will be populated by JavaScript -->
+                            </div>
+                            
+                            <button id="check-practice" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                                Periksa Jawaban
+                            </button>
+                        </div>
+
+                        <!-- Practice Guide -->
+                        <div class="bg-green-50 rounded-xl p-6">
+                            <h3 class="font-bold text-green-800 text-lg mb-4">Panduan Kata Sifat</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Cara Mengidentifikasi:</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div class="flex items-center">
+                                            <span class="text-red-500 font-bold mr-2">い</span>
+                                            <span>I-Adjective: 高い, 楽しい, 寒い</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-blue-500 font-bold mr-2">な</span>
+                                            <span>Na-Adjective: 静かな, 元気な, 便利な</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Pola Perubahan I-Adjective:</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>Present Negatif: 高い → 高くない</div>
+                                        <div>Past Positif: 高い → 高かった</div>
+                                        <div>Past Negatif: 高い → 高くなかった</div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Pola Perubahan Na-Adjective:</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>Present Negatif: 静か → 静かじゃない</div>
+                                        <div>Past Positif: 静か → 静かだった</div>
+                                        <div>Past Negatif: 静か → 静かじゃなかった</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="practice-result" class="mt-6 hidden p-4 rounded-lg"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Tab Content -->
+            <div id="quiz-content" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <!-- Quiz Header -->
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Kuis Kata Sifat</h2>
+                            <p class="text-gray-600">Uji pemahaman Anda tentang kata sifat bahasa Jepang</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-500">Skor</div>
+                            <div class="text-2xl font-bold text-purple-600" id="quiz-score">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="mb-8">
+                        <div class="flex justify-between text-sm text-gray-600 mb-2">
+                            <span>Pertanyaan <span id="current-question">1</span>/10</span>
+                            <span id="progress-percent">10%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="quiz-progress" class="progress-bar h-3 rounded-full bg-purple-600" style="width: 10%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Question -->
+                    <div id="quiz-area" class="fade-in">
+                        <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4" id="quiz-question">Apa jenis kata sifat "高い"?</h3>
+                            <div class="text-japanese text-3xl font-bold text-center mb-2" id="quiz-adjective">高い</div>
+                            <div class="text-center text-gray-600" id="quiz-reading">takai</div>
+                        </div>
+
+                        <!-- Quiz Options -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" id="quiz-options">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+
+                        <!-- Next Button -->
+                        <button id="next-question" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300 hidden">
+                            Pertanyaan Berikutnya
+                        </button>
+                    </div>
+
+                    <!-- Quiz Results -->
+                    <div id="quiz-results" class="hidden text-center fade-in">
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl p-8 mb-6">
+                            <i class="fas fa-trophy text-5xl mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-2">Kuis Selesai!</h3>
+                            <div class="text-4xl font-bold mb-2" id="final-score">8/10</div>
+                            <p class="text-purple-100" id="result-message">Hasil yang sangat bagus!</p>
+                        </div>
+                        <button id="restart-quiz" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                            <i class="fas fa-redo mr-2"></i>Mulai Kuis Lagi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         // === Toggle mobile menu ===
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+    // === Toggle mobile submenus ===
+    function toggleMobileSubmenu(id) {
+        const submenu = document.getElementById(id);
+        const arrow = document.getElementById(id.split('-')[0] + '-arrow');
+        submenu.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-180');
+    }
+
+    // === Dropdown Desktop (klik untuk buka, klik di luar untuk tutup) ===
+    const dropdownButtons = document.querySelectorAll('.dropdown-container > button');
+
+    dropdownButtons.forEach(button => {
+        const menu = button.nextElementSibling;
+        const arrow = button.querySelector('.dropdown-arrow');
+
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+
+            // Tutup semua dropdown lain
+            document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                if (openMenu !== menu) openMenu.classList.remove('show');
+            });
+
+            // Toggle dropdown yang diklik
+            menu.classList.toggle('show');
+            arrow?.classList.toggle('rotate-180');
+        });
+    });
+
+    // Tutup semua dropdown saat klik di luar
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            menu.classList.remove('show');
+        });
+        document.querySelectorAll('.dropdown-arrow.rotate-180').forEach(arrow => {
+            arrow.classList.remove('rotate-180');
+        });
+    });
+    
+        // Data untuk kata sifat
+        const adjectives = [
+            // I-Adjectives
+            { japanese: "高い", reading: "takai", meaning: "tinggi/mahal", type: "i", emoji: "📈" },
+            { japanese: "楽しい", reading: "tanoshii", meaning: "menyenangkan", type: "i", emoji: "😄" },
+            { japanese: "寒い", reading: "samui", meaning: "dingin", type: "i", emoji: "🥶" },
+            { japanese: "暑い", reading: "atsui", meaning: "panas", type: "i", emoji: "🔥" },
+            { japanese: "大きい", reading: "ookii", meaning: "besar", type: "i", emoji: "🐘" },
+            { japanese: "小さい", reading: "chiisai", meaning: "kecil", type: "i", emoji: "🐭" },
+            { japanese: "新しい", reading: "atarashii", meaning: "baru", type: "i", emoji: "🆕" },
+            { japanese: "古い", reading: "furui", meaning: "lama/tua", type: "i", emoji: "🏺" },
+            
+            // Na-Adjectives
+            { japanese: "静かな", reading: "shizukana", meaning: "tenang", type: "na", emoji: "🤫" },
+            { japanese: "元気な", reading: "genkina", meaning: "sehat/bersemangat", type: "na", emoji: "💪" },
+            { japanese: "便利な", reading: "benrina", meaning: "berguna", type: "na", emoji: "🛠️" },
+            { japanese: "きれいな", reading: "kireina", meaning: "cantik/bersih", type: "na", emoji: "✨" },
+            { japanese: "有名な", reading: "yuumeina", meaning: "terkenal", type: "na", emoji: "⭐" },
+            { japanese: "大好きな", reading: "daisukina", meaning: "sangat suka", type: "na", emoji: "❤️" },
+            { japanese: "嫌いな", reading: "kiraina", meaning: "tidak suka", type: "na", emoji: "👎" },
+            { japanese: "簡単な", reading: "kantanna", meaning: "mudah", type: "na", emoji: "👍" }
+        ];
+
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-button').forEach(tab => {
+                    tab.classList.remove('tab-active');
+                    tab.classList.add('text-gray-600', 'hover:text-purple-600');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('tab-active');
+                this.classList.remove('text-gray-600', 'hover:text-purple-600');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabId = this.id.replace('tab-', '') + '-content';
+                document.getElementById(tabId).classList.remove('hidden');
+                
+                // Initialize practice if practice tab is selected
+                if (this.id === 'tab-practice') {
+                    generatePracticeQuestion();
+                }
+            });
+        });
+
+        // Practice functionality
+        let currentPracticeType = 'identify';
+
+        function generatePracticeQuestion() {
+            const practiceType = document.getElementById('practice-type').value;
+            const questionDiv = document.getElementById('practice-question');
+            const optionsDiv = document.getElementById('practice-options');
+            
+            const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            
+            questionDiv.innerHTML = '';
+            optionsDiv.innerHTML = '';
+            
+            switch(practiceType) {
+                case 'identify':
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-japanese text-3xl font-bold mb-2">${randomAdj.japanese}</div>
+                            <div class="text-gray-600">${randomAdj.reading} - "${randomAdj.meaning}"</div>
+                            <div class="emoji-size mt-2">${randomAdj.emoji}</div>
+                        </div>
+                        <label class="block text-gray-700 font-semibold mb-3">Jenis kata sifat ini adalah:</label>
+                    `;
+                    
+                    const types = [
+                        { value: 'i', label: 'I-Adjective (い-Adjective)', color: 'red' },
+                        { value: 'na', label: 'Na-Adjective (な-Adjective)', color: 'blue' }
+                    ];
+                    
+                    types.forEach(type => {
+                        const button = document.createElement('button');
+                        button.className = `w-full p-4 mb-3 text-left rounded-lg border-2 border-${type.color}-200 bg-${type.color}-50 hover:bg-${type.color}-100 transition duration-200`;
+                        button.innerHTML = `
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-${type.color}-100 rounded-lg flex items-center justify-center mr-3">
+                                    <span class="text-${type.color}-600 font-bold text-japanese">${type.value === 'i' ? 'い' : 'な'}</span>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-gray-800">${type.label}</div>
+                                </div>
+                            </div>
+                        `;
+                        button.addEventListener('click', () => checkPracticeAnswer(type.value === randomAdj.type, type.label, randomAdj.type));
+                        optionsDiv.appendChild(button);
+                    });
+                    break;
+                    
+                case 'conjugate':
+                    const forms = ['present-negative', 'past-positive', 'past-negative'];
+                    const randomForm = forms[Math.floor(Math.random() * forms.length)];
+                    let targetForm = '';
+                    let correctAnswer = '';
+                    
+                    switch(randomForm) {
+                        case 'present-negative':
+                            targetForm = 'Present Negatif';
+                            correctAnswer = randomAdj.type === 'i' 
+                                ? randomAdj.japanese.replace('い', 'くない')
+                                : randomAdj.japanese.replace('な', 'じゃない');
+                            break;
+                        case 'past-positive':
+                            targetForm = 'Past Positif';
+                            correctAnswer = randomAdj.type === 'i'
+                                ? randomAdj.japanese.replace('い', 'かった')
+                                : randomAdj.japanese.replace('な', 'だった');
+                            break;
+                        case 'past-negative':
+                            targetForm = 'Past Negatif';
+                            correctAnswer = randomAdj.type === 'i'
+                                ? randomAdj.japanese.replace('い', 'くなかった')
+                                : randomAdj.japanese.replace('な', 'じゃなかった');
+                            break;
+                    }
+                    
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-japanese text-2xl font-bold mb-2">${randomAdj.japanese}</div>
+                            <div class="text-gray-600">${randomAdj.reading} - "${randomAdj.meaning}"</div>
+                            <div class="emoji-size mt-2">${randomAdj.emoji}</div>
+                        </div>
+                        <label class="block text-gray-700 font-semibold mb-3">Bentuk <strong>${targetForm}</strong> dari kata sifat di atas:</label>
+                        <input type="text" id="conjugation-answer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-japanese text-xl" placeholder="Ketik dalam hiragana/kanji...">
+                    `;
+                    
+                    // Store correct answer for checking
+                    optionsDiv.dataset.correctAnswer = correctAnswer;
+                    break;
+                    
+                case 'complete':
+                    const sentences = [
+                        { template: "このりんごは___です。", adjective: randomAdj, answer: randomAdj.type === 'i' ? randomAdj.japanese : randomAdj.japanese.replace('な', '') },
+                        { template: "___ところに行きたい。", adjective: randomAdj, answer: randomAdj.japanese },
+                        { template: "あの人は___人です。", adjective: randomAdj, answer: randomAdj.japanese }
+                    ];
+                    const randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+                    
+                    questionDiv.innerHTML = `
+                        <div class="mb-4">
+                            <div class="text-gray-700 mb-3">Lengkapi kalimat berikut dengan kata sifat yang tepat:</div>
+                            <div class="text-japanese text-xl font-bold text-center mb-2">${randomSentence.template}</div>
+                            <div class="text-center text-gray-600 mb-2">${randomAdj.meaning} ${randomAdj.emoji}</div>
+                        </div>
+                        <input type="text" id="sentence-answer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-japanese text-xl" placeholder="Ketik jawaban dalam bahasa Jepang...">
+                    `;
+                    
+                    // Store correct answer for checking
+                    optionsDiv.dataset.correctAnswer = randomSentence.answer;
+                    break;
+            }
+            
+            // Clear previous result
+            document.getElementById('practice-result').classList.add('hidden');
+        }
+
+        function checkPracticeAnswer(isCorrect, selectedType, correctType) {
+            const resultDiv = document.getElementById('practice-result');
+            
+            if (isCorrect) {
+                resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="font-semibold">Benar!</span>
+                    </div>
+                    <div class="mt-2">Jawaban Anda tepat!</div>
+                `;
+            } else {
+                resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                        <span class="font-semibold">Belum tepat.</span>
+                    </div>
+                    <div class="mt-2">Jawaban yang benar: <strong>${correctType === 'i' ? 'I-Adjective' : 'Na-Adjective'}</strong></div>
+                `;
+            }
+            
+            resultDiv.classList.remove('hidden');
+            
+            // Generate new question after delay
+            setTimeout(() => {
+                generatePracticeQuestion();
+            }, 2000);
+        }
+
+        // Quiz functionality
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        const totalQuestions = 10;
+
+        function startQuiz() {
+            currentQuizQuestion = 0;
+            quizScore = 0;
+            updateQuizScore();
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            const quizArea = document.getElementById('quiz-area');
+            const quizResults = document.getElementById('quiz-results');
+            const nextButton = document.getElementById('next-question');
+            
+            quizArea.classList.remove('hidden');
+            quizResults.classList.add('hidden');
+            nextButton.classList.add('hidden');
+            
+            if (currentQuizQuestion >= totalQuestions) {
+                showQuizResults();
+                return;
+            }
+            
+            const questionTypes = ['type', 'meaning', 'usage'];
+            const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+            const currentAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const options = generateQuizOptions(currentAdj, questionType);
+            
+            let questionText = '';
+            switch(questionType) {
+                case 'type':
+                    questionText = `Apa jenis kata sifat "${currentAdj.japanese}"?`;
+                    break;
+                case 'meaning':
+                    questionText = `Apa arti dari "${currentAdj.japanese}"?`;
+                    break;
+                case 'usage':
+                    questionText = `Manakah kalimat yang menggunakan "${currentAdj.japanese}" dengan benar?`;
+                    break;
+            }
+            
+            document.getElementById('quiz-question').textContent = questionText;
+            document.getElementById('quiz-adjective').textContent = currentAdj.japanese;
+            document.getElementById('quiz-reading').textContent = currentAdj.reading;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = `quiz-option p-4 rounded-lg border-2 border-gray-200 bg-white hover:bg-gray-50 transition duration-200 text-left`;
+                button.innerHTML = option.content;
+                button.addEventListener('click', () => checkQuizAnswer(option.correct, button));
+                optionsContainer.appendChild(button);
+            });
+            
+            updateQuizProgress();
+        }
+
+        function generateQuizOptions(correctAdj, questionType) {
+            const options = [];
+            const otherAdjectives = adjectives.filter(adj => adj.japanese !== correctAdj.japanese);
+            
+            switch(questionType) {
+                case 'type':
+                    // Add correct option
+                    options.push({
+                        content: `
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 ${correctAdj.type === 'i' ? 'bg-red-100' : 'bg-blue-100'} rounded-lg flex items-center justify-center mr-3">
+                                    <span class="${correctAdj.type === 'i' ? 'text-red-600' : 'text-blue-600'} font-bold text-japanese">${correctAdj.type === 'i' ? 'い' : 'な'}</span>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-gray-800">${correctAdj.type === 'i' ? 'I-Adjective' : 'Na-Adjective'}</div>
+                                    <div class="text-sm text-gray-600">${correctAdj.type === 'i' ? 'Berakhiran -i, bisa berdiri sendiri' : 'Membutuhkan partikel "na"'}</div>
+                                </div>
+                            </div>
+                        `,
+                        correct: true
+                    });
+                    
+                    // Add wrong option
+                    options.push({
+                        content: `
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 ${correctAdj.type === 'i' ? 'bg-blue-100' : 'bg-red-100'} rounded-lg flex items-center justify-center mr-3">
+                                    <span class="${correctAdj.type === 'i' ? 'text-blue-600' : 'text-red-600'} font-bold text-japanese">${correctAdj.type === 'i' ? 'な' : 'い'}</span>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-gray-800">${correctAdj.type === 'i' ? 'Na-Adjective' : 'I-Adjective'}</div>
+                                    <div class="text-sm text-gray-600">${correctAdj.type === 'i' ? 'Membutuhkan partikel "na"' : 'Berakhiran -i, bisa berdiri sendiri'}</div>
+                                </div>
+                            </div>
+                        `,
+                        correct: false
+                    });
+                    break;
+                    
+                case 'meaning':
+                    // Add correct option
+                    options.push({
+                        content: `
+                            <div class="text-center py-2">
+                                <div class="font-semibold text-gray-800 text-lg">${correctAdj.meaning}</div>
+                                <div class="emoji-size mt-1">${correctAdj.emoji}</div>
+                            </div>
+                        `,
+                        correct: true
+                    });
+                    
+                    // Add 3 wrong options
+                    for (let i = 0; i < 3; i++) {
+                        const randomAdj = otherAdjectives[Math.floor(Math.random() * otherAdjectives.length)];
+                        options.push({
+                            content: `
+                                <div class="text-center py-2">
+                                    <div class="font-semibold text-gray-800 text-lg">${randomAdj.meaning}</div>
+                                    <div class="emoji-size mt-1">${randomAdj.emoji}</div>
+                                </div>
+                            `,
+                            correct: false
+                        });
+                    }
+                    break;
+                    
+                case 'usage':
+                    const correctUsage = correctAdj.type === 'i' 
+                        ? `${correctAdj.japanese}本を見つけた。`
+                        : `${correctAdj.japanese}場所が好きです。`;
+                    
+                    const wrongUsage = correctAdj.type === 'i'
+                        ? `${correctAdj.japanese.replace('い', 'な')}本を見つけた。`
+                        : `${correctAdj.japanese.replace('な', 'い')}場所が好きです。`;
+                    
+                    // Add correct option
+                    options.push({
+                        content: `
+                            <div class="text-japanese text-lg">${correctUsage}</div>
+                            <div class="text-sm text-gray-600 mt-1">Penggunaan benar</div>
+                        `,
+                        correct: true
+                    });
+                    
+                    // Add wrong option
+                    options.push({
+                        content: `
+                            <div class="text-japanese text-lg">${wrongUsage}</div>
+                            <div class="text-sm text-gray-600 mt-1">Penggunaan salah</div>
+                        `,
+                        correct: false
+                    });
+                    
+                    // Add 2 more random sentences
+                    for (let i = 0; i < 2; i++) {
+                        const randomAdj = otherAdjectives[Math.floor(Math.random() * otherAdjectives.length)];
+                        const randomUsage = randomAdj.type === 'i'
+                            ? `${randomAdj.japanese}映画を見た。`
+                            : `${randomAdj.japanese}人がいる。`;
+                            
+                        options.push({
+                            content: `
+                                <div class="text-japanese text-lg">${randomUsage}</div>
+                                <div class="text-sm text-gray-600 mt-1">Kalimat lain</div>
+                            `,
+                            correct: false
+                        });
+                    }
+                    break;
+            }
+            
+            // Shuffle options
+            return options.sort(() => Math.random() - 0.5);
+        }
+
+        function checkQuizAnswer(isCorrect, selectedButton) {
+            const options = document.querySelectorAll('#quiz-options button');
+            const nextButton = document.getElementById('next-question');
+            
+            // Disable all options
+            options.forEach(option => {
+                option.removeEventListener('click', () => {});
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Mark correct/incorrect
+            if (isCorrect) {
+                selectedButton.classList.add('correct-answer');
+                quizScore++;
+                updateQuizScore();
+            } else {
+                selectedButton.classList.add('wrong-answer');
+                // Find and highlight correct answer
+                options.forEach(option => {
+                    if (option !== selectedButton) {
+                        // This is a simplified check - in real implementation, 
+                        // we would track which option is correct
+                        const content = option.innerHTML;
+                        if (content.includes('correct') || !content.includes('salah')) {
+                            option.classList.add('correct-answer');
+                        }
+                    }
+                });
+            }
+            
+            // Show next button
+            nextButton.classList.remove('hidden');
+        }
+
+        function updateQuizScore() {
+            document.getElementById('quiz-score').textContent = quizScore;
+        }
+
+        function updateQuizProgress() {
+            const progress = ((currentQuizQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+            document.getElementById('current-question').textContent = currentQuizQuestion + 1;
+            document.getElementById('progress-percent').textContent = `${Math.round(progress)}%`;
+        }
+
+        function showQuizResults() {
+            const quizArea = document.getElementById('quiz-area');
+            const quizResults = document.getElementById('quiz-results');
+            const finalScore = document.getElementById('final-score');
+            const resultMessage = document.getElementById('result-message');
+            
+            quizArea.classList.add('hidden');
+            quizResults.classList.remove('hidden');
+            
+            finalScore.textContent = `${quizScore}/${totalQuestions}`;
+            
+            // Set result message based on score
+            if (quizScore === totalQuestions) {
+                resultMessage.textContent = "Luar biasa! Anda menguasai kata sifat Jepang!";
+            } else if (quizScore >= totalQuestions * 0.7) {
+                resultMessage.textContent = "Bagus! Pemahaman Anda sudah cukup baik.";
+            } else if (quizScore >= totalQuestions * 0.5) {
+                resultMessage.textContent = "Cukup baik, tapi masih perlu belajar lagi.";
+            } else {
+                resultMessage.textContent = "Perlu lebih banyak latihan. Jangan menyerah!";
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('practice-type').addEventListener('change', generatePracticeQuestion);
+        
+        document.getElementById('check-practice').addEventListener('click', function() {
+            const practiceType = document.getElementById('practice-type').value;
+            const resultDiv = document.getElementById('practice-result');
+            
+            if (practiceType === 'conjugate') {
+                const userAnswer = document.getElementById('conjugation-answer').value.trim().toLowerCase();
+                const correctAnswer = document.getElementById('practice-options').dataset.correctAnswer.toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="font-semibold">Benar!</span>
+                        </div>
+                        <div class="mt-2">Jawaban Anda tepat!</div>
+                    `;
+                } else {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                            <span class="font-semibold">Belum tepat.</span>
+                        </div>
+                        <div class="mt-2">Jawaban yang benar: <strong class="text-japanese">${correctAnswer}</strong></div>
+                    `;
+                }
+                resultDiv.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    generatePracticeQuestion();
+                }, 2000);
+            } else if (practiceType === 'complete') {
+                const userAnswer = document.getElementById('sentence-answer').value.trim().toLowerCase();
+                const correctAnswer = document.getElementById('practice-options').dataset.correctAnswer.toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="font-semibold">Benar!</span>
+                        </div>
+                        <div class="mt-2">Kalimat yang tepat!</div>
+                    `;
+                } else {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                            <span class="font-semibold">Belum tepat.</span>
+                        </div>
+                        <div class="mt-2">Jawaban yang benar: <strong class="text-japanese">${correctAnswer}</strong></div>
+                    `;
+                }
+                resultDiv.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    generatePracticeQuestion();
+                }, 2000);
+            }
+        });
+
+        document.getElementById('next-question').addEventListener('click', function() {
+            currentQuizQuestion++;
+            showQuizQuestion();
+        });
+
+        document.getElementById('restart-quiz').addEventListener('click', startQuiz);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize quiz when quiz tab is first clicked
+            document.getElementById('tab-quiz').addEventListener('click', startQuiz);
+            
+            // Initialize practice when practice tab is first clicked
+            document.getElementById('tab-practice').addEventListener('click', generatePracticeQuestion);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiragana Jepang - NihongoMaster</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .text-japanese {
+            font-family: 'MS PGothic', 'Hiragino Sans', sans-serif;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .tab-active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .quiz-option {
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            transform: scale(1.02);
+        }
+        
+        .correct-answer {
+            background-color: #10B981 !important;
+            color: white !important;
+            border-color: #10B981 !important;
+        }
+        
+        .wrong-answer {
+            background-color: #EF4444 !important;
+            color: white !important;
+            border-color: #EF4444 !important;
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .hiragana-card {
+            background: linear-gradient(135deg, #9F7AEA 0%, #805AD5 100%);
+            color: white;
+        }
+        
+        .hiragana-vowel {
+            background: linear-gradient(135deg, #4C51BF 0%, #667EEA 100%);
+        }
+        
+        .hiragana-k {
+            background: linear-gradient(135deg, #38B2AC 0%, #319795 100%);
+        }
+        
+        .hiragana-s {
+            background: linear-gradient(135deg, #68D391 0%, #48BB78 100%);
+        }
+        
+        .hiragana-t {
+            background: linear-gradient(135deg, #F6E05E 0%, #ECC94B 100%);
+        }
+        
+        .hiragana-n {
+            background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hiragana-char {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .stroke-order {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        
+        .stroke {
+            position: absolute;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 2px;
+        }
+        
+        .writing-guide {
+            background: linear-gradient(to right, #E2E8F0 1px, transparent 1px), 
+                        linear-gradient(to bottom, #E2E8F0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+                 /* Dropdown styling dengan transisi yang lebih baik */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Mencegah dropdown langsung hilang saat kursor bergerak */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 10px;
+        }
+        
+        /* Animasi untuk mobile menu */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mobile-submenu {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* Styling untuk dropdown yang lebih stabil */
+        .dropdown-container {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-lg">日</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">Nihongo<span class="text-red-600">Desu</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2">Beranda</a>
+                    
+                    <!-- Abjad Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Abjad
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <a href="hiragana.html" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center">
+                                <span class="text-japanese text-lg mr-3">あ</span>
+                                Hiragana
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">46 huruf</span>
+                            </a>
+                            <a href="katakana.html" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center">
+                                <span class="text-japanese text-lg mr-3">ア</span>
+                                Katakana
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">46 huruf</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kosakata Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Kosakata
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <div class="px-4 py-2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Jenis Kata</span>
+                            </div>
+                            <a href="katakerja.html" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-running text-blue-600 text-sm"></i>
+                                </div>
+                                Kata Kerja (動詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">500+</span>
+                            </a>
+                            <a href="katasifat.html" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-star text-green-600 text-sm"></i>
+                                </div>
+                                Kata Sifat (形容詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">300+</span>
+                            </a>
+                            <a href="katabenda.html" class="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-cube text-purple-600 text-sm"></i>
+                                </div>
+                                Kata Benda (名詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">1000+</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Waktu Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Waktu
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <div class="px-4 py-2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Ekspresi Waktu</span>
+                            </div>
+                            <a href="tanggaldanbulan.html" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-calendar-alt text-orange-600 text-sm"></i>
+                                </div>
+                                Tanggal & Bulan
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">12 bulan</span>
+                            </a>
+                            <a href="haridanwaktu.html" class="block px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-clock text-indigo-600 text-sm"></i>
+                                </div>
+                                Hari & Waktu Relatif
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">7 hari</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex items-center space-x-4">
+                    <a href="#login" class="text-gray-600 hover:text-red-600 font-medium transition duration-300 hidden md:block py-2">Masuk</a>
+                    <a href="#register"
+   class="hidden md:inline-block bg-red-600 text-white px-6 py-2 rounded-full font-medium hover:bg-red-700 transition duration-300 shadow-lg hover:shadow-xl">
+    Mulai Belajar
+</a>
+
+                    
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-gray-600 hover:text-red-600 focus:outline-none" id="mobile-menu-button">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden bg-white border-t border-gray-200 py-4 hidden" id="mobile-menu">
+                <div class="space-y-2">
+                    <a href="index.html" class="block py-3 px-4 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition duration-200">Beranda</a>
+                    
+                    <!-- Mobile Abjad Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('abjad-mobile')">
+                            <span>Abjad</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="abjad-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="abjad-mobile">
+                            <a href="hiragana.html" class="block py-2 text-gray-600 hover:text-red-600 flex items-center">
+                                <span class="text-japanese text-lg mr-3">あ</span>
+                                Hiragana
+                            </a>
+                            <a href="katakana.html" class="block py-2 text-gray-600 hover:text-red-600 flex items-center">
+                                <span class="text-japanese text-lg mr-3">ア</span>
+                                Katakana
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Kosakata Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('kosakata-mobile')">
+                            <span>Kosakata</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="kosakata-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="kosakata-mobile">
+                            <a href="katakerja.html" class="block py-2 text-gray-600 hover:text-blue-600 flex items-center">
+                                <i class="fas fa-running text-blue-500 mr-3 w-5 text-center"></i>
+                                Kata Kerja
+                            </a>
+                            <a href="katasifat.html" class="block py-2 text-gray-600 hover:text-green-600 flex items-center">
+                                <i class="fas fa-star text-green-500 mr-3 w-5 text-center"></i>
+                                Kata Sifat
+                            </a>
+                            <a href="katabenda.html" class="block py-2 text-gray-600 hover:text-purple-600 flex items-center">
+                                <i class="fas fa-cube text-purple-500 mr-3 w-5 text-center"></i>
+                                Kata Benda
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Waktu Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('waktu-mobile')">
+                            <span>Waktu</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="waktu-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="waktu-mobile">
+                            <a href="tanggaldanbulan.html" class="block py-2 text-gray-600 hover:text-orange-600 flex items-center">
+                                <i class="fas fa-calendar-alt text-orange-500 mr-3 w-5 text-center"></i>
+                                Tanggal & Bulan
+                            </a>
+                            <a href="haridanwaktu.html" class="block py-2 text-gray-600 hover:text-indigo-600 flex items-center">
+                                <i class="fas fa-clock text-indigo-500 mr-3 w-5 text-center"></i>
+                                Hari & Waktu Relatif
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Hiragana (ひらがな)</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Pelajari aksara Hiragana Jepang dengan sistem pembelajaran interaktif. Kuasai dasar membaca dan menulis bahasa Jepang!
+            </p>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="flex flex-wrap justify-center mb-8 bg-white rounded-2xl shadow-lg p-2 max-w-2xl mx-auto">
+            <button id="tab-learn" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 tab-active">
+                <i class="fas fa-book-open mr-2"></i>Belajar
+            </button>
+            <button id="tab-practice" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 text-gray-600 hover:text-purple-600">
+                <i class="fas fa-pencil-alt mr-2"></i>Latihan
+            </button>
+            <button id="tab-quiz" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 text-gray-600 hover:text-purple-600">
+                <i class="fas fa-trophy mr-2"></i>Kuis
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="fade-in">
+            <!-- Learn Tab Content -->
+            <div id="learn-content" class="tab-content">
+                <!-- Pengenalan Hiragana -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Apa itu Hiragana?</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-gray-600 mb-4">
+                                Hiragana adalah salah satu dari tiga sistem penulisan bahasa Jepang, bersama dengan Katakana dan Kanji. 
+                                Hiragana digunakan untuk:
+                            </p>
+                            <ul class="text-gray-600 space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Kata-kata asli Jepang yang tidak memiliki kanji</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Partikel gramatikal (は, が, を, dll)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Akhiran kata kerja dan kata sifat</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                                    <span>Furigana (bantuan membaca kanji)</span>
+                                </li>
+                            </ul>
+                            <div class="bg-indigo-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-indigo-800 mb-2">Fakta Menarik:</h4>
+                                <p class="text-indigo-700 text-sm">
+                                    Hiragana terdiri dari 46 karakter dasar dan beberapa karakter tambahan dengan diakritik. 
+                                    Setiap karakter mewakili satu suku kata, bukan satu huruf seperti alfabet.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-2xl p-8 text-center w-full max-w-md">
+                                <div class="text-japanese hiragana-char mb-4">あいうえお</div>
+                                <p class="text-indigo-100">Contoh karakter Hiragana: a, i, u, e, o</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabel Hiragana -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Tabel Hiragana Dasar</h2>
+                    
+                    <!-- Vokal -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-indigo-600 font-bold">あ</span>
+                            </div>
+                            Baris Vokal
+                        </h3>
+                        <div class="grid grid-cols-5 gap-4 mb-6">
+                            <div class="hiragana-vowel text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">あ</div>
+                                <div class="font-semibold">a</div>
+                            </div>
+                            <div class="hiragana-vowel text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">い</div>
+                                <div class="font-semibold">i</div>
+                            </div>
+                            <div class="hiragana-vowel text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">う</div>
+                                <div class="font-semibold">u</div>
+                            </div>
+                            <div class="hiragana-vowel text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">え</div>
+                                <div class="font-semibold">e</div>
+                            </div>
+                            <div class="hiragana-vowel text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">お</div>
+                                <div class="font-semibold">o</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris K -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-teal-600 font-bold">か</span>
+                            </div>
+                            Baris K
+                        </h3>
+                        <div class="grid grid-cols-5 gap-4 mb-6">
+                            <div class="hiragana-k text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">か</div>
+                                <div class="font-semibold">ka</div>
+                            </div>
+                            <div class="hiragana-k text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">き</div>
+                                <div class="font-semibold">ki</div>
+                            </div>
+                            <div class="hiragana-k text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">く</div>
+                                <div class="font-semibold">ku</div>
+                            </div>
+                            <div class="hiragana-k text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">け</div>
+                                <div class="font-semibold">ke</div>
+                            </div>
+                            <div class="hiragana-k text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">こ</div>
+                                <div class="font-semibold">ko</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris S -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-green-600 font-bold">さ</span>
+                            </div>
+                            Baris S
+                        </h3>
+                        <div class="grid grid-cols-5 gap-4 mb-6">
+                            <div class="hiragana-s text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">さ</div>
+                                <div class="font-semibold">sa</div>
+                            </div>
+                            <div class="hiragana-s text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">し</div>
+                                <div class="font-semibold">shi</div>
+                            </div>
+                            <div class="hiragana-s text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">す</div>
+                                <div class="font-semibold">su</div>
+                            </div>
+                            <div class="hiragana-s text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">せ</div>
+                                <div class="font-semibold">se</div>
+                            </div>
+                            <div class="hiragana-s text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">そ</div>
+                                <div class="font-semibold">so</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris T -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-yellow-600 font-bold">た</span>
+                            </div>
+                            Baris T
+                        </h3>
+                        <div class="grid grid-cols-5 gap-4 mb-6">
+                            <div class="hiragana-t text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">た</div>
+                                <div class="font-semibold">ta</div>
+                            </div>
+                            <div class="hiragana-t text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ち</div>
+                                <div class="font-semibold">chi</div>
+                            </div>
+                            <div class="hiragana-t text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">つ</div>
+                                <div class="font-semibold">tsu</div>
+                            </div>
+                            <div class="hiragana-t text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">て</div>
+                                <div class="font-semibold">te</div>
+                            </div>
+                            <div class="hiragana-t text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">と</div>
+                                <div class="font-semibold">to</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Baris N -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4 flex items-center">
+                            <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-orange-600 font-bold">な</span>
+                            </div>
+                            Baris N
+                        </h3>
+                        <div class="grid grid-cols-5 gap-4 mb-6">
+                            <div class="hiragana-n text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">な</div>
+                                <div class="font-semibold">na</div>
+                            </div>
+                            <div class="hiragana-n text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">に</div>
+                                <div class="font-semibold">ni</div>
+                            </div>
+                            <div class="hiragana-n text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ぬ</div>
+                                <div class="font-semibold">nu</div>
+                            </div>
+                            <div class="hiragana-n text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">ね</div>
+                                <div class="font-semibold">ne</div>
+                            </div>
+                            <div class="hiragana-n text-white rounded-xl p-4 text-center card-hover">
+                                <div class="text-japanese hiragana-char mb-2">の</div>
+                                <div class="font-semibold">no</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cara Menulis Hiragana -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Cara Menulis Hiragana</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-700 mb-4">Urutan Goresan</h3>
+                            <p class="text-gray-600 mb-4">
+                                Setiap karakter Hiragana memiliki urutan goresan yang spesifik. 
+                                Mengikuti urutan yang benar penting untuk menulis dengan baik dan dapat dikenali.
+                            </p>
+                            <div class="bg-gray-50 rounded-xl p-6">
+                                <h4 class="font-semibold text-gray-800 mb-3">Tips Menulis Hiragana:</h4>
+                                <ul class="text-gray-600 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-pencil-alt text-indigo-500 mt-1 mr-2"></i>
+                                        <span>Mulai dari kiri ke kanan, atas ke bawah</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-pencil-alt text-indigo-500 mt-1 mr-2"></i>
+                                        <span>Perhatikan arah dan urutan goresan</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-pencil-alt text-indigo-500 mt-1 mr-2"></i>
+                                        <span>Gunakan kertas bergaris untuk latihan</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-pencil-alt text-indigo-500 mt-1 mr-2"></i>
+                                        <span>Praktikkan secara teratur untuk mengingat</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="writing-guide w-64 h-64 rounded-xl border-2 border-gray-300 mb-4 flex items-center justify-center">
+                                <div class="text-japanese hiragana-char text-gray-700">あ</div>
+                            </div>
+                            <p class="text-gray-600 text-center">Contoh: Karakter "a" (あ) memiliki 3 goresan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Tab Content -->
+            <div id="practice-content" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Latihan Menulis Hiragana</h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Practice Form -->
+                        <div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-3">Pilih Jenis Latihan:</label>
+                                <select id="practice-type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                    <option value="identify">Identifikasi Karakter</option>
+                                    <option value="writing">Latihan Menulis</option>
+                                    <option value="reading">Membaca Kata</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6" id="practice-question">
+                                <!-- Question will be populated by JavaScript -->
+                            </div>
+                            
+                            <div class="mb-6" id="practice-options">
+                                <!-- Options will be populated by JavaScript -->
+                            </div>
+                            
+                            <button id="check-practice" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                                Periksa Jawaban
+                            </button>
+                        </div>
+
+                        <!-- Practice Guide -->
+                        <div class="bg-green-50 rounded-xl p-6">
+                            <h3 class="font-bold text-green-800 text-lg mb-4">Panduan Hiragana</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Baris Vokal (あ行):</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div class="flex items-center">
+                                            <span class="text-japanese font-bold mr-2">あ</span>
+                                            <span>a - seperti "a" dalam "apel"</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-japanese font-bold mr-2">い</span>
+                                            <span>i - seperti "i" dalam "ikan"</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-japanese font-bold mr-2">う</span>
+                                            <span>u - seperti "u" dalam "ular"</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Baris K (か行):</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div class="flex items-center">
+                                            <span class="text-japanese font-bold mr-2">か</span>
+                                            <span>ka - seperti "ka" dalam "kaki"</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-japanese font-bold mr-2">き</span>
+                                            <span>ki - seperti "ki" dalam "kiri"</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-japanese font-bold mr-2">く</span>
+                                            <span>ku - seperti "ku" dalam "kuku"</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Tips Mengingat:</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>• Kelompokkan berdasarkan baris (あ, か, さ, dll)</div>
+                                        <div>• Gunakan mnemonik untuk mengingat bentuk</div>
+                                        <div>• Praktik menulis setiap hari</div>
+                                        <div>• Gunakan flashcard untuk latihan</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="practice-result" class="mt-6 hidden p-4 rounded-lg"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Tab Content -->
+            <div id="quiz-content" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <!-- Quiz Header -->
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Kuis Hiragana</h2>
+                            <p class="text-gray-600">Uji pemahaman Anda tentang aksara Hiragana</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-500">Skor</div>
+                            <div class="text-2xl font-bold text-purple-600" id="quiz-score">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="mb-8">
+                        <div class="flex justify-between text-sm text-gray-600 mb-2">
+                            <span>Pertanyaan <span id="current-question">1</span>/10</span>
+                            <span id="progress-percent">10%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="quiz-progress" class="progress-bar h-3 rounded-full bg-purple-600" style="width: 10%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Question -->
+                    <div id="quiz-area" class="fade-in">
+                        <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4" id="quiz-question">Apa pelafalan dari karakter Hiragana ini?</h3>
+                            <div class="text-japanese text-5xl font-bold text-center mb-2" id="quiz-hiragana">あ</div>
+                        </div>
+
+                        <!-- Quiz Options -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" id="quiz-options">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+
+                        <!-- Next Button -->
+                        <button id="next-question" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300 hidden">
+                            Pertanyaan Berikutnya
+                        </button>
+                    </div>
+
+                    <!-- Quiz Results -->
+                    <div id="quiz-results" class="hidden text-center fade-in">
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl p-8 mb-6">
+                            <i class="fas fa-trophy text-5xl mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-2">Kuis Selesai!</h3>
+                            <div class="text-4xl font-bold mb-2" id="final-score">8/10</div>
+                            <p class="text-purple-100" id="result-message">Hasil yang sangat bagus!</p>
+                        </div>
+                        <button id="restart-quiz" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                            <i class="fas fa-redo mr-2"></i>Mulai Kuis Lagi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         // === Toggle mobile menu ===
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+    // === Toggle mobile submenus ===
+    function toggleMobileSubmenu(id) {
+        const submenu = document.getElementById(id);
+        const arrow = document.getElementById(id.split('-')[0] + '-arrow');
+        submenu.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-180');
+    }
+
+    // === Dropdown Desktop (klik untuk buka, klik di luar untuk tutup) ===
+    const dropdownButtons = document.querySelectorAll('.dropdown-container > button');
+
+    dropdownButtons.forEach(button => {
+        const menu = button.nextElementSibling;
+        const arrow = button.querySelector('.dropdown-arrow');
+
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+
+            // Tutup semua dropdown lain
+            document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                if (openMenu !== menu) openMenu.classList.remove('show');
+            });
+
+            // Toggle dropdown yang diklik
+            menu.classList.toggle('show');
+            arrow?.classList.toggle('rotate-180');
+        });
+    });
+
+    // Tutup semua dropdown saat klik di luar
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            menu.classList.remove('show');
+        });
+        document.querySelectorAll('.dropdown-arrow.rotate-180').forEach(arrow => {
+            arrow.classList.remove('rotate-180');
+        });
+    });
+    
+        // Data untuk Hiragana
+        const hiragana = [
+            // Vokal
+            { character: "あ", reading: "a", row: "vowel", example: "あひる (ahiru) - bebek" },
+            { character: "い", reading: "i", row: "vowel", example: "いぬ (inu) - anjing" },
+            { character: "う", reading: "u", row: "vowel", example: "うま (uma) - kuda" },
+            { character: "え", reading: "e", row: "vowel", example: "えび (ebi) - udang" },
+            { character: "お", reading: "o", row: "vowel", example: "おに (oni) - setan" },
+            
+            // Baris K
+            { character: "か", reading: "ka", row: "k", example: "かさ (kasa) - payung" },
+            { character: "き", reading: "ki", row: "k", example: "きつね (kitsune) - rubah" },
+            { character: "く", reading: "ku", row: "k", example: "くま (kuma) - beruang" },
+            { character: "け", reading: "ke", row: "k", example: "けしき (keshiki) - pemandangan" },
+            { character: "こ", reading: "ko", row: "k", example: "こころ (kokoro) - hati" },
+            
+            // Baris S
+            { character: "さ", reading: "sa", row: "s", example: "さくら (sakura) - bunga sakura" },
+            { character: "し", reading: "shi", row: "s", example: "しまうま (shimau) - zebra" },
+            { character: "す", reading: "su", row: "s", example: "すいか (suika) - semangka" },
+            { character: "せ", reading: "se", row: "s", example: "せんせい (sensei) - guru" },
+            { character: "そ", reading: "so", row: "s", example: "そら (sora) - langit" },
+            
+            // Baris T
+            { character: "た", reading: "ta", row: "t", example: "たこ (tako) - gurita" },
+            { character: "ち", reading: "chi", row: "t", example: "ちち (chichi) - ayah" },
+            { character: "つ", reading: "tsu", row: "t", example: "つき (tsuki) - bulan" },
+            { character: "て", reading: "te", row: "t", example: "て (te) - tangan" },
+            { character: "と", reading: "to", row: "t", example: "とり (tori) - burung" },
+            
+            // Baris N
+            { character: "な", reading: "na", row: "n", example: "なつ (natsu) - musim panas" },
+            { character: "に", reading: "ni", row: "n", example: "にほん (nihon) - Jepang" },
+            { character: "ぬ", reading: "nu", row: "n", example: "ぬま (numa) - rawa" },
+            { character: "ね", reading: "ne", row: "n", example: "ねこ (neko) - kucing" },
+            { character: "の", reading: "no", row: "n", example: "のど (nodo) - tenggorokan" }
+        ];
+
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-button').forEach(tab => {
+                    tab.classList.remove('tab-active');
+                    tab.classList.add('text-gray-600', 'hover:text-purple-600');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('tab-active');
+                this.classList.remove('text-gray-600', 'hover:text-purple-600');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabId = this.id.replace('tab-', '') + '-content';
+                document.getElementById(tabId).classList.remove('hidden');
+                
+                // Initialize practice if practice tab is selected
+                if (this.id === 'tab-practice') {
+                    generatePracticeQuestion();
+                }
+            });
+        });
+
+        // Practice functionality
+        function generatePracticeQuestion() {
+            const practiceType = document.getElementById('practice-type').value;
+            const questionDiv = document.getElementById('practice-question');
+            const optionsDiv = document.getElementById('practice-options');
+            
+            const randomHiragana = hiragana[Math.floor(Math.random() * hiragana.length)];
+            
+            questionDiv.innerHTML = '';
+            optionsDiv.innerHTML = '';
+            
+            switch(practiceType) {
+                case 'identify':
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-japanese text-5xl font-bold mb-4">${randomHiragana.character}</div>
+                            <label class="block text-gray-700 font-semibold mb-3">Apa pelafalan karakter ini?</label>
+                        </div>
+                    `;
+                    
+                    // Create options (1 correct, 3 incorrect)
+                    const options = [randomHiragana.reading];
+                    while (options.length < 4) {
+                        const randomOption = hiragana[Math.floor(Math.random() * hiragana.length)].reading;
+                        if (!options.includes(randomOption)) {
+                            options.push(randomOption);
+                        }
+                    }
+                    
+                    // Shuffle options
+                    options.sort(() => Math.random() - 0.5);
+                    
+                    options.forEach(option => {
+                        const button = document.createElement('button');
+                        button.className = `w-full p-4 mb-3 text-center rounded-lg border-2 border-indigo-200 bg-indigo-50 hover:bg-indigo-100 transition duration-200`;
+                        button.innerHTML = `
+                            <div class="font-semibold text-gray-800 text-xl">${option}</div>
+                        `;
+                        button.addEventListener('click', () => checkPracticeAnswer(option === randomHiragana.reading, option, randomHiragana.reading));
+                        optionsDiv.appendChild(button);
+                    });
+                    break;
+                    
+                case 'writing':
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-gray-700 mb-3">Tulis karakter Hiragana untuk pelafalan:</div>
+                            <div class="text-3xl font-bold text-indigo-600 mb-4">${randomHiragana.reading}</div>
+                            <div class="writing-guide w-full h-48 rounded-xl border-2 border-gray-300 mb-4"></div>
+                            <input type="text" id="writing-answer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-japanese text-xl text-center" placeholder="Tulis karakter Hiragana di sini...">
+                        </div>
+                    `;
+                    
+                    // Store correct answer for checking
+                    optionsDiv.dataset.correctAnswer = randomHiragana.character;
+                    break;
+                    
+                case 'reading':
+                    // Create a simple word using hiragana characters
+                    const wordLength = Math.floor(Math.random() * 2) + 2; // 2-3 characters
+                    let word = "";
+                    let wordReading = "";
+                    
+                    for (let i = 0; i < wordLength; i++) {
+                        const randomChar = hiragana[Math.floor(Math.random() * hiragana.length)];
+                        word += randomChar.character;
+                        wordReading += randomChar.reading;
+                    }
+                    
+                    questionDiv.innerHTML = `
+                        <div class="mb-4">
+                            <div class="text-gray-700 mb-3">Bagaimana cara membaca kata Hiragana ini?</div>
+                            <div class="text-japanese text-3xl font-bold text-center mb-4">${word}</div>
+                            <input type="text" id="reading-answer" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-xl text-center" placeholder="Tulis pelafalan kata di sini...">
+                        </div>
+                    `;
+                    
+                    // Store correct answer for checking
+                    optionsDiv.dataset.correctAnswer = wordReading;
+                    break;
+            }
+            
+            // Clear previous result
+            document.getElementById('practice-result').classList.add('hidden');
+        }
+
+        function checkPracticeAnswer(isCorrect, selectedAnswer, correctAnswer) {
+            const resultDiv = document.getElementById('practice-result');
+            
+            if (isCorrect) {
+                resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="font-semibold">Benar!</span>
+                    </div>
+                    <div class="mt-2">Jawaban Anda tepat!</div>
+                `;
+            } else {
+                resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                        <span class="font-semibold">Belum tepat.</span>
+                    </div>
+                    <div class="mt-2">Jawaban yang benar: <strong>${correctAnswer}</strong></div>
+                `;
+            }
+            
+            resultDiv.classList.remove('hidden');
+            
+            // Generate new question after delay
+            setTimeout(() => {
+                generatePracticeQuestion();
+            }, 2000);
+        }
+
+        // Quiz functionality
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        const totalQuestions = 5;
+
+        function startQuiz() {
+            currentQuizQuestion = 0;
+            quizScore = 0;
+            updateQuizScore();
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            const quizArea = document.getElementById('quiz-area');
+            const quizResults = document.getElementById('quiz-results');
+            const nextButton = document.getElementById('next-question');
+            
+            quizArea.classList.remove('hidden');
+            quizResults.classList.add('hidden');
+            nextButton.classList.add('hidden');
+            
+            if (currentQuizQuestion >= totalQuestions) {
+                showQuizResults();
+                return;
+            }
+            
+            const questionTypes = ['reading', 'character', 'example'];
+            const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+            const currentHiragana = hiragana[Math.floor(Math.random() * hiragana.length)];
+            const options = generateQuizOptions(currentHiragana, questionType);
+            
+            let questionText = '';
+            switch(questionType) {
+                case 'reading':
+                    questionText = `Apa pelafalan dari karakter Hiragana ini?`;
+                    break;
+                case 'character':
+                    questionText = `Karakter Hiragana mana yang dilafalkan "${currentHiragana.reading}"?`;
+                    break;
+                case 'example':
+                    questionText = `Dalam kata "${currentHiragana.example}", karakter "${currentHiragana.character}" dilafalkan sebagai?`;
+                    break;
+            }
+            
+            document.getElementById('quiz-question').textContent = questionText;
+            
+            if (questionType === 'reading' || questionType === 'example') {
+                document.getElementById('quiz-hiragana').textContent = currentHiragana.character;
+                document.getElementById('quiz-hiragana').classList.remove('hidden');
+            } else {
+                document.getElementById('quiz-hiragana').classList.add('hidden');
+            }
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = `quiz-option p-4 rounded-lg border-2 border-gray-200 bg-white hover:bg-gray-50 transition duration-200 text-left`;
+                button.innerHTML = option.content;
+                button.addEventListener('click', () => checkQuizAnswer(option.correct, button));
+                optionsContainer.appendChild(button);
+            });
+            
+            updateQuizProgress();
+        }
+
+        function generateQuizOptions(correctHiragana, questionType) {
+            const options = [];
+            const otherHiragana = hiragana.filter(h => h.character !== correctHiragana.character);
+            
+            switch(questionType) {
+                case 'reading':
+                case 'example':
+                    // Add correct option
+                    options.push({
+                        content: `
+                            <div class="text-center py-2">
+                                <div class="font-semibold text-gray-800 text-xl">${correctHiragana.reading}</div>
+                            </div>
+                        `,
+                        correct: true
+                    });
+                    
+                    // Add 3 wrong options
+                    for (let i = 0; i < 3; i++) {
+                        const randomHiragana = otherHiragana[Math.floor(Math.random() * otherHiragana.length)];
+                        options.push({
+                            content: `
+                                <div class="text-center py-2">
+                                    <div class="font-semibold text-gray-800 text-xl">${randomHiragana.reading}</div>
+                                </div>
+                            `,
+                            correct: false
+                        });
+                    }
+                    break;
+                    
+                case 'character':
+                    // Add correct option
+                    options.push({
+                        content: `
+                            <div class="text-center py-2">
+                                <div class="text-japanese text-3xl font-bold">${correctHiragana.character}</div>
+                            </div>
+                        `,
+                        correct: true
+                    });
+                    
+                    // Add 3 wrong options
+                    for (let i = 0; i < 3; i++) {
+                        const randomHiragana = otherHiragana[Math.floor(Math.random() * otherHiragana.length)];
+                        options.push({
+                            content: `
+                                <div class="text-center py-2">
+                                    <div class="text-japanese text-3xl font-bold">${randomHiragana.character}</div>
+                                </div>
+                            `,
+                            correct: false
+                        });
+                    }
+                    break;
+            }
+            
+            // Shuffle options
+            return options.sort(() => Math.random() - 0.5);
+        }
+
+        function checkQuizAnswer(isCorrect, selectedButton) {
+            const options = document.querySelectorAll('#quiz-options button');
+            const nextButton = document.getElementById('next-question');
+            
+            // Disable all options
+            options.forEach(option => {
+                option.removeEventListener('click', () => {});
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Mark correct/incorrect
+            if (isCorrect) {
+                selectedButton.classList.add('correct-answer');
+                quizScore++;
+                updateQuizScore();
+            } else {
+                selectedButton.classList.add('wrong-answer');
+                // Find and highlight correct answer
+                options.forEach(option => {
+                    if (option !== selectedButton && option.innerHTML.includes('correct')) {
+                        option.classList.add('correct-answer');
+                    }
+                });
+            }
+            
+            // Show next button
+            nextButton.classList.remove('hidden');
+        }
+
+        function updateQuizScore() {
+            document.getElementById('quiz-score').textContent = quizScore;
+        }
+
+        function updateQuizProgress() {
+            const progress = ((currentQuizQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+            document.getElementById('current-question').textContent = currentQuizQuestion + 1;
+            document.getElementById('progress-percent').textContent = `${Math.round(progress)}%`;
+        }
+
+        function showQuizResults() {
+            const quizArea = document.getElementById('quiz-area');
+            const quizResults = document.getElementById('quiz-results');
+            const finalScore = document.getElementById('final-score');
+            const resultMessage = document.getElementById('result-message');
+            
+            quizArea.classList.add('hidden');
+            quizResults.classList.remove('hidden');
+            
+            finalScore.textContent = `${quizScore}/${totalQuestions}`;
+            
+            // Set result message based on score
+            if (quizScore === totalQuestions) {
+                resultMessage.textContent = "Luar biasa! Anda menguasai Hiragana!";
+            } else if (quizScore >= totalQuestions * 0.7) {
+                resultMessage.textContent = "Bagus! Pemahaman Anda sudah cukup baik.";
+            } else if (quizScore >= totalQuestions * 0.5) {
+                resultMessage.textContent = "Cukup baik, tapi masih perlu belajar lagi.";
+            } else {
+                resultMessage.textContent = "Perlu lebih banyak latihan. Jangan menyerah!";
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('practice-type').addEventListener('change', generatePracticeQuestion);
+        
+        document.getElementById('check-practice').addEventListener('click', function() {
+            const practiceType = document.getElementById('practice-type').value;
+            const resultDiv = document.getElementById('practice-result');
+            
+            if (practiceType === 'writing') {
+                const userAnswer = document.getElementById('writing-answer').value.trim();
+                const correctAnswer = document.getElementById('practice-options').dataset.correctAnswer;
+                
+                if (userAnswer === correctAnswer) {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="font-semibold">Benar!</span>
+                        </div>
+                        <div class="mt-2">Jawaban Anda tepat!</div>
+                    `;
+                } else {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                            <span class="font-semibold">Belum tepat.</span>
+                        </div>
+                        <div class="mt-2">Jawaban yang benar: <strong class="text-japanese">${correctAnswer}</strong></div>
+                    `;
+                }
+                resultDiv.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    generatePracticeQuestion();
+                }, 2000);
+            } else if (practiceType === 'reading') {
+                const userAnswer = document.getElementById('reading-answer').value.trim().toLowerCase();
+                const correctAnswer = document.getElementById('practice-options').dataset.correctAnswer;
+                
+                if (userAnswer === correctAnswer) {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span class="font-semibold">Benar!</span>
+                        </div>
+                        <div class="mt-2">Pelafalan yang tepat!</div>
+                    `;
+                } else {
+                    resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                    resultDiv.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                            <span class="font-semibold">Belum tepat.</span>
+                        </div>
+                        <div class="mt-2">Pelafalan yang benar: <strong>${correctAnswer}</strong></div>
+                    `;
+                }
+                resultDiv.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    generatePracticeQuestion();
+                }, 2000);
+            }
+        });
+
+        document.getElementById('next-question').addEventListener('click', function() {
+            currentQuizQuestion++;
+            showQuizQuestion();
+        });
+
+        document.getElementById('restart-quiz').addEventListener('click', startQuiz);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize quiz when quiz tab is first clicked
+            document.getElementById('tab-quiz').addEventListener('click', startQuiz);
+            
+            // Initialize practice when practice tab is first clicked
+            document.getElementById('tab-practice').addEventListener('click', generatePracticeQuestion);
+        });
+    </script>
+</body>
+</html>

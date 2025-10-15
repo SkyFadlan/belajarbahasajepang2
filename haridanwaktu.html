@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hari & Waktu Relatif Jepang - NihongoDesu</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .text-japanese {
+            font-family: 'MS PGothic', 'Hiragino Sans', sans-serif;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .tab-active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .quiz-option {
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            transform: scale(1.02);
+        }
+        
+        .correct-answer {
+            background-color: #10B981 !important;
+            color: white !important;
+            border-color: #10B981 !important;
+        }
+        
+        .wrong-answer {
+            background-color: #EF4444 !important;
+            color: white !important;
+            border-color: #EF4444 !important;
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .day-card {
+            background: linear-gradient(135deg, #4C51BF 0%, #667EEA 100%);
+            color: white;
+        }
+        
+        .time-card {
+            background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+            color: white;
+        }
+        
+        .relative-time-card {
+            background: linear-gradient(135deg, #38B2AC 0%, #319795 100%);
+            color: white;
+        }
+        
+        .period-card {
+            background: linear-gradient(135deg, #68D391 0%, #48BB78 100%);
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .japanese-char {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .clock-face {
+            width: 200px;
+            height: 200px;
+            border: 8px solid #4C51BF;
+            border-radius: 50%;
+            position: relative;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .clock-hand {
+            position: absolute;
+            transform-origin: bottom center;
+            bottom: 50%;
+            left: 50%;
+            border-radius: 4px;
+        }
+        
+        .hour-hand {
+            width: 6px;
+            height: 60px;
+            background: #4C51BF;
+            margin-left: -3px;
+        }
+        
+        .minute-hand {
+            width: 4px;
+            height: 80px;
+            background: #667EEA;
+            margin-left: -2px;
+        }
+        
+        .second-hand {
+            width: 2px;
+            height: 90px;
+            background: #ED8936;
+            margin-left: -1px;
+        }
+        
+        .clock-center {
+            width: 12px;
+            height: 12px;
+            background: #4C51BF;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+                 /* Dropdown styling dengan transisi yang lebih baik */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Mencegah dropdown langsung hilang saat kursor bergerak */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 10px;
+        }
+        
+        /* Animasi untuk mobile menu */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mobile-submenu {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* Styling untuk dropdown yang lebih stabil */
+        .dropdown-container {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+        <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-lg">日</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">Nihongo<span class="text-red-600">Desu</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2">Beranda</a>
+                    
+                    <!-- Abjad Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Abjad
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <a href="hiragana.html" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center">
+                                <span class="text-japanese text-lg mr-3">あ</span>
+                                Hiragana
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">46 huruf</span>
+                            </a>
+                            <a href="katakana.html" class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center">
+                                <span class="text-japanese text-lg mr-3">ア</span>
+                                Katakana
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">46 huruf</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kosakata Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Kosakata
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <div class="px-4 py-2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Jenis Kata</span>
+                            </div>
+                            <a href="katakerja.html" class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-running text-blue-600 text-sm"></i>
+                                </div>
+                                Kata Kerja (動詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">500+</span>
+                            </a>
+                            <a href="katasifat.html" class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-star text-green-600 text-sm"></i>
+                                </div>
+                                Kata Sifat (形容詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">300+</span>
+                            </a>
+                            <a href="katabenda.html" class="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-cube text-purple-600 text-sm"></i>
+                                </div>
+                                Kata Benda (名詞)
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">1000+</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Waktu Dropdown -->
+                    <div class="dropdown dropdown-container">
+                        <button class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+                            Waktu
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                            <div class="px-4 py-2">
+                                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Ekspresi Waktu</span>
+                            </div>
+                            <a href="tanggaldanbulan.html" class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-calendar-alt text-orange-600 text-sm"></i>
+                                </div>
+                                Tanggal & Bulan
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">12 bulan</span>
+                            </a>
+                            <a href="haridanwaktu.html" class="block px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition duration-200 flex items-center">
+                                <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-clock text-indigo-600 text-sm"></i>
+                                </div>
+                                Hari & Waktu Relatif
+                                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">7 hari</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex items-center space-x-4">
+                    <a href="#login" class="text-gray-600 hover:text-red-600 font-medium transition duration-300 hidden md:block py-2">Masuk</a>
+                    <a href="#register"
+   class="hidden md:inline-block bg-red-600 text-white px-6 py-2 rounded-full font-medium hover:bg-red-700 transition duration-300 shadow-lg hover:shadow-xl">
+    Mulai Belajar
+</a>
+
+                    
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden text-gray-600 hover:text-red-600 focus:outline-none" id="mobile-menu-button">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden bg-white border-t border-gray-200 py-4 hidden" id="mobile-menu">
+                <div class="space-y-2">
+                    <a href="index.html" class="block py-3 px-4 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition duration-200">Beranda</a>
+                    
+                    <!-- Mobile Abjad Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('abjad-mobile')">
+                            <span>Abjad</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="abjad-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="abjad-mobile">
+                            <a href="hiragana.html" class="block py-2 text-gray-600 hover:text-red-600 flex items-center">
+                                <span class="text-japanese text-lg mr-3">あ</span>
+                                Hiragana
+                            </a>
+                            <a href="katakana.html" class="block py-2 text-gray-600 hover:text-red-600 flex items-center">
+                                <span class="text-japanese text-lg mr-3">ア</span>
+                                Katakana
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Kosakata Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('kosakata-mobile')">
+                            <span>Kosakata</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="kosakata-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="kosakata-mobile">
+                            <a href="katakerja.html" class="block py-2 text-gray-600 hover:text-blue-600 flex items-center">
+                                <i class="fas fa-running text-blue-500 mr-3 w-5 text-center"></i>
+                                Kata Kerja
+                            </a>
+                            <a href="katasifat.html" class="block py-2 text-gray-600 hover:text-green-600 flex items-center">
+                                <i class="fas fa-star text-green-500 mr-3 w-5 text-center"></i>
+                                Kata Sifat
+                            </a>
+                            <a href="katabenda.html" class="block py-2 text-gray-600 hover:text-purple-600 flex items-center">
+                                <i class="fas fa-cube text-purple-500 mr-3 w-5 text-center"></i>
+                                Kata Benda
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Waktu Submenu -->
+                    <div class="px-4 py-2">
+                        <button class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none" onclick="toggleMobileSubmenu('waktu-mobile')">
+                            <span>Waktu</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300" id="waktu-arrow"></i>
+                        </button>
+                        <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="waktu-mobile">
+                            <a href="tanggaldanbulan.html" class="block py-2 text-gray-600 hover:text-orange-600 flex items-center">
+                                <i class="fas fa-calendar-alt text-orange-500 mr-3 w-5 text-center"></i>
+                                Tanggal & Bulan
+                            </a>
+                            <a href="haridanwaktu.html" class="block py-2 text-gray-600 hover:text-indigo-600 flex items-center">
+                                <i class="fas fa-clock text-indigo-500 mr-3 w-5 text-center"></i>
+                                Hari & Waktu Relatif
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Hari & Waktu Relatif Bahasa Jepang</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Pelajari cara menyebut hari, waktu relatif, dan bagian hari dalam bahasa Jepang. Kuasai ekspresi waktu yang penting untuk percakapan sehari-hari!
+            </p>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="flex flex-wrap justify-center mb-8 bg-white rounded-2xl shadow-lg p-2 max-w-2xl mx-auto">
+            <button id="tab-learn" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 tab-active">
+                <i class="fas fa-book-open mr-2"></i>Belajar
+            </button>
+            <button id="tab-practice" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 text-gray-600 hover:text-purple-600">
+                <i class="fas fa-pencil-alt mr-2"></i>Latihan
+            </button>
+            <button id="tab-quiz" class="tab-button flex-1 py-3 px-6 rounded-xl font-semibold transition duration-300 text-gray-600 hover:text-purple-600">
+                <i class="fas fa-trophy mr-2"></i>Kuis
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="fade-in">
+            <!-- Learn Tab Content -->
+            <div id="learn-content" class="tab-content">
+                <!-- Pengenalan Hari & Waktu -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Sistem Hari dan Waktu Jepang</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-gray-600 mb-4">
+                                Dalam bahasa Jepang, penyebutan hari dan waktu relatif memiliki pola yang sistematis. 
+                                Nama hari diambil dari elemen alam dan planet, sedangkan waktu relatif menggunakan partikel khusus.
+                            </p>
+                            <div class="bg-indigo-50 rounded-lg p-4 mb-6">
+                                <h4 class="font-semibold text-indigo-800 mb-2">Pola Umum Waktu Relatif:</h4>
+                                <ul class="text-indigo-700 text-sm space-y-1">
+                                    <li>• Kemarin: 昨日 (kinō)</li>
+                                    <li>• Hari ini: 今日 (kyō)</li>
+                                    <li>• Besok: 明日 (ashita)</li>
+                                    <li>• Lusa: 明後日 (asatte)</li>
+                                    <li>• Setiap hari: 毎日 (mainichi)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-orange-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-orange-800 mb-2">Satuan Waktu:</h4>
+                                <ul class="text-orange-700 text-sm space-y-1">
+                                    <li>• Detik: 秒 (byō)</li>
+                                    <li>• Menit: 分 (fun/pun)</li>
+                                    <li>• Jam: 時 (ji)</li>
+                                    <li>• Hari: 日 (nichi)</li>
+                                    <li>• Minggu: 週間 (shūkan)</li>
+                                    <li>• Bulan: ヶ月 (kagetsu)</li>
+                                    <li>• Tahun: 年 (nen)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center space-y-6">
+                            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-2xl p-8 text-center w-full max-w-md">
+                                <div class="text-japanese japanese-char mb-4">今日は月曜日です</div>
+                                <p class="text-indigo-100">kyō wa getsuyōbi desu</p>
+                                <p class="text-indigo-200 mt-2">Hari ini adalah hari Senin</p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-teal-500 text-white rounded-lg p-3 text-center">
+                                    <div class="text-sm">Sekarang</div>
+                                    <div class="font-bold" id="current-time-japanese">--:--</div>
+                                </div>
+                                <div class="bg-orange-500 text-white rounded-lg p-3 text-center">
+                                    <div class="text-sm">Hari Ini</div>
+                                    <div class="font-bold" id="current-day-japanese">---</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nama-nama Hari -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">7 Hari dalam Seminggu</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
+                        <div class="day-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-japanese japanese-char mb-2">月曜日</div>
+                            <div class="font-semibold text-xl mb-1">getsuyōbi</div>
+                            <div class="text-indigo-100">Senin</div>
+                            <div class="text-xs mt-2 text-indigo-200">Bulan</div>
+                        </div>
+                        <div class="day-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-japanese japanese-char mb-2">火曜日</div>
+                            <div class="font-semibold text-xl mb-1">kayōbi</div>
+                            <div class="text-indigo-100">Selasa</div>
+                            <div class="text-xs mt-2 text-indigo-200">Api</div>
+                        </div>
+                        <div class="day-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-japanese japanese-char mb-2">水曜日</div>
+                            <div class="font-semibold text-xl mb-1">suiyōbi</div>
+                            <div class="text-indigo-100">Rabu</div>
+                            <div class="text-xs mt-2 text-indigo-200">Air</div>
+                        </div>
+                        <div class="day-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-japanese japanese-char mb-2">木曜日</div>
+                            <div class="font-semibold text-xl mb-1">mokuyōbi</div>
+                            <div class="text-indigo-100">Kamis</div>
+                            <div class="text-xs mt-2 text-indigo-200">Kayu</div>
+                        </div>
+                        <div class="day-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-japanese japanese-char mb-2">金曜日</div>
+                            <div class="font-semibold text-xl mb-1">kin'yōbi</div>
+                            <div class="text-indigo-100">Jumat</div>
+                            <div class="text-xs mt-2 text-indigo-200">Emas</div>
+                        </div>
+                        <div class="day-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-japanese japanese-char mb-2">土曜日</div>
+                            <div class="font-semibold text-xl mb-1">doyōbi</div>
+                            <div class="text-indigo-100">Sabtu</div>
+                            <div class="text-xs mt-2 text-indigo-200">Tanah</div>
+                        </div>
+                        <div class="day-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-japanese japanese-char mb-2">日曜日</div>
+                            <div class="font-semibold text-xl mb-1">nichiyōbi</div>
+                            <div class="text-indigo-100">Minggu</div>
+                            <div class="text-xs mt-2 text-indigo-200">Matahari</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waktu Relatif -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Waktu Relatif</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Masa Lalu -->
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-bold text-gray-700 mb-3 flex items-center">
+                                <i class="fas fa-arrow-left text-red-500 mr-2"></i>
+                                Masa Lalu
+                            </h3>
+                            <div class="relative-time-card text-white rounded-xl p-5 text-center card-hover">
+                                <div class="text-japanese text-xl mb-1">一昨日</div>
+                                <div class="font-semibold">ototoi</div>
+                                <div class="text-teal-100 text-sm">2 hari yang lalu</div>
+                            </div>
+                            <div class="relative-time-card text-white rounded-xl p-5 text-center card-hover">
+                                <div class="text-japanese text-xl mb-1">昨日</div>
+                                <div class="font-semibold">kinō</div>
+                                <div class="text-teal-100 text-sm">Kemarin</div>
+                            </div>
+                        </div>
+
+                        <!-- Masa Sekarang -->
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-bold text-gray-700 mb-3 flex items-center">
+                                <i class="fas fa-circle text-green-500 mr-2"></i>
+                                Sekarang
+                            </h3>
+                            <div class="relative-time-card text-white rounded-xl p-5 text-center card-hover">
+                                <div class="text-japanese text-xl mb-1">今日</div>
+                                <div class="font-semibold">kyō</div>
+                                <div class="text-teal-100 text-sm">Hari ini</div>
+                            </div>
+                            <div class="relative-time-card text-white rounded-xl p-5 text-center card-hover">
+                                <div class="text-japanese text-xl mb-1">今</div>
+                                <div class="font-semibold">ima</div>
+                                <div class="text-teal-100 text-sm">Sekarang</div>
+                            </div>
+                        </div>
+
+                        <!-- Masa Depan -->
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-bold text-gray-700 mb-3 flex items-center">
+                                <i class="fas fa-arrow-right text-blue-500 mr-2"></i>
+                                Masa Depan
+                            </h3>
+                            <div class="relative-time-card text-white rounded-xl p-5 text-center card-hover">
+                                <div class="text-japanese text-xl mb-1">明日</div>
+                                <div class="font-semibold">ashita</div>
+                                <div class="text-teal-100 text-sm">Besok</div>
+                            </div>
+                            <div class="relative-time-card text-white rounded-xl p-5 text-center card-hover">
+                                <div class="text-japanese text-xl mb-1">明後日</div>
+                                <div class="font-semibold">asatte</div>
+                                <div class="text-teal-100 text-sm">Lusa</div>
+                            </div>
+                        </div>
+
+                        <!-- Pengulangan -->
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-bold text-gray-700 mb-3 flex items-center">
+                                <i class="fas fa-redo text-purple-500 mr-2"></i>
+                                Pengulangan
+                            </h3>
+                            <div class="relative-time-card text-white rounded-xl p-5 text-center card-hover">
+                                <div class="text-japanese text-xl mb-1">毎日</div>
+                                <div class="font-semibold">mainichi</div>
+                                <div class="text-teal-100 text-sm">Setiap hari</div>
+                            </div>
+                            <div class="relative-time-card text-white rounded-xl p-5 text-center card-hover">
+                                <div class="text-japanese text-xl mb-1">毎週</div>
+                                <div class="font-semibold">maishū</div>
+                                <div class="text-teal-100 text-sm">Setiap minggu</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jam, Menit, Detik -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Jam, Menit, dan Detik</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <div class="grid grid-cols-3 gap-4 mb-6">
+                                <div class="time-card text-white rounded-lg p-4 text-center card-hover">
+                                    <div class="text-japanese text-lg mb-1">時</div>
+                                    <div class="font-semibold">ji</div>
+                                    <div class="text-orange-100 text-sm">Jam</div>
+                                </div>
+                                <div class="time-card text-white rounded-lg p-4 text-center card-hover">
+                                    <div class="text-japanese text-lg mb-1">分</div>
+                                    <div class="font-semibold">fun/pun</div>
+                                    <div class="text-orange-100 text-sm">Menit</div>
+                                </div>
+                                <div class="time-card text-white rounded-lg p-4 text-center card-hover">
+                                    <div class="text-japanese text-lg mb-1">秒</div>
+                                    <div class="font-semibold">byō</div>
+                                    <div class="text-orange-100 text-sm">Detik</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-orange-50 rounded-xl p-6">
+                                <h4 class="font-semibold text-orange-800 mb-3">Cara Membaca Waktu:</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                        <span class="text-japanese font-bold">一時</span>
+                                        <span class="text-gray-700">ichi-ji</span>
+                                        <span class="text-gray-600">Jam 1:00</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                        <span class="text-japanese font-bold">三時十五分</span>
+                                        <span class="text-gray-700">san-ji jūgo-fun</span>
+                                        <span class="text-gray-600">Jam 3:15</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                        <span class="text-japanese font-bold">九時四十五分</span>
+                                        <span class="text-gray-700">ku-ji yonjūgo-fun</span>
+                                        <span class="text-gray-600">Jam 9:45</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="clock-face mb-6">
+                                <div class="clock-hand hour-hand" id="hour-hand"></div>
+                                <div class="clock-hand minute-hand" id="minute-hand"></div>
+                                <div class="clock-hand second-hand" id="second-hand"></div>
+                                <div class="clock-center"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-japanese text-2xl font-bold mb-2" id="japanese-time">--時--分</div>
+                                <div class="text-gray-600" id="current-time">--:--:--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian Hari -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Bagian Hari</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="period-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-4xl mb-4">🌅</div>
+                            <div class="text-japanese text-xl mb-1">朝</div>
+                            <div class="font-semibold text-lg mb-1">asa</div>
+                            <div class="text-green-100">Pagi</div>
+                            <div class="text-sm mt-2 text-green-200">(06:00 - 11:00)</div>
+                        </div>
+                        <div class="period-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-4xl mb-4">☀️</div>
+                            <div class="text-japanese text-xl mb-1">昼</div>
+                            <div class="font-semibold text-lg mb-1">hiru</div>
+                            <div class="text-green-100">Siang</div>
+                            <div class="text-sm mt-2 text-green-200">(11:00 - 17:00)</div>
+                        </div>
+                        <div class="period-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-4xl mb-4">🌆</div>
+                            <div class="text-japanese text-xl mb-1">夕方</div>
+                            <div class="font-semibold text-lg mb-1">yūgata</div>
+                            <div class="text-green-100">Sore</div>
+                            <div class="text-sm mt-2 text-green-200">(17:00 - 19:00)</div>
+                        </div>
+                        <div class="period-card text-white rounded-xl p-6 text-center card-hover">
+                            <div class="text-4xl mb-4">🌙</div>
+                            <div class="text-japanese text-xl mb-1">夜</div>
+                            <div class="font-semibold text-lg mb-1">yoru</div>
+                            <div class="text-green-100">Malam</div>
+                            <div class="text-sm mt-2 text-green-200">(19:00 - 06:00)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contoh Penggunaan -->
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Contoh Penggunaan dalam Kalimat</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-indigo-50 rounded-xl p-6">
+                            <h3 class="font-bold text-indigo-700 mb-4">Menyebut Jadwal</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">会議は月曜日の朝九時です。</div>
+                                    <div class="text-gray-600 mb-1">Kaigi wa getsuyōbi no asa ku-ji desu.</div>
+                                    <div class="text-gray-700 font-semibold">Rapat pada hari Senin pagi jam 9.</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">明日の昼一時に会いましょう。</div>
+                                    <div class="text-gray-600 mb-1">Ashita no hiru ichi-ji ni aimashō.</div>
+                                    <div class="text-gray-700 font-semibold">Mari bertemu besok siang jam 1.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-teal-50 rounded-xl p-6">
+                            <h3 class="font-bold text-teal-700 mb-4">Waktu Relatif</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">昨日は忙しかったです。</div>
+                                    <div class="text-gray-600 mb-1">Kinō wa isogashikatta desu.</div>
+                                    <div class="text-gray-700 font-semibold">Kemarin saya sibuk.</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="text-japanese text-lg font-bold mb-2">毎日日本語を勉強します。</div>
+                                    <div class="text-gray-600 mb-1">Mainichi nihongo o benkyō shimasu.</div>
+                                    <div class="text-gray-700 font-semibold">Saya belajar bahasa Jepang setiap hari.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Tab Content -->
+            <div id="practice-content" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Latihan Hari & Waktu Relatif</h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Practice Form -->
+                        <div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-semibold mb-3">Pilih Jenis Latihan:</label>
+                                <select id="practice-type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                    <option value="days">Latihan Hari</option>
+                                    <option value="relative-time">Latihan Waktu Relatif</option>
+                                    <option value="time">Latihan Waktu (Jam)</option>
+                                    <option value="day-periods">Latihan Bagian Hari</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6" id="practice-question">
+                                <!-- Question will be populated by JavaScript -->
+                            </div>
+                            
+                            <div class="mb-6" id="practice-options">
+                                <!-- Options will be populated by JavaScript -->
+                            </div>
+                            
+                            <button id="check-practice" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition duration-300">
+                                Periksa Jawaban
+                            </button>
+                        </div>
+
+                        <!-- Practice Guide -->
+                        <div class="bg-green-50 rounded-xl p-6">
+                            <h3 class="font-bold text-green-800 text-lg mb-4">Panduan Hari & Waktu</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Hari dalam Seminggu:</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>月曜日 (getsuyōbi) - Senin (Bulan)</div>
+                                        <div>火曜日 (kayōbi) - Selasa (Api)</div>
+                                        <div>水曜日 (suiyōbi) - Rabu (Air)</div>
+                                        <div>木曜日 (mokuyōbi) - Kamis (Kayu)</div>
+                                        <div>金曜日 (kin'yōbi) - Jumat (Emas)</div>
+                                        <div>土曜日 (doyōbi) - Sabtu (Tanah)</div>
+                                        <div>日曜日 (nichiyōbi) - Minggu (Matahari)</div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Waktu Relatif Penting:</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>一昨日 (ototoi) - 2 hari yang lalu</div>
+                                        <div>昨日 (kinō) - Kemarin</div>
+                                        <div>今日 (kyō) - Hari ini</div>
+                                        <div>明日 (ashita) - Besok</div>
+                                        <div>明後日 (asatte) - Lusa</div>
+                                        <div>毎日 (mainichi) - Setiap hari</div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-semibold text-green-700 mb-2">Bagian Hari:</h4>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <div>朝 (asa) - Pagi (06:00-11:00)</div>
+                                        <div>昼 (hiru) - Siang (11:00-17:00)</div>
+                                        <div>夕方 (yūgata) - Sore (17:00-19:00)</div>
+                                        <div>夜 (yoru) - Malam (19:00-06:00)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="practice-result" class="mt-6 hidden p-4 rounded-lg"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Tab Content -->
+            <div id="quiz-content" class="tab-content hidden">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <!-- Quiz Header -->
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Kuis Hari & Waktu Relatif</h2>
+                            <p class="text-gray-600">Uji pemahaman Anda tentang hari dan waktu dalam bahasa Jepang</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-500">Skor</div>
+                            <div class="text-2xl font-bold text-purple-600" id="quiz-score">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="mb-8">
+                        <div class="flex justify-between text-sm text-gray-600 mb-2">
+                            <span>Pertanyaan <span id="current-question">1</span>/10</span>
+                            <span id="progress-percent">10%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="quiz-progress" class="progress-bar h-3 rounded-full bg-purple-600" style="width: 10%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Question -->
+                    <div id="quiz-area" class="fade-in">
+                        <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4" id="quiz-question">Apa arti dari "月曜日"?</h3>
+                            <div class="text-japanese text-4xl font-bold text-center mb-2" id="quiz-character">月曜日</div>
+                        </div>
+
+                        <!-- Quiz Options -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" id="quiz-options">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+
+                        <!-- Next Button -->
+                        <button id="next-question" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300 hidden">
+                            Pertanyaan Berikutnya
+                        </button>
+                    </div>
+
+                    <!-- Quiz Results -->
+                    <div id="quiz-results" class="hidden text-center fade-in">
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl p-8 mb-6">
+                            <i class="fas fa-trophy text-5xl mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-2">Kuis Selesai!</h3>
+                            <div class="text-4xl font-bold mb-2" id="final-score">8/10</div>
+                            <p class="text-purple-100" id="result-message">Hasil yang sangat bagus!</p>
+                        </div>
+                        <button id="restart-quiz" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition duration-300">
+                            <i class="fas fa-redo mr-2"></i>Mulai Kuis Lagi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         // === Toggle mobile menu ===
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+    // === Toggle mobile submenus ===
+    function toggleMobileSubmenu(id) {
+        const submenu = document.getElementById(id);
+        const arrow = document.getElementById(id.split('-')[0] + '-arrow');
+        submenu.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-180');
+    }
+
+    // === Dropdown Desktop (klik untuk buka, klik di luar untuk tutup) ===
+    const dropdownButtons = document.querySelectorAll('.dropdown-container > button');
+
+    dropdownButtons.forEach(button => {
+        const menu = button.nextElementSibling;
+        const arrow = button.querySelector('.dropdown-arrow');
+
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+
+            // Tutup semua dropdown lain
+            document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                if (openMenu !== menu) openMenu.classList.remove('show');
+            });
+
+            // Toggle dropdown yang diklik
+            menu.classList.toggle('show');
+            arrow?.classList.toggle('rotate-180');
+        });
+    });
+
+    // Tutup semua dropdown saat klik di luar
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            menu.classList.remove('show');
+        });
+        document.querySelectorAll('.dropdown-arrow.rotate-180').forEach(arrow => {
+            arrow.classList.remove('rotate-180');
+        });
+    });
+    
+        // Data untuk hari
+        const days = [
+            { japanese: "月曜日", reading: "getsuyōbi", meaning: "Senin" },
+            { japanese: "火曜日", reading: "kayōbi", meaning: "Selasa" },
+            { japanese: "水曜日", reading: "suiyōbi", meaning: "Rabu" },
+            { japanese: "木曜日", reading: "mokuyōbi", meaning: "Kamis" },
+            { japanese: "金曜日", reading: "kin'yōbi", meaning: "Jumat" },
+            { japanese: "土曜日", reading: "doyōbi", meaning: "Sabtu" },
+            { japanese: "日曜日", reading: "nichiyōbi", meaning: "Minggu" }
+        ];
+
+        // Data untuk waktu relatif
+        const relativeTimes = [
+            { japanese: "一昨日", reading: "ototoi", meaning: "2 hari yang lalu" },
+            { japanese: "昨日", reading: "kinō", meaning: "Kemarin" },
+            { japanese: "今日", reading: "kyō", meaning: "Hari ini" },
+            { japanese: "明日", reading: "ashita", meaning: "Besok" },
+            { japanese: "明後日", reading: "asatte", meaning: "Lusa" },
+            { japanese: "毎日", reading: "mainichi", meaning: "Setiap hari" },
+            { japanese: "毎週", reading: "maishū", meaning: "Setiap minggu" },
+            { japanese: "今", reading: "ima", meaning: "Sekarang" }
+        ];
+
+        // Data untuk bagian hari
+        const dayPeriods = [
+            { japanese: "朝", reading: "asa", meaning: "Pagi" },
+            { japanese: "昼", reading: "hiru", meaning: "Siang" },
+            { japanese: "夕方", reading: "yūgata", meaning: "Sore" },
+            { japanese: "夜", reading: "yoru", meaning: "Malam" }
+        ];
+
+        // Data untuk waktu (contoh)
+        const times = [
+            { japanese: "一時", reading: "ichi-ji", meaning: "Jam 1:00" },
+            { japanese: "三時", reading: "san-ji", meaning: "Jam 3:00" },
+            { japanese: "六時", reading: "roku-ji", meaning: "Jam 6:00" },
+            { japanese: "九時", reading: "ku-ji", meaning: "Jam 9:00" },
+            { japanese: "十二時", reading: "jūni-ji", meaning: "Jam 12:00" },
+            { japanese: "三時十五分", reading: "san-ji jūgo-fun", meaning: "Jam 3:15" },
+            { japanese: "七時三十分", reading: "shichi-ji sanjuppun", meaning: "Jam 7:30" },
+            { japanese: "十時四十五分", reading: "jū-ji yonjūgo-fun", meaning: "Jam 10:45" }
+        ];
+
+        // Fungsi untuk mengupdate jam
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            // Update jam analog
+            const hourHand = document.getElementById('hour-hand');
+            const minuteHand = document.getElementById('minute-hand');
+            const secondHand = document.getElementById('second-hand');
+            
+            const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+            const minuteDeg = minutes * 6;
+            const secondDeg = seconds * 6;
+            
+            hourHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+            minuteHand.style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+            secondHand.style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+            
+            // Update waktu digital
+            document.getElementById('current-time').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Update waktu dalam bahasa Jepang
+            const japaneseHours = hours === 0 ? 12 : (hours > 12 ? hours - 12 : hours);
+            const japaneseTime = `${japaneseHours}時${minutes}分`;
+            document.getElementById('japanese-time').textContent = japaneseTime;
+            
+            // Update hari dalam bahasa Jepang
+            const dayIndex = now.getDay();
+            const japaneseDays = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
+            document.getElementById('current-day-japanese').textContent = japaneseDays[dayIndex];
+            
+            // Update waktu untuk header
+            document.getElementById('current-time-japanese').textContent = japaneseTime;
+        }
+
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-button').forEach(tab => {
+                    tab.classList.remove('tab-active');
+                    tab.classList.add('text-gray-600', 'hover:text-purple-600');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('tab-active');
+                this.classList.remove('text-gray-600', 'hover:text-purple-600');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                const tabId = this.id.replace('tab-', '') + '-content';
+                document.getElementById(tabId).classList.remove('hidden');
+                
+                // Initialize practice if practice tab is selected
+                if (this.id === 'tab-practice') {
+                    generatePracticeQuestion();
+                }
+            });
+        });
+
+        // Practice functionality
+        function generatePracticeQuestion() {
+            const practiceType = document.getElementById('practice-type').value;
+            const questionDiv = document.getElementById('practice-question');
+            const optionsDiv = document.getElementById('practice-options');
+            
+            questionDiv.innerHTML = '';
+            optionsDiv.innerHTML = '';
+            
+            switch(practiceType) {
+                case 'days':
+                    const randomDay = days[Math.floor(Math.random() * days.length)];
+                    
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-japanese text-4xl font-bold mb-4">${randomDay.japanese}</div>
+                            <label class="block text-gray-700 font-semibold mb-3">Apa arti dari hari ini?</label>
+                        </div>
+                    `;
+                    
+                    // Create options (1 correct, 3 incorrect)
+                    const dayOptions = [randomDay.meaning];
+                    while (dayOptions.length < 4) {
+                        const randomOption = days[Math.floor(Math.random() * days.length)].meaning;
+                        if (!dayOptions.includes(randomOption)) {
+                            dayOptions.push(randomOption);
+                        }
+                    }
+                    
+                    // Shuffle options
+                    dayOptions.sort(() => Math.random() - 0.5);
+                    
+                    dayOptions.forEach(option => {
+                        const button = document.createElement('button');
+                        button.className = `w-full p-4 mb-3 text-center rounded-lg border-2 border-indigo-200 bg-indigo-50 hover:bg-indigo-100 transition duration-200`;
+                        button.innerHTML = `
+                            <div class="font-semibold text-gray-800">${option}</div>
+                        `;
+                        button.addEventListener('click', () => checkPracticeAnswer(option === randomDay.meaning, option, randomDay.meaning));
+                        optionsDiv.appendChild(button);
+                    });
+                    break;
+                    
+                case 'relative-time':
+                    const randomRelativeTime = relativeTimes[Math.floor(Math.random() * relativeTimes.length)];
+                    
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-japanese text-3xl font-bold mb-4">${randomRelativeTime.japanese}</div>
+                            <label class="block text-gray-700 font-semibold mb-3">Apa arti dari ekspresi waktu ini?</label>
+                        </div>
+                    `;
+                    
+                    // Create options (1 correct, 3 incorrect)
+                    const relativeTimeOptions = [randomRelativeTime.meaning];
+                    while (relativeTimeOptions.length < 4) {
+                        const randomOption = relativeTimes[Math.floor(Math.random() * relativeTimes.length)].meaning;
+                        if (!relativeTimeOptions.includes(randomOption)) {
+                            relativeTimeOptions.push(randomOption);
+                        }
+                    }
+                    
+                    // Shuffle options
+                    relativeTimeOptions.sort(() => Math.random() - 0.5);
+                    
+                    relativeTimeOptions.forEach(option => {
+                        const button = document.createElement('button');
+                        button.className = `w-full p-4 mb-3 text-center rounded-lg border-2 border-teal-200 bg-teal-50 hover:bg-teal-100 transition duration-200`;
+                        button.innerHTML = `
+                            <div class="font-semibold text-gray-800">${option}</div>
+                        `;
+                        button.addEventListener('click', () => checkPracticeAnswer(option === randomRelativeTime.meaning, option, randomRelativeTime.meaning));
+                        optionsDiv.appendChild(button);
+                    });
+                    break;
+                    
+                case 'time':
+                    const randomTime = times[Math.floor(Math.random() * times.length)];
+                    
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-japanese text-3xl font-bold mb-4">${randomTime.japanese}</div>
+                            <label class="block text-gray-700 font-semibold mb-3">Apa arti dari waktu ini?</label>
+                        </div>
+                    `;
+                    
+                    // Create options (1 correct, 3 incorrect)
+                    const timeOptions = [randomTime.meaning];
+                    while (timeOptions.length < 4) {
+                        const randomOption = times[Math.floor(Math.random() * times.length)].meaning;
+                        if (!timeOptions.includes(randomOption)) {
+                            timeOptions.push(randomOption);
+                        }
+                    }
+                    
+                    // Shuffle options
+                    timeOptions.sort(() => Math.random() - 0.5);
+                    
+                    timeOptions.forEach(option => {
+                        const button = document.createElement('button');
+                        button.className = `w-full p-4 mb-3 text-center rounded-lg border-2 border-orange-200 bg-orange-50 hover:bg-orange-100 transition duration-200`;
+                        button.innerHTML = `
+                            <div class="font-semibold text-gray-800">${option}</div>
+                        `;
+                        button.addEventListener('click', () => checkPracticeAnswer(option === randomTime.meaning, option, randomTime.meaning));
+                        optionsDiv.appendChild(button);
+                    });
+                    break;
+                    
+                case 'day-periods':
+                    const randomPeriod = dayPeriods[Math.floor(Math.random() * dayPeriods.length)];
+                    
+                    questionDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="text-japanese text-3xl font-bold mb-4">${randomPeriod.japanese}</div>
+                            <label class="block text-gray-700 font-semibold mb-3">Apa arti dari bagian hari ini?</label>
+                        </div>
+                    `;
+                    
+                    // Create options (1 correct, 3 incorrect)
+                    const periodOptions = [randomPeriod.meaning];
+                    while (periodOptions.length < 4) {
+                        const randomOption = dayPeriods[Math.floor(Math.random() * dayPeriods.length)].meaning;
+                        if (!periodOptions.includes(randomOption)) {
+                            periodOptions.push(randomOption);
+                        }
+                    }
+                    
+                    // Shuffle options
+                    periodOptions.sort(() => Math.random() - 0.5);
+                    
+                    periodOptions.forEach(option => {
+                        const button = document.createElement('button');
+                        button.className = `w-full p-4 mb-3 text-center rounded-lg border-2 border-green-200 bg-green-50 hover:bg-green-100 transition duration-200`;
+                        button.innerHTML = `
+                            <div class="font-semibold text-gray-800">${option}</div>
+                        `;
+                        button.addEventListener('click', () => checkPracticeAnswer(option === randomPeriod.meaning, option, randomPeriod.meaning));
+                        optionsDiv.appendChild(button);
+                    });
+                    break;
+            }
+            
+            // Clear previous result
+            document.getElementById('practice-result').classList.add('hidden');
+        }
+
+        function checkPracticeAnswer(isCorrect, selectedAnswer, correctAnswer) {
+            const resultDiv = document.getElementById('practice-result');
+            
+            if (isCorrect) {
+                resultDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="font-semibold">Benar!</span>
+                    </div>
+                    <div class="mt-2">Jawaban Anda tepat!</div>
+                `;
+            } else {
+                resultDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800';
+                resultDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                        <span class="font-semibold">Belum tepat.</span>
+                    </div>
+                    <div class="mt-2">Jawaban yang benar: <strong>${correctAnswer}</strong></div>
+                `;
+            }
+            
+            resultDiv.classList.remove('hidden');
+            
+            // Generate new question after delay
+            setTimeout(() => {
+                generatePracticeQuestion();
+            }, 2000);
+        }
+
+        // Quiz functionality
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        const totalQuestions = 5;
+
+        function startQuiz() {
+            currentQuizQuestion = 0;
+            quizScore = 0;
+            updateQuizScore();
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            const quizArea = document.getElementById('quiz-area');
+            const quizResults = document.getElementById('quiz-results');
+            const nextButton = document.getElementById('next-question');
+            
+            quizArea.classList.remove('hidden');
+            quizResults.classList.add('hidden');
+            nextButton.classList.add('hidden');
+            
+            if (currentQuizQuestion >= totalQuestions) {
+                showQuizResults();
+                return;
+            }
+            
+            const questionTypes = ['days', 'relative-time', 'time', 'day-periods'];
+            const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+            const options = generateQuizOptions(questionType);
+            
+            let questionText = '';
+            switch(questionType) {
+                case 'days':
+                    questionText = `Apa arti dari hari ini?`;
+                    break;
+                case 'relative-time':
+                    questionText = `Apa arti dari ekspresi waktu ini?`;
+                    break;
+                case 'time':
+                    questionText = `Apa arti dari waktu ini?`;
+                    break;
+                case 'day-periods':
+                    questionText = `Apa arti dari bagian hari ini?`;
+                    break;
+            }
+            
+            document.getElementById('quiz-question').textContent = questionText;
+            document.getElementById('quiz-character').textContent = options.correctItem.japanese;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            options.quizOptions.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = `quiz-option p-4 rounded-lg border-2 border-gray-200 bg-white hover:bg-gray-50 transition duration-200 text-left`;
+                button.innerHTML = option.content;
+                button.addEventListener('click', () => checkQuizAnswer(option.correct, button));
+                optionsContainer.appendChild(button);
+            });
+            
+            updateQuizProgress();
+        }
+
+        function generateQuizOptions(questionType) {
+            const quizOptions = [];
+            let dataArray;
+            
+            switch(questionType) {
+                case 'days':
+                    dataArray = days;
+                    break;
+                case 'relative-time':
+                    dataArray = relativeTimes;
+                    break;
+                case 'time':
+                    dataArray = times;
+                    break;
+                case 'day-periods':
+                    dataArray = dayPeriods;
+                    break;
+            }
+            
+            const correctItem = dataArray[Math.floor(Math.random() * dataArray.length)];
+            
+            // Add correct option
+            quizOptions.push({
+                content: `
+                    <div class="text-center py-2">
+                        <div class="font-semibold text-gray-800">${correctItem.meaning}</div>
+                    </div>
+                `,
+                correct: true
+            });
+            
+            // Add 3 wrong options
+            for (let i = 0; i < 3; i++) {
+                const randomItem = dataArray[Math.floor(Math.random() * dataArray.length)];
+                if (randomItem.japanese !== correctItem.japanese) {
+                    quizOptions.push({
+                        content: `
+                            <div class="text-center py-2">
+                                <div class="font-semibold text-gray-800">${randomItem.meaning}</div>
+                            </div>
+                        `,
+                        correct: false
+                    });
+                }
+            }
+            
+            // Shuffle options
+            quizOptions.sort(() => Math.random() - 0.5);
+            return { quizOptions, correctItem };
+        }
+
+        function checkQuizAnswer(isCorrect, selectedButton) {
+            const options = document.querySelectorAll('#quiz-options button');
+            const nextButton = document.getElementById('next-question');
+            
+            // Disable all options
+            options.forEach(option => {
+                option.removeEventListener('click', () => {});
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Mark correct/incorrect
+            if (isCorrect) {
+                selectedButton.classList.add('correct-answer');
+                quizScore++;
+                updateQuizScore();
+            } else {
+                selectedButton.classList.add('wrong-answer');
+                // Find and highlight correct answer
+                options.forEach(option => {
+                    if (option !== selectedButton && option.innerHTML.includes('correct')) {
+                        option.classList.add('correct-answer');
+                    }
+                });
+            }
+            
+            // Show next button
+            nextButton.classList.remove('hidden');
+        }
+
+        function updateQuizScore() {
+            document.getElementById('quiz-score').textContent = quizScore;
+        }
+
+        function updateQuizProgress() {
+            const progress = ((currentQuizQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+            document.getElementById('current-question').textContent = currentQuizQuestion + 1;
+            document.getElementById('progress-percent').textContent = `${Math.round(progress)}%`;
+        }
+
+        function showQuizResults() {
+            const quizArea = document.getElementById('quiz-area');
+            const quizResults = document.getElementById('quiz-results');
+            const finalScore = document.getElementById('final-score');
+            const resultMessage = document.getElementById('result-message');
+            
+            quizArea.classList.add('hidden');
+            quizResults.classList.remove('hidden');
+            
+            finalScore.textContent = `${quizScore}/${totalQuestions}`;
+            
+            // Set result message based on score
+            if (quizScore === totalQuestions) {
+                resultMessage.textContent = "Luar biasa! Anda menguasai hari dan waktu Jepang!";
+            } else if (quizScore >= totalQuestions * 0.7) {
+                resultMessage.textContent = "Bagus! Pemahaman Anda sudah cukup baik.";
+            } else if (quizScore >= totalQuestions * 0.5) {
+                resultMessage.textContent = "Cukup baik, tapi masih perlu belajar lagi.";
+            } else {
+                resultMessage.textContent = "Perlu lebih banyak latihan. Jangan menyerah!";
+            }
+        }
+
+        // Event Listeners
+        document.getElementById('practice-type').addEventListener('change', generatePracticeQuestion);
+        
+        document.getElementById('next-question').addEventListener('click', function() {
+            currentQuizQuestion++;
+            showQuizQuestion();
+        });
+
+        document.getElementById('restart-quiz').addEventListener('click', startQuiz);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start the clock
+            updateClock();
+            setInterval(updateClock, 1000);
+            
+            // Initialize quiz when quiz tab is first clicked
+            document.getElementById('tab-quiz').addEventListener('click', startQuiz);
+            
+            // Initialize practice when practice tab is first clicked
+            document.getElementById('tab-practice').addEventListener('click', generatePracticeQuestion);
+        });
+    </script>
+</body>
+</html>
