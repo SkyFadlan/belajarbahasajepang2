@@ -1,930 +1,2278 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nihongo Desu - Kuasai Bahasa Jepang dengan Mudah</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        font-family: "Poppins", sans-serif;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Nihongo Desu - Kuasai Bahasa Jepang dengan Mudah</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+      font-family: "Poppins", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Background Gradients */
+    .hero-pattern {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+    }
+
+    .card-gradient-kana {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);
+    }
+
+    .card-gradient-vocab {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    }
+
+    .card-gradient-time {
+      background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    }
+
+    .floating {
+      animation: floating 3.5s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+
+      0%,
+      100% {
+        transform: translateY(0px);
       }
 
-      .hero-pattern {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
-
-      .section-pattern {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      }
-
-      .culture-pattern {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      }
-
-      .cta-pattern {
-        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-      }
-
-      .floating {
-        animation: floating 3s ease-in-out infinite;
-      }
-
-      @keyframes floating {
-        0% {
-          transform: translate(0, 0px);
-        }
-        50% {
-          transform: translate(0, -15px);
-        }
-        100% {
-          transform: translate(0, -0px);
-        }
-      }
-
-      .text-japanese {
-        font-family: "MS PGothic", "Hiragino Sans", sans-serif;
-      }
-
-      .card-hover {
-        transition: all 0.3s ease;
-      }
-
-      .card-hover:hover {
+      50% {
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
       }
+    }
 
-      .sakura {
-        position: absolute;
-        background: #ffb7c5;
-        border-radius: 50% 50% 50% 0;
-        opacity: 0.7;
-      }
+    .pulse-slow {
+      animation: pulseSlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
 
-      /* Dropdown styling dengan transisi yang lebih baik */
-      .dropdown-menu {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-      }
+    @keyframes pulseSlow {
 
-      .dropdown:hover .dropdown-menu,
-      .dropdown:focus-within .dropdown-menu {
+      0%,
+      100% {
         opacity: 1;
-        visibility: visible;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.85;
+        transform: scale(1.03);
+      }
+    }
+
+    .text-japanese {
+      font-family: "Hiragino Sans", "Meiryo", "MS PGothic", sans-serif;
+    }
+
+    /* Touch & Micro-interaction Classes */
+    .touch-bounce {
+      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+    }
+
+    .touch-bounce:active {
+      transform: scale(0.94);
+    }
+
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (hover: hover) {
+      .card-hover:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.12);
+      }
+    }
+
+    /* Interactive Character Chip */
+    .char-chip {
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .char-chip:active {
+      transform: scale(0.92);
+    }
+
+    .char-chip.playing {
+      transform: scale(1.08) translateY(-4px);
+      box-shadow: 0 12px 25px rgba(220, 38, 38, 0.35);
+      border-color: #ef4444 !important;
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+    }
+
+    /* Bottom Navigation Bar Blur */
+    .mobile-bottom-nav {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.07);
+    }
+
+    /* Hide horizontal scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Dropdown styling */
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
         transform: translateY(0);
       }
+    }
 
-      /* Mencegah dropdown langsung hilang saat kursor bergerak */
-      .dropdown-menu::before {
-        content: "";
-        position: absolute;
-        top: -10px;
-        left: 0;
-        right: 0;
-        height: 10px;
+    .mobile-submenu {
+      animation: fadeIn 0.25s ease;
+    }
+
+    .dropdown-container {
+      position: relative;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+    }
+
+    /* Audio wave animation */
+    .sound-wave-bar {
+      animation: soundWave 0.8s ease-in-out infinite alternate;
+    }
+
+    .sound-wave-bar:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .sound-wave-bar:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes soundWave {
+      0% {
+        height: 4px;
       }
 
-      /* Animasi untuk mobile menu */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      100% {
+        height: 16px;
+      }
+    }
+
+    /* Bottom Sheet Animation & High Z-Index Modal Overlay */
+    #start-learning-modal {
+      z-index: 99999 !important;
+    }
+
+    #start-learning-modal #modal-backdrop {
+      background: rgba(0, 0, 0, 0.75) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      backdrop-filter: blur(8px) !important;
+    }
+
+    .bottom-sheet {
+      position: relative;
+      z-index: 100000 !important;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sheet-backdrop {
+      transition: opacity 0.3s ease;
+    }
+
+    /* Quiz Option State Animations */
+    @keyframes popSuccess {
+      0% {
+        transform: scale(1);
       }
 
-      .mobile-submenu {
-        animation: fadeIn 0.3s ease;
+      50% {
+        transform: scale(1.04);
       }
 
-      /* Styling untuk dropdown yang lebih stabil */
-      .dropdown-container {
-        position: relative;
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .quiz-correct {
+      animation: popSuccess 0.3s ease-out;
+      background-color: #10b981 !important;
+      border-color: #059669 !important;
+      color: white !important;
+    }
+
+    @keyframes shakeWrong {
+
+      0%,
+      100% {
+        transform: translateX(0);
       }
 
-      .dropdown-content {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1000;
+      20%,
+      60% {
+        transform: translateX(-6px);
       }
-    </style>
-  </head>
-  <body class="bg-gray-50">
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4">
-          <!-- Logo -->
-          <div class="flex items-center">
-            <div
-              class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mr-3"
-            >
-              <span class="text-white font-bold text-lg">日</span>
-            </div>
-            <span class="text-xl font-bold text-gray-800"
-              >Nihongo<span class="text-red-600">Desu</span></span
-            >
+
+      40%,
+      80% {
+        transform: translateX(6px);
+      }
+    }
+
+    .quiz-wrong {
+      animation: shakeWrong 0.4s ease-in-out;
+      background-color: #ef4444 !important;
+      border-color: #dc2626 !important;
+      color: white !important;
+    }
+
+    /* Custom Utility Classes & Tailwind Fallbacks */
+    .text-\[9px\] {
+      font-size: 9px;
+      line-height: 12px;
+    }
+
+    .text-\[10px\] {
+      font-size: 10px;
+      line-height: 14px;
+    }
+
+    .text-\[11px\] {
+      font-size: 11px;
+      line-height: 15px;
+    }
+
+    .max-h-\[85vh\] {
+      max-height: 85vh;
+    }
+
+    .bg-white\/95 {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .bg-white\/90 {
+      background-color: rgba(255, 255, 255, 0.90);
+    }
+
+    .bg-white\/25 {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .bg-white\/15 {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .bg-black\/60 {
+      background-color: rgba(0, 0, 0, 0.60);
+    }
+
+    .bg-blue-200\/60 {
+      background-color: rgba(191, 219, 254, 0.60);
+    }
+
+    .bg-green-200\/60 {
+      background-color: rgba(187, 247, 208, 0.60);
+    }
+
+    .bg-purple-200\/60 {
+      background-color: rgba(233, 213, 255, 0.60);
+    }
+
+    .bg-gray-800\/80 {
+      background-color: rgba(31, 41, 55, 0.80);
+    }
+
+    .bg-gray-900\/95 {
+      background-color: rgba(17, 24, 39, 0.95);
+    }
+
+    .to-red-50\/50 {
+      --tw-gradient-to: rgba(254, 242, 242, 0.50);
+    }
+
+    .border-white\/20 {
+      border-color: rgba(255, 255, 255, 0.20);
+    }
+
+    .border-white\/25 {
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .border-gray-200\/60 {
+      border-color: rgba(229, 231, 235, 0.60);
+    }
+
+    .border-gray-200\/70 {
+      border-color: rgba(229, 231, 235, 0.70);
+    }
+
+    .border-gray-200\/80 {
+      border-color: rgba(229, 231, 235, 0.80);
+    }
+
+    .border-gray-700\/60 {
+      border-color: rgba(55, 65, 81, 0.60);
+    }
+
+    .backdrop-blur-sm {
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .backdrop-blur-md {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .backdrop-blur-xl {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .shadow-red-500\/40 {
+      box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.40);
+    }
+
+    .shadow-yellow-500\/30 {
+      box-shadow: 0 10px 25px -5px rgba(234, 179, 8, 0.30);
+    }
+
+    .shadow-red-50\/50 {
+      box-shadow: 0 10px 25px -5px rgba(254, 242, 242, 0.50);
+    }
+
+    .shadow-blue-50\/50 {
+      box-shadow: 0 10px 25px -5px rgba(239, 246, 255, 0.50);
+    }
+
+    .shadow-emerald-50\/50 {
+      box-shadow: 0 10px 25px -5px rgba(236, 253, 245, 0.50);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased pb-24 md:pb-0">
+
+  <!-- Top Navigation Bar -->
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center group">
+          <div
+            class="w-10 h-10 bg-red-600 group-hover:bg-red-700 rounded-full flex items-center justify-center mr-3 transition duration-300 shadow-md">
+            <span class="text-white font-bold text-lg text-japanese">日</span>
           </div>
+          <span class="text-xl font-bold text-gray-800">Nihongo<span class="text-red-600">Desu</span></span>
+        </a>
 
-          <!-- Desktop Menu -->
-          <div class="hidden md:flex items-center space-x-8">
-            <a
-              href="index.html"
-              class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2"
-              >Beranda</a
-            >
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-red-600 font-bold border-b-2 border-red-600 py-2">Beranda</a>
 
-            <!-- Abjad Dropdown -->
-            <div class="dropdown dropdown-container">
-              <button
-                class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none"
-              >
-                Abjad
-                <i
-                  class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"
-                ></i>
-              </button>
-              <div
-                class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
-              >
-                <a
-                  href="hiragana.html"
-                  class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center"
-                >
-                  <span class="text-japanese text-lg mr-3">あ</span>
-                  Hiragana
-                  <span
-                    class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded"
-                    >46 huruf</span
-                  >
-                </a>
-                <a
-                  href="katakana.html"
-                  class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center"
-                >
-                  <span class="text-japanese text-lg mr-3">ア</span>
-                  Katakana
-                  <span
-                    class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded"
-                    >46 huruf</span
-                  >
-                </a>
-              </div>
-            </div>
-
-            <!-- Kosakata Dropdown -->
-            <div class="dropdown dropdown-container">
-              <button
-                class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none"
-              >
-                Kosakata
-                <i
-                  class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"
-                ></i>
-              </button>
-              <div
-                class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
-              >
-                <div class="px-4 py-2">
-                  <span
-                    class="text-xs font-semibold text-gray-500 uppercase tracking-wide"
-                    >Jenis Kata</span
-                  >
-                </div>
-                <a
-                  href="katakerja.html"
-                  class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-200 flex items-center"
-                >
-                  <div
-                    class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3"
-                  >
-                    <i class="fas fa-running text-blue-600 text-sm"></i>
-                  </div>
-                  Kata Kerja (動詞)
-                  <span
-                    class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded"
-                    >500+</span
-                  >
-                </a>
-                <a
-                  href="katasifat.html"
-                  class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-600 transition duration-200 flex items-center"
-                >
-                  <div
-                    class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3"
-                  >
-                    <i class="fas fa-star text-green-600 text-sm"></i>
-                  </div>
-                  Kata Sifat (形容詞)
-                  <span
-                    class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded"
-                    >300+</span
-                  >
-                </a>
-                <a
-                  href="katabenda.html"
-                  class="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition duration-200 flex items-center"
-                >
-                  <div
-                    class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3"
-                  >
-                    <i class="fas fa-cube text-purple-600 text-sm"></i>
-                  </div>
-                  Kata Benda (名詞)
-                  <span
-                    class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded"
-                    >1000+</span
-                  >
-                </a>
-              </div>
-            </div>
-
-            <!-- Waktu Dropdown -->
-            <div class="dropdown dropdown-container">
-              <button
-                class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none"
-              >
-                Waktu
-                <i
-                  class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"
-                ></i>
-              </button>
-              <div
-                class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
-              >
-                <div class="px-4 py-2">
-                  <span
-                    class="text-xs font-semibold text-gray-500 uppercase tracking-wide"
-                    >Ekspresi Waktu</span
-                  >
-                </div>
-                <a
-                  href="tanggaldanbulan.html"
-                  class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition duration-200 flex items-center"
-                >
-                  <div
-                    class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3"
-                  >
-                    <i class="fas fa-calendar-alt text-orange-600 text-sm"></i>
-                  </div>
-                  Tanggal & Bulan
-                  <span
-                    class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded"
-                    >12 bulan</span
-                  >
-                </a>
-                <a
-                  href="haridanwaktu.html"
-                  class="block px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition duration-200 flex items-center"
-                >
-                  <div
-                    class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3"
-                  >
-                    <i class="fas fa-clock text-indigo-600 text-sm"></i>
-                  </div>
-                  Hari & Waktu Relatif
-                  <span
-                    class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded"
-                    >7 hari</span
-                  >
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex items-center space-x-4">
-            <a
-              href="#login"
-              class="text-gray-600 hover:text-red-600 font-medium transition duration-300 hidden md:block py-2"
-              >Masuk</a
-            >
-            <a
-              href="#register"
-              class="hidden md:inline-block bg-red-600 text-white px-6 py-2 rounded-full font-medium hover:bg-red-700 transition duration-300 shadow-lg hover:shadow-xl"
-            >
-              Mulai Belajar
-            </a>
-
-            <!-- Mobile menu button -->
+          <!-- Abjad Dropdown -->
+          <div class="dropdown dropdown-container">
             <button
-              class="md:hidden text-gray-600 hover:text-red-600 focus:outline-none"
-              id="mobile-menu-button"
-            >
-              <i class="fas fa-bars text-xl"></i>
+              class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+              Abjad
+              <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+            </button>
+            <div
+              class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+              <a href="hiragana.html"
+                class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center">
+                <span class="text-japanese text-lg mr-3 font-semibold">あ</span>
+                <div>
+                  <div class="font-medium">Hiragana</div>
+                </div>
+                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">46 huruf</span>
+              </a>
+              <a href="katakana.html"
+                class="block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200 flex items-center">
+                <span class="text-japanese text-lg mr-3 font-semibold">ア</span>
+                <div>
+                  <div class="font-medium">Katakana</div>
+                </div>
+                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">46 huruf</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Kosakata Dropdown -->
+          <div class="dropdown dropdown-container">
+            <button
+              class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+              Kosakata
+              <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+            </button>
+            <div
+              class="dropdown-menu dropdown-content mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+              <div class="px-4 py-2">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Jenis Kata</span>
+              </div>
+              <a href="katakerja.html"
+                class="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-200 flex items-center">
+                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-running text-blue-600 text-sm"></i>
+                </div>
+                <div>
+                  <div class="font-medium">Kata Kerja (動詞)</div>
+                </div>
+                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">100+</span>
+              </a>
+              <a href="katasifat.html"
+                class="block px-4 py-3 text-gray-700 hover:bg-green-50 hover:text-green-600 transition duration-200 flex items-center">
+                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-star text-green-600 text-sm"></i>
+                </div>
+                <div>
+                  <div class="font-medium">Kata Sifat (形容詞)</div>
+                </div>
+                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">80+</span>
+              </a>
+              <a href="katabenda.html"
+                class="block px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition duration-200 flex items-center">
+                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-cube text-purple-600 text-sm"></i>
+                </div>
+                <div>
+                  <div class="font-medium">Kata Benda (名詞)</div>
+                </div>
+                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">1000+</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Waktu Dropdown -->
+          <div class="dropdown dropdown-container">
+            <button
+              class="text-gray-600 hover:text-red-600 font-medium transition duration-300 py-2 flex items-center focus:outline-none">
+              Waktu
+              <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-300 dropdown-arrow"></i>
+            </button>
+            <div
+              class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+              <div class="px-4 py-2">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Ekspresi Waktu</span>
+              </div>
+              <a href="tanggaldanbulan.html"
+                class="block px-4 py-3 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition duration-200 flex items-center">
+                <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-calendar-alt text-orange-600 text-sm"></i>
+                </div>
+                <div>
+                  <div class="font-medium">Tanggal & Bulan</div>
+                </div>
+                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">12 bulan</span>
+              </a>
+              <a href="haridanwaktu.html"
+                class="block px-4 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition duration-200 flex items-center">
+                <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                  <i class="fas fa-clock text-indigo-600 text-sm"></i>
+                </div>
+                <div>
+                  <div class="font-medium">Hari & Waktu Relatif</div>
+                </div>
+                <span class="ml-auto text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">7 hari</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex items-center space-x-4">
+          <a href="index.html#login"
+            class="text-gray-600 hover:text-red-600 font-medium transition duration-300 hidden md:block py-2">Masuk</a>
+          <a href="index.html#register"
+            class="hidden md:inline-block bg-red-600 text-white px-6 py-2 rounded-full font-medium hover:bg-red-700 transition duration-300 shadow-lg hover:shadow-xl">
+            Mulai Belajar
+          </a>
+
+          <!-- Mobile menu button -->
+          <button class="md:hidden text-gray-600 hover:text-red-600 focus:outline-none p-2 rounded-lg transition"
+            id="mobile-menu-button" onclick="toggleMobileMenu()" aria-label="Buka Menu">
+            <i class="fas fa-bars text-xl" id="mobile-menu-icon"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="md:hidden bg-white border-t border-gray-200 py-4 hidden" id="mobile-menu">
+        <div class="space-y-2">
+          <a href="index.html"
+            class="block py-3 px-4 bg-red-50 text-red-600 font-bold rounded-lg transition duration-200">Beranda</a>
+
+          <!-- Mobile Abjad Submenu -->
+          <div class="px-4 py-2">
+            <button
+              class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none"
+              onclick="toggleMobileSubmenu('abjad-mobile')">
+              <span class="font-medium">Abjad</span>
+              <i class="fas fa-chevron-down text-xs transition-transform duration-300 " id="abjad-arrow"></i>
+            </button>
+            <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="abjad-mobile">
+              <a href="hiragana.html" class="block py-2 text-gray-600 hover:text-red-600 flex items-center">
+                <span class="text-japanese text-lg mr-3 font-semibold">あ</span>
+                Hiragana
+              </a>
+              <a href="katakana.html" class="block py-2 text-gray-600 hover:text-red-600 flex items-center">
+                <span class="text-japanese text-lg mr-3 font-semibold">ア</span>
+                Katakana
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile Kosakata Submenu -->
+          <div class="px-4 py-2">
+            <button
+              class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none"
+              onclick="toggleMobileSubmenu('kosakata-mobile')">
+              <span class="font-medium">Kosakata</span>
+              <i class="fas fa-chevron-down text-xs transition-transform duration-300 " id="kosakata-arrow"></i>
+            </button>
+            <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="kosakata-mobile">
+              <a href="katakerja.html" class="block py-2 text-gray-600 hover:text-blue-600 flex items-center">
+                <i class="fas fa-running text-blue-500 mr-3 w-5 text-center"></i>
+                Kata Kerja
+              </a>
+              <a href="katasifat.html" class="block py-2 text-gray-600 hover:text-green-600 flex items-center">
+                <i class="fas fa-star text-green-500 mr-3 w-5 text-center"></i>
+                Kata Sifat
+              </a>
+              <a href="katabenda.html" class="block py-2 text-gray-600 hover:text-purple-600 flex items-center">
+                <i class="fas fa-cube text-purple-500 mr-3 w-5 text-center"></i>
+                Kata Benda
+              </a>
+            </div>
+          </div>
+
+          <!-- Mobile Waktu Submenu -->
+          <div class="px-4 py-2">
+            <button
+              class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none"
+              onclick="toggleMobileSubmenu('waktu-mobile')">
+              <span class="font-medium">Waktu</span>
+              <i class="fas fa-chevron-down text-xs transition-transform duration-300 " id="waktu-arrow"></i>
+            </button>
+            <div class="hidden pl-4 mt-2 space-y-2 mobile-submenu" id="waktu-mobile">
+              <a href="tanggaldanbulan.html" class="block py-2 text-gray-600 hover:text-orange-600 flex items-center">
+                <i class="fas fa-calendar-alt text-orange-500 mr-3 w-5 text-center"></i>
+                Tanggal & Bulan
+              </a>
+              <a href="haridanwaktu.html" class="block py-2 text-gray-600 hover:text-indigo-600 flex items-center">
+                <i class="fas fa-clock text-indigo-500 mr-3 w-5 text-center"></i>
+                Hari & Waktu Relatif
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-pattern text-white pt-8 pb-14 md:pt-16 md:pb-20 relative overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none select-none overflow-hidden">
+      <div class="absolute top-4 left-4 text-6xl md:text-8xl font-black text-japanese">あ</div>
+      <div class="absolute top-12 right-10 text-6xl md:text-8xl font-black text-japanese">ア</div>
+      <div class="absolute bottom-10 left-12 text-6xl md:text-8xl font-black text-japanese">日</div>
+      <div class="absolute bottom-6 right-8 text-6xl md:text-8xl font-black text-japanese">本</div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+        <!-- Hero Text Content -->
+        <div class="text-center lg:text-left lg:col-span-6 space-y-4">
+          <!-- Mobile Badge -->
+          <div
+            class="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-white/20 shadow-sm">
+            <span class="flex h-2 w-2 relative">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-300"></span>
+            </span>
+            <span>100% Gratis • Ramah Pemula & Mandiri</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+            Kuasai Bahasa Jepang
+            <span class="block text-yellow-300 mt-1">Lebih Interaktif & Seru!</span>
+          </h1>
+
+          <p class="text-sm sm:text-base md:text-lg text-purple-100 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            Sentuh huruf untuk dengar pelafalan native, pelajari ratusan kosakata, dan asah kemampuan dengan kuis kilat
+            langsung di smartphone Anda.
+          </p>
+
+          <!-- Mobile Touch Quick Buttons -->
+          <div
+            class="pt-2 flex flex-col sm:flex-row space-y-2.5 sm:space-y-0 sm:space-x-3 justify-center lg:justify-start">
+            <button onclick="openStartModal()"
+              class="touch-bounce w-full sm:w-auto bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-gray-900 font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-yellow-500/30 flex items-center justify-center space-x-2 text-base">
+              <i class="fas fa-rocket text-red-600"></i>
+              <span>Mulai Belajar Sekarang</span>
+            </button>
+
+            <a href="#quick-quiz"
+              class="touch-bounce w-full sm:w-auto bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-semibold px-6 py-3.5 rounded-2xl flex items-center justify-center space-x-2 text-base">
+              <i class="fas fa-gamepad text-yellow-300"></i>
+              <span>Coba Kuis Kilat</span>
+            </a>
+          </div>
+
+          <!-- Mini stats / trust badges -->
+          <div
+            class="pt-3 flex items-center justify-center lg:justify-start space-x-6 text-xs sm:text-sm text-purple-200">
+            <div class="flex items-center space-x-1.5">
+              <i class="fas fa-check-circle text-green-400"></i>
+              <span>46 Hiragana & Katakana</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <i class="fas fa-volume-up text-yellow-300"></i>
+              <span>Audio TTS Native</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Interactive Card (Touch & Sound Playground) -->
+        <div class="lg:col-span-6">
+          <div class="bg-white/15 backdrop-blur-xl rounded-3xl p-3.5 sm:p-5 border border-white/25 shadow-2xl">
+            <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 text-gray-800">
+
+              <!-- Card Header with Audio Status & Script Tabs -->
+              <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
+                <div class="flex items-center space-x-2.5">
+                  <div class="w-10 h-10 bg-red-100 text-red-600 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-volume-up text-lg"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-gray-900 text-sm sm:text-base leading-snug">Sentuh & Dengarkan</h3>
+                    <p class="text-[11px] text-gray-600">Tekan huruf untuk pelafalan audio</p>
+                  </div>
+                </div>
+
+                <!-- Hiragana / Katakana Segmented Switcher -->
+                <div class="inline-flex p-1 bg-gray-100 rounded-xl">
+                  <button id="tab-btn-hiragana" onclick="switchHeroScript('hiragana')"
+                    class="px-2.5 sm:px-3 py-1 text-xs font-bold rounded-lg transition duration-200 bg-red-600 text-white shadow-sm">
+                    あ Hira
+                  </button>
+                  <button id="tab-btn-katakana" onclick="switchHeroScript('katakana')"
+                    class="px-2.5 sm:px-3 py-1 text-xs font-bold rounded-lg transition duration-200 text-gray-600 hover:text-gray-900">
+                    ア Kata
+                  </button>
+                </div>
+              </div>
+
+              <!-- Row Selector Bar (Vocal, Ka, Sa, Ta, Na) -->
+              <div class="mb-3">
+                <div class="flex space-x-2 overflow-x-auto pb-1.5 no-scrollbar text-xs">
+                  <button onclick="selectHeroRow('vowel')" id="row-btn-vowel"
+                    class="hero-row-btn px-3 py-1 rounded-full font-semibold whitespace-nowrap bg-red-100 text-red-700 border border-red-200">
+                    Vokal (A-I-U-E-O)
+                  </button>
+                  <button onclick="selectHeroRow('k')" id="row-btn-k"
+                    class="hero-row-btn px-3 py-1 rounded-full font-semibold whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-gray-200">
+                    Baris K (Ka-Ki-Ku)
+                  </button>
+                  <button onclick="selectHeroRow('s')" id="row-btn-s"
+                    class="hero-row-btn px-3 py-1 rounded-full font-semibold whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-gray-200">
+                    Baris S (Sa-Shi-Su)
+                  </button>
+                  <button onclick="selectHeroRow('t')" id="row-btn-t"
+                    class="hero-row-btn px-3 py-1 rounded-full font-semibold whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-gray-200">
+                    Baris T (Ta-Chi-Tsu)
+                  </button>
+                </div>
+              </div>
+
+              <!-- 5 Interactive Character Cards -->
+              <div id="hero-character-grid" class="grid grid-cols-5 gap-2 sm:gap-3 mb-4">
+                <!-- Injected via JS based on selection -->
+              </div>
+
+              <!-- Live Audio Speech Status Alert Banner -->
+              <div id="audio-status-banner"
+                class="bg-red-50 border border-red-100 rounded-xl p-2.5 text-xs text-red-800 flex items-center justify-between mb-4 transition-all duration-300">
+                <div class="flex items-center space-x-2">
+                  <div class="w-2 h-2 rounded-full bg-red-500 animate-ping"></div>
+                  <span id="audio-status-text" class="font-medium truncate">
+                    Sentuh salah satu huruf di atas!
+                  </span>
+                </div>
+                <div id="sound-wave-indicator" class="flex items-end space-x-0.5 h-4 opacity-0 transition-opacity">
+                  <div class="w-1 bg-red-500 rounded sound-wave-bar"></div>
+                  <div class="w-1 bg-red-600 rounded sound-wave-bar"></div>
+                  <div class="w-1 bg-red-500 rounded sound-wave-bar"></div>
+                </div>
+              </div>
+
+              <!-- Interactive Phrase of the Day (Frasa Hari Ini) -->
+              <div
+                class="bg-gradient-to-r from-gray-50 to-red-50/50 rounded-2xl p-3.5 sm:p-4 border border-gray-200/80 relative">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-[11px] font-bold text-red-600 uppercase tracking-wider flex items-center">
+                    <i class="fas fa-sparkles mr-1 text-yellow-500"></i> Frasa Interaktif Hari Ini
+                  </span>
+                  <button onclick="nextDailyPhrase()"
+                    class="touch-bounce text-[11px] font-semibold text-gray-600 hover:text-red-600 bg-white px-2.5 py-1 rounded-lg border border-gray-200 shadow-sm flex items-center space-x-1">
+                    <i class="fas fa-sync-alt text-[10px]"></i>
+                    <span>Ganti Frasa</span>
+                  </button>
+                </div>
+
+                <div class="flex items-start justify-between mt-2">
+                  <div class="space-y-0.5">
+                    <div class="text-xl sm:text-2xl font-black text-gray-900 text-japanese" id="daily-phrase-jp">
+                      こんにちは
+                    </div>
+                    <div class="text-xs sm:text-sm font-semibold text-red-600" id="daily-phrase-romaji">
+                      Konnichiwa
+                    </div>
+                    <div class="text-xs text-gray-600" id="daily-phrase-meaning">
+                      Halo / Selamat Siang
+                    </div>
+                  </div>
+
+                  <!-- Phrase Action Buttons -->
+                  <div class="flex flex-col space-y-1.5">
+                    <button onclick="speakDailyPhrase()" id="play-phrase-btn"
+                      class="touch-bounce w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center shadow-md shadow-red-200 hover:bg-red-700 focus:outline-none"
+                      title="Dengarkan Pelafalan" aria-label="Dengarkan Pelafalan Frasa">
+                      <i class="fas fa-volume-up text-sm"></i>
+                    </button>
+                    <button onclick="copyDailyPhrase()"
+                      class="touch-bounce w-9 h-9 rounded-xl bg-white text-gray-600 border border-gray-200 flex items-center justify-center hover:bg-gray-50 focus:outline-none shadow-sm"
+                      title="Salin Frasa" aria-label="Salin Frasa">
+                      <i class="fas fa-copy text-xs"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Daily target progress bar -->
+                <div
+                  class="mt-3 pt-3 border-t border-gray-200/60 flex items-center justify-between text-[11px] text-gray-600">
+                  <div class="flex items-center space-x-1.5">
+                    <i class="fas fa-fire text-amber-500"></i>
+                    <span>Target Latihan:</span>
+                    <strong id="practice-counter-text" class="text-gray-800">1 / 5 Karakter</strong>
+                  </div>
+                  <div class="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                    <div id="practice-progress-bar"
+                      class="h-full bg-gradient-to-r from-red-500 to-green-500 rounded-full transition-all duration-300"
+                      style="width: 20%;"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Mobile Quick Category Hub (Touch Hub) -->
+  <section class="py-10 bg-white" id="learning-modules">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-red-600 bg-red-50 px-3 py-1 rounded-full">
+          Kurikulum Terstruktur
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mt-2">
+          Pilih Modul Pembelajaran
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600 mt-1">
+          Sentuh modul di bawah untuk langsung membuka materi pembelajaran interaktif
+        </p>
+      </div>
+
+      <!-- 3 Major Interactive Learning Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+
+        <!-- Modul 1: Abjad Jepang (Hiragana & Katakana) -->
+        <div id="modul-huruf"
+          class="bg-white rounded-3xl p-5 border-2 border-red-100 shadow-lg shadow-red-50/50 card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div
+                class="w-12 h-12 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-xl font-black text-japanese">
+                あ
+              </div>
+              <span class="text-[11px] font-bold bg-red-50 text-red-600 border border-red-100 px-2.5 py-1 rounded-full">
+                Dasar Utama
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Abjad Huruf (Kana)</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+              Kuasai 46 huruf dasar Hiragana dan Katakana lengkap dengan cara baca dan latihan menulis.
+            </p>
+
+            <!-- Quick Touch Sub-Buttons -->
+            <div class="grid grid-cols-2 gap-2 mb-4">
+              <a href="hiragana.html"
+                class="touch-bounce flex items-center justify-between p-3 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 transition">
+                <div class="text-left">
+                  <span class="text-xs font-bold block">Hiragana</span>
+                  <span class="text-[10px] text-red-500">46 Huruf</span>
+                </div>
+                <span class="text-japanese text-xl font-bold">あ</span>
+              </a>
+              <a href="katakana.html"
+                class="touch-bounce flex items-center justify-between p-3 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 transition">
+                <div class="text-left">
+                  <span class="text-xs font-bold block">Katakana</span>
+                  <span class="text-[10px] text-indigo-500">46 Huruf</span>
+                </div>
+                <span class="text-japanese text-xl font-bold">ア</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="hiragana.html"
+            class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white rounded-xl text-center text-xs font-bold shadow-md shadow-red-200 transition flex items-center justify-center space-x-1.5 touch-bounce">
+            <span>Buka Materi Abjad</span>
+            <i class="fas fa-arrow-right text-[11px]"></i>
+          </a>
+        </div>
+
+        <!-- Modul 2: Kosakata (Goi) -->
+        <div id="modul-kosakata"
+          class="bg-white rounded-3xl p-5 border-2 border-blue-100 shadow-lg shadow-blue-50/50 card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+                <i class="fas fa-book-reader"></i>
+              </div>
+              <span
+                class="text-[11px] font-bold bg-blue-50 text-blue-600 border border-blue-100 px-2.5 py-1 rounded-full">
+                1800+ Kosakata
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Perbendaharaan Kata</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+              Koleksi kata kerja, kata sifat, dan kata benda penting yang paling sering dipakai sehari-hari.
+            </p>
+
+            <!-- Quick Touch Sub-Buttons -->
+            <div class="space-y-2 mb-4">
+              <a href="katakerja.html"
+                class="touch-bounce flex items-center justify-between p-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 transition">
+                <div class="flex items-center space-x-2.5">
+                  <i class="fas fa-running text-blue-600 text-sm"></i>
+                  <span class="text-xs font-semibold">Kata Kerja (動詞)</span>
+                </div>
+                <span class="text-[10px] bg-white px-2 py-0.5 rounded text-blue-700 font-bold">500+</span>
+              </a>
+              <a href="katasifat.html"
+                class="touch-bounce flex items-center justify-between p-2.5 rounded-xl bg-green-50 hover:bg-green-100 text-green-800 transition">
+                <div class="flex items-center space-x-2.5">
+                  <i class="fas fa-star text-green-600 text-sm"></i>
+                  <span class="text-xs font-semibold">Kata Sifat (形容詞)</span>
+                </div>
+                <span class="text-[10px] bg-white px-2 py-0.5 rounded text-green-700 font-bold">300+</span>
+              </a>
+              <a href="katabenda.html"
+                class="touch-bounce flex items-center justify-between p-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-800 transition">
+                <div class="flex items-center space-x-2.5">
+                  <i class="fas fa-cube text-purple-600 text-sm"></i>
+                  <span class="text-xs font-semibold">Kata Benda (名詞)</span>
+                </div>
+                <span class="text-[10px] bg-white px-2 py-0.5 rounded text-purple-700 font-bold">1000+</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="katakerja.html"
+            class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-center text-xs font-bold shadow-md shadow-blue-200 transition flex items-center justify-center space-x-1.5 touch-bounce">
+            <span>Pelajari Kosakata</span>
+            <i class="fas fa-arrow-right text-[11px]"></i>
+          </a>
+        </div>
+
+        <!-- Modul 3: Waktu & Kalender (Jikan) -->
+        <div id="modul-waktu"
+          class="bg-white rounded-3xl p-5 border-2 border-emerald-100 shadow-lg shadow-emerald-50/50 card-hover flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div
+                class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <span
+                class="text-[11px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-100 px-2.5 py-1 rounded-full">
+                Real-time
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Waktu & Penanggalan</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-3">
+              Cara menyebut nama hari, jam, menit, tanggal, dan bulan dalam Bahasa Jepang.
+            </p>
+
+            <!-- Live Japanese Clock Interactive Widget -->
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-3 border border-emerald-100 mb-4">
+              <div class="flex items-center justify-between text-[11px] text-emerald-700 font-bold mb-1">
+                <span><i class="fas fa-clock mr-1"></i> Jam Jepang Saat Ini:</span>
+                <span class="flex h-2 w-2 relative">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+              </div>
+              <div class="text-lg font-extrabold text-gray-900 text-japanese" id="live-jp-time">
+                --:--:--
+              </div>
+              <div class="text-xs font-medium text-emerald-800" id="live-jp-date">
+                Memuat tanggal...
+              </div>
+            </div>
+
+            <!-- Quick Sub Buttons -->
+            <div class="grid grid-cols-2 gap-2 mb-4">
+              <a href="tanggaldanbulan.html"
+                class="touch-bounce p-2.5 rounded-xl bg-orange-50 hover:bg-orange-100 text-orange-800 text-left transition">
+                <i class="fas fa-calendar-check text-orange-500 text-sm block mb-1"></i>
+                <span class="text-xs font-bold block">Tanggal & Bulan</span>
+                <span class="text-[10px] text-orange-600">12 Bulan</span>
+              </a>
+              <a href="haridanwaktu.html"
+                class="touch-bounce p-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-800 text-left transition">
+                <i class="fas fa-history text-indigo-500 text-sm block mb-1"></i>
+                <span class="text-xs font-bold block">Hari & Waktu</span>
+                <span class="text-[10px] text-indigo-600">7 Hari Kerja</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="haridanwaktu.html"
+            class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-center text-xs font-bold shadow-md shadow-emerald-200 transition flex items-center justify-center space-x-1.5 touch-bounce">
+            <span>Buka Materi Waktu</span>
+            <i class="fas fa-arrow-right text-[11px]"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quick Audio Soundboard Section (Mobile Friendly) -->
+  <section class="py-8 bg-gray-50 border-t border-b border-gray-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
+            <h3 class="text-sm sm:text-base font-bold text-gray-900">
+              Latihan Pelafalan Cepat (Tap & Listen)
+            </h3>
+          </div>
+          <p class="text-xs text-gray-600">Sentuh frasa populer berikut untuk mendengarkan native speaker Jepang</p>
+        </div>
+        <span class="text-[11px] text-gray-600 mt-1 sm:mt-0 font-medium">
+          <i class="fas fa-headphones text-red-500 mr-1"></i> Disarankan dengan audio aktif
+        </span>
+      </div>
+
+      <!-- Touch Soundboard Pills -->
+      <div class="flex space-x-2.5 overflow-x-auto pb-2 no-scrollbar">
+        <button onclick="playQuickWord('ありがとう', 'Arigatou (Terima kasih)')"
+          class="touch-bounce px-3.5 py-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:border-red-300 flex items-center space-x-2 whitespace-nowrap text-left flex-shrink-0">
+          <span class="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center text-xs">🔊</span>
+          <div>
+            <div class="text-xs font-bold text-gray-900 text-japanese">ありがとう</div>
+            <div class="text-[10px] text-gray-600">Arigatou (Terima kasih)</div>
+          </div>
+        </button>
+
+        <button onclick="playQuickWord('すみません', 'Sumimasen (Permisi / Maaf)')"
+          class="touch-bounce px-3.5 py-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:border-red-300 flex items-center space-x-2 whitespace-nowrap text-left flex-shrink-0">
+          <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xs">🔊</span>
+          <div>
+            <div class="text-xs font-bold text-gray-900 text-japanese">すみません</div>
+            <div class="text-[10px] text-gray-600">Sumimasen (Permisi)</div>
+          </div>
+        </button>
+
+        <button onclick="playQuickWord('おはよう', 'Ohayou (Selamat pagi)')"
+          class="touch-bounce px-3.5 py-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:border-red-300 flex items-center space-x-2 whitespace-nowrap text-left flex-shrink-0">
+          <span class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xs">🔊</span>
+          <div>
+            <div class="text-xs font-bold text-gray-900 text-japanese">おはよう</div>
+            <div class="text-[10px] text-gray-600">Ohayou (Selamat pagi)</div>
+          </div>
+        </button>
+
+        <button onclick="playQuickWord('いただきます', 'Itadakimasu (Selamat makan)')"
+          class="touch-bounce px-3.5 py-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:border-red-300 flex items-center space-x-2 whitespace-nowrap text-left flex-shrink-0">
+          <span
+            class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs">🔊</span>
+          <div>
+            <div class="text-xs font-bold text-gray-900 text-japanese">いただきます</div>
+            <div class="text-[10px] text-gray-600">Itadakimasu</div>
+          </div>
+        </button>
+
+        <button onclick="playQuickWord('おいしい', 'Oishii (Enak / Lezat)')"
+          class="touch-bounce px-3.5 py-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:border-red-300 flex items-center space-x-2 whitespace-nowrap text-left flex-shrink-0">
+          <span class="w-7 h-7 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center text-xs">🔊</span>
+          <div>
+            <div class="text-xs font-bold text-gray-900 text-japanese">おいしい</div>
+            <div class="text-[10px] text-gray-600">Oishii (Enak)</div>
+          </div>
+        </button>
+
+        <button onclick="playQuickWord('すごい', 'Sugoi (Hebat / Luar biasa)')"
+          class="touch-bounce px-3.5 py-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:border-red-300 flex items-center space-x-2 whitespace-nowrap text-left flex-shrink-0">
+          <span
+            class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-xs">🔊</span>
+          <div>
+            <div class="text-xs font-bold text-gray-900 text-japanese">すごい</div>
+            <div class="text-[10px] text-gray-600">Sugoi (Hebat)</div>
+          </div>
+        </button>
+
+        <button onclick="playQuickWord('かわいい', 'Kawaii (Lucu / Imut)')"
+          class="touch-bounce px-3.5 py-2 bg-white rounded-xl border border-gray-200 shadow-sm hover:border-red-300 flex items-center space-x-2 whitespace-nowrap text-left flex-shrink-0">
+          <span class="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center text-xs">🔊</span>
+          <div>
+            <div class="text-xs font-bold text-gray-900 text-japanese">かわいい</div>
+            <div class="text-[10px] text-gray-600">Kawaii (Imut)</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 60-Second Quick Quiz Section -->
+  <section id="quick-quiz" class="py-12 bg-white relative">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+
+      <!-- Section Header -->
+      <div class="text-center mb-6">
+        <div
+          class="inline-flex items-center space-x-2 bg-amber-100 text-amber-900 px-3 py-1 rounded-full text-xs font-bold mb-2">
+          <i class="fas fa-gamepad text-amber-600"></i>
+          <span>Mini Game Tanpa Login</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-gray-900">
+          Kuis Kilat 60 Detik
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600 mt-1">
+          Uji insting dan hafalan bahasa Jepang Anda sekarang!
+        </p>
+      </div>
+
+      <!-- Quiz Container Card -->
+      <div
+        class="bg-gradient-to-b from-white to-gray-50 rounded-3xl p-5 sm:p-7 border-2 border-amber-200 shadow-xl relative overflow-hidden">
+
+        <!-- Quiz Top Stats Bar -->
+        <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-5">
+          <div class="flex items-center space-x-3">
+            <span class="text-xs font-bold text-gray-600">
+              Soal <span id="quiz-question-num" class="text-gray-900 font-extrabold">1</span> / 10
+            </span>
+            <div class="w-20 sm:w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div id="quiz-progress-fill" class="h-full bg-amber-500 rounded-full transition-all duration-300"
+                style="width: 10%;"></div>
+            </div>
+          </div>
+
+          <!-- Score & Streak badges -->
+          <div class="flex items-center space-x-2">
+            <div
+              class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg flex items-center space-x-1">
+              <i class="fas fa-star text-amber-500"></i>
+              <span id="quiz-score-val">0 XP</span>
+            </div>
+            <div class="bg-red-100 text-red-800 text-xs font-bold px-2.5 py-1 rounded-lg flex items-center space-x-1">
+              <i class="fas fa-fire text-red-500"></i>
+              <span id="quiz-streak-val">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question Display Box -->
+        <div class="text-center py-2 mb-5">
+          <p class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2" id="quiz-question-category">
+            Tebak Karakter
+          </p>
+          <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-3" id="quiz-question-prompt">
+            Bagaimana cara membaca huruf ini?
+          </h3>
+
+          <!-- Character / Word in big bold -->
+          <div class="inline-flex items-center justify-center relative">
+            <div id="quiz-target-char"
+              class="text-5xl sm:text-6xl font-black text-red-600 text-japanese py-2 px-6 rounded-2xl bg-red-50 border border-red-100 shadow-inner">
+              あ
+            </div>
+            <button onclick="speakQuizPrompt()" id="quiz-audio-btn" title="Dengarkan Petunjuk Suara"
+              class="touch-bounce absolute -right-3 -top-2 w-9 h-9 bg-white text-red-600 border border-red-200 rounded-full shadow-md flex items-center justify-center hover:bg-red-50">
+              <i class="fas fa-volume-up text-xs"></i>
             </button>
           </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div
-          class="md:hidden bg-white border-t border-gray-200 py-4 hidden"
-          id="mobile-menu"
-        >
-          <div class="space-y-2">
-            <a
-              href="index.html"
-              class="block py-3 px-4 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition duration-200"
-              >Beranda</a
-            >
-
-            <!-- Mobile Abjad Submenu -->
-            <div class="px-4 py-2">
-              <button
-                class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none"
-                onclick="toggleMobileSubmenu('abjad-mobile')"
-              >
-                <span>Abjad</span>
-                <i
-                  class="fas fa-chevron-down text-xs transition-transform duration-300"
-                  id="abjad-arrow"
-                ></i>
-              </button>
-              <div
-                class="hidden pl-4 mt-2 space-y-2 mobile-submenu"
-                id="abjad-mobile"
-              >
-                <a
-                  href="hiragana.html"
-                  class="block py-2 text-gray-600 hover:text-red-600 flex items-center"
-                >
-                  <span class="text-japanese text-lg mr-3">あ</span>
-                  Hiragana
-                </a>
-                <a
-                  href="katakana.html"
-                  class="block py-2 text-gray-600 hover:text-red-600 flex items-center"
-                >
-                  <span class="text-japanese text-lg mr-3">ア</span>
-                  Katakana
-                </a>
-              </div>
-            </div>
-
-            <!-- Mobile Kosakata Submenu -->
-            <div class="px-4 py-2">
-              <button
-                class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none"
-                onclick="toggleMobileSubmenu('kosakata-mobile')"
-              >
-                <span>Kosakata</span>
-                <i
-                  class="fas fa-chevron-down text-xs transition-transform duration-300"
-                  id="kosakata-arrow"
-                ></i>
-              </button>
-              <div
-                class="hidden pl-4 mt-2 space-y-2 mobile-submenu"
-                id="kosakata-mobile"
-              >
-                <a
-                  href="katakerja.html"
-                  class="block py-2 text-gray-600 hover:text-blue-600 flex items-center"
-                >
-                  <i
-                    class="fas fa-running text-blue-500 mr-3 w-5 text-center"
-                  ></i>
-                  Kata Kerja
-                </a>
-                <a
-                  href="katasifat.html"
-                  class="block py-2 text-gray-600 hover:text-green-600 flex items-center"
-                >
-                  <i
-                    class="fas fa-star text-green-500 mr-3 w-5 text-center"
-                  ></i>
-                  Kata Sifat
-                </a>
-                <a
-                  href="katabenda.html"
-                  class="block py-2 text-gray-600 hover:text-purple-600 flex items-center"
-                >
-                  <i
-                    class="fas fa-cube text-purple-500 mr-3 w-5 text-center"
-                  ></i>
-                  Kata Benda
-                </a>
-              </div>
-            </div>
-
-            <!-- Mobile Waktu Submenu -->
-            <div class="px-4 py-2">
-              <button
-                class="flex items-center justify-between w-full py-3 text-gray-700 hover:text-red-600 focus:outline-none"
-                onclick="toggleMobileSubmenu('waktu-mobile')"
-              >
-                <span>Waktu</span>
-                <i
-                  class="fas fa-chevron-down text-xs transition-transform duration-300"
-                  id="waktu-arrow"
-                ></i>
-              </button>
-              <div
-                class="hidden pl-4 mt-2 space-y-2 mobile-submenu"
-                id="waktu-mobile"
-              >
-                <a
-                  href="tanggaldanbulan.html"
-                  class="block py-2 text-gray-600 hover:text-orange-600 flex items-center"
-                >
-                  <i
-                    class="fas fa-calendar-alt text-orange-500 mr-3 w-5 text-center"
-                  ></i>
-                  Tanggal & Bulan
-                </a>
-                <a
-                  href="haridanwaktu.html"
-                  class="block py-2 text-gray-600 hover:text-indigo-600 flex items-center"
-                >
-                  <i
-                    class="fas fa-clock text-indigo-500 mr-3 w-5 text-center"
-                  ></i>
-                  Hari & Waktu Relatif
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section
-      id="home"
-      class="hero-pattern text-white py-20 relative overflow-hidden"
-    >
-      <!-- Background Elements -->
-      <div class="absolute top-0 left-0 w-full h-full opacity-10">
-        <div class="absolute top-10 left-10 text-6xl">あ</div>
-        <div class="absolute top-20 right-20 text-6xl">い</div>
-        <div class="absolute bottom-20 left-20 text-6xl">う</div>
-        <div class="absolute bottom-10 right-10 text-6xl">え</div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Hero Content -->
-          <div class="text-center lg:text-left">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Kuasai Bahasa Jepang
-              <span class="block text-yellow-300"
-                >Dengan Cara Menyenangkan 100% Gratis</span
-              >
-            </h1>
-          </div>
-
-          <!-- Hero Image -->
-          <div class="relative">
-            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 floating">
-              <div class="bg-white rounded-2xl shadow-2xl p-6">
-                <div class="flex items-center mb-6">
-                  <div
-                    class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4"
-                  >
-                    <i class="fas fa-graduation-cap text-red-600 text-xl"></i>
-                  </div>
-                  <div>
-                    <h3 class="font-bold text-gray-800">Pelajaran Harian</h3>
-                    <p class="text-gray-600 text-sm">Hiragana & Katakana</p>
-                  </div>
-                </div>
-
-                <!-- Japanese Characters -->
-                <div class="grid grid-cols-5 gap-4 mb-6">
-                  <div class="bg-red-50 rounded-lg p-3 text-center">
-                    <div class="text-2xl text-japanese font-bold text-gray-800">
-                      あ
-                    </div>
-                    <div class="text-sm text-gray-600">a</div>
-                  </div>
-                  <div class="bg-red-50 rounded-lg p-3 text-center">
-                    <div class="text-2xl text-japanese font-bold text-gray-800">
-                      い
-                    </div>
-                    <div class="text-sm text-gray-600">i</div>
-                  </div>
-                  <div class="bg-red-50 rounded-lg p-3 text-center">
-                    <div class="text-2xl text-japanese font-bold text-gray-800">
-                      う
-                    </div>
-                    <div class="text-sm text-gray-600">u</div>
-                  </div>
-                  <div class="bg-red-50 rounded-lg p-3 text-center">
-                    <div class="text-2xl text-japanese font-bold text-gray-800">
-                      え
-                    </div>
-                    <div class="text-sm text-gray-600">e</div>
-                  </div>
-                  <div class="bg-red-50 rounded-lg p-3 text-center">
-                    <div class="text-2xl text-japanese font-bold text-gray-800">
-                      お
-                    </div>
-                    <div class="text-sm text-gray-600">o</div>
-                  </div>
-                </div>
-
-                <div class="bg-gray-50 rounded-xl p-4 mb-4">
-                  <p class="text-sm text-gray-600 mb-2">Frasa Hari Ini:</p>
-                  <p class="text-lg font-bold text-gray-800 mb-1">こんにちは</p>
-                  <p class="text-gray-600">Konnichiwa - Selamat siang</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Floating Elements -->
-            <div
-              class="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full"
-            ></div>
-            <div
-              class="absolute -bottom-4 -left-4 w-6 h-6 bg-red-400 rounded-full"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <!-- Company Info -->
-          <div>
-            <div class="flex items-center mb-4">
-              <div
-                class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mr-2"
-              >
-                <span class="text-white font-bold">日</span>
-              </div>
-              <span class="text-xl font-bold">NihongoDesu</span>
-            </div>
-            <p class="text-gray-400 mb-4">
-              Platform pembelajaran bahasa Jepang di Indonesia dengan metode
-              inovatif dan menyenangkan.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition duration-300"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition duration-300"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition duration-300"
-              >
-                <i class="fab fa-youtube"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Quick Links -->
-          <div>
-            <h3 class="font-bold text-lg mb-4">Tautan Cepat</h3>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="#home"
-                  class="text-gray-400 hover:text-white transition duration-300"
-                  >Beranda</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#courses"
-                  class="text-gray-400 hover:text-white transition duration-300"
-                  >Kursus</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#pricing"
-                  class="text-gray-400 hover:text-white transition duration-300"
-                  >Harga</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition duration-300"
-                  >Blog</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Support -->
-          <div>
-            <h3 class="font-bold text-lg mb-4">Bantuan</h3>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition duration-300"
-                  >FAQ</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition duration-300"
-                  >Kontak</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition duration-300"
-                  >Privacy Policy</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition duration-300"
-                  >Terms of Service</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contact -->
-          <div>
-            <h3 class="font-bold text-lg mb-4">Kontak</h3>
-            <ul class="space-y-2 text-gray-400">
-              <li class="flex items-center">
-                <i class="fas fa-envelope mr-2"></i> hello@nihongodesu.id
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-phone mr-2"></i> +62 21 1234 5678
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-map-marker-alt mr-2"></i> Jakarta, Indonesia
-              </li>
-            </ul>
-          </div>
+        <!-- 4 Big Finger-Friendly Options -->
+        <div id="quiz-options-container" class="grid grid-cols-2 gap-3 mb-4">
+          <!-- Dynamically populated -->
         </div>
 
-        <div
-          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
-        >
-          <p>&copy; 2025 NihongoDesu. All rights reserved.</p>
+        <!-- Feedback message & Next button -->
+        <div id="quiz-feedback-box" class="hidden rounded-2xl p-3 text-center mb-3">
+          <div id="quiz-feedback-text" class="text-xs sm:text-sm font-bold"></div>
         </div>
+
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="skipQuizQuestion()"
+            class="touch-bounce text-xs font-semibold text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg">
+            Lewati Soal
+          </button>
+          <button id="quiz-next-btn" onclick="nextQuizQuestion()"
+            class="touch-bounce hidden bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold px-5 py-2.5 rounded-xl shadow-md text-xs sm:text-sm flex items-center space-x-1.5">
+            <span>Soal Berikutnya</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </button>
+        </div>
+
       </div>
-    </footer>
 
-    <!-- Floating Start Button + Modal -->
-    <button
-      id="start-learning-btn"
-      aria-haspopup="dialog"
-      aria-expanded="false"
-      class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-red-700 focus:outline-none z-50"
-    >
-      <i class="fas fa-rocket mr-2"></i>Mulai Belajar
-    </button>
+    </div>
+  </section>
 
-    <div
-      id="start-learning-modal"
-      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
-    >
-    <div class="bg-white rounded-2xl shadow-xl w-11/12 max-w-md p-6 relative max-h-[80vh] overflow-y-auto">
-        <button
-          id="close-start-modal"
-          class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 focus:outline-none"
-          aria-label="Tutup"
-        >
-          <i class="fas fa-times"></i>
-        </button>
-        <h3 class="text-lg font-bold mb-4">Pilih yang ingin Anda pelajari</h3>
-        <div class="grid grid-cols-1 gap-3">
-          <a
-            href="hiragana.html"
-            class="block p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-center focus:outline-none"
-            >Hiragana</a
-          >
-          <a
-            href="katakana.html"
-            class="block p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-center focus:outline-none"
-            >Katakana</a
-          >
-          <a
-            href="katakerja.html"
-            class="block p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-center focus:outline-none"
-            >Kata Kerja</a
-          >
-          <a
-            href="katasifat.html"
-            class="block p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-center focus:outline-none"
-            >Kata Sifat</a
-          >
-          <a
-            href="katabenda.html"
-            class="block p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-center focus:outline-none"
-            >Kata Benda</a
-          >
-          <a
-            href="haridanwaktu.html"
-            class="block p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-center focus:outline-none"
-            >Hari dan Waktu</a
-          >
-          <a
-            href="tanggaldanbulan.html"
-            class="block p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-center focus:outline-none"
-            >Tanggal dan Bulan</a
-          >
+  <!-- Why NihongoDesu Section -->
+  <section class="py-12 bg-gray-50 border-t border-gray-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-black text-gray-900">
+          Mengapa Belajar di NihongoDesu?
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600 mt-1">
+          Dirancang khusus untuk kenyamanan belajar lewat ponsel pintar tanpa ribet
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+          <div class="w-12 h-12 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-volume-up"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-base mb-2">Audio Suara Nyata</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Setiap huruf dan frasa dilengkapi audio native speaker sehingga Anda dapat melatih pelafalan aksen Tokyo
+            yang tepat.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+          <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-gamepad"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-base mb-2">Interaktif & Gamifikasi</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Kuis kilat, streak counter, dan latihan sentuh yang membuat Anda tidak mudah bosan dan terus termotivasi
+            belajar setiap hari.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm card-hover">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-xl mb-4">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="font-bold text-gray-900 text-base mb-2">Optimasi Layar HP</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Tombol sentuh empuk, navigasi bawah ramah jempol, dan antarmuka responsif cepat tanpa iklan yang mengganggu.
+          </p>
         </div>
       </div>
     </div>
+  </section>
 
-    <script>
-      // === Toggle mobile menu ===
-      document
-        .getElementById("mobile-menu-button")
-        .addEventListener("click", function () {
-          const menu = document.getElementById("mobile-menu");
-          menu.classList.toggle("hidden");
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-12 pb-24 md:pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+        <!-- Company Info -->
+        <div class="md:col-span-1">
+          <div class="flex items-center space-x-2.5 mb-3">
+            <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center shadow-md">
+              <span class="text-white font-bold text-base text-japanese">日</span>
+            </div>
+            <span class="text-lg font-black tracking-tight">Nihongo<span class="text-red-500">Desu</span></span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed mb-4">
+            Platform belajar bahasa Jepang mandiri, interaktif, dan 100% gratis untuk pembelajar pemula di Indonesia.
+          </p>
+          <div class="flex space-x-3">
+            <a href="#"
+              class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-600 transition">
+              <i class="fab fa-instagram text-xs"></i>
+            </a>
+            <a href="#"
+              class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-600 transition">
+              <i class="fab fa-youtube text-xs"></i>
+            </a>
+            <a href="#"
+              class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-600 transition">
+              <i class="fab fa-tiktok text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-sm text-white uppercase tracking-wider mb-3">Abjad & Dasar</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="hiragana.html" class="hover:text-red-400 transition">Hiragana (あ)</a></li>
+            <li><a href="katakana.html" class="hover:text-red-400 transition">Katakana (ア)</a></li>
+            <li><a href="#quick-quiz" class="hover:text-red-400 transition">Kuis Kilat</a></li>
+          </ul>
+        </div>
+
+        <!-- Kosakata -->
+        <div>
+          <h4 class="font-bold text-sm text-white uppercase tracking-wider mb-3">Kosakata & Waktu</h4>
+          <ul class="space-y-2 text-xs text-gray-400">
+            <li><a href="katakerja.html" class="hover:text-blue-400 transition">Kata Kerja (動詞)</a></li>
+            <li><a href="katasifat.html" class="hover:text-blue-400 transition">Kata Sifat (形容詞)</a></li>
+            <li><a href="katabenda.html" class="hover:text-blue-400 transition">Kata Benda (名詞)</a></li>
+            <li><a href="tanggaldanbulan.html" class="hover:text-orange-400 transition">Tanggal & Bulan</a></li>
+            <li><a href="haridanwaktu.html" class="hover:text-indigo-400 transition">Hari & Jam Relatif</a></li>
+          </ul>
+        </div>
+
+        <!-- Copyright & Info -->
+        <div>
+          <h4 class="font-bold text-sm text-white uppercase tracking-wider mb-3">Status Aplikasi</h4>
+          <div class="bg-gray-800/80 p-3.5 rounded-2xl border border-gray-700/60 text-xs space-y-2">
+            <div class="flex items-center justify-between text-gray-300">
+              <span>Versi Web</span>
+              <span class="font-bold text-red-400">2.0 Mobile Interactive</span>
+            </div>
+            <div class="flex items-center justify-between text-gray-300">
+              <span>Mesin Suara</span>
+              <span class="font-bold text-green-400">Web Speech API</span>
+            </div>
+            <div class="flex items-center justify-between text-gray-300">
+              <span>Biaya Akses</span>
+              <span class="font-bold text-yellow-400">Gratis Selamanya</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-600">
+        <p>&copy; 2026 NihongoDesu. Dirancang dengan cinta untuk pembelajar bahasa Jepang di Indonesia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App-like Mobile Bottom Navigation Bar (md:hidden) -->
+  <div
+    class="md:hidden fixed bottom-0 left-0 right-0 z-40 mobile-bottom-nav border-t border-gray-200/80 px-2 py-1.5 flex justify-around items-center">
+    <a href="#home" class="flex flex-col items-center justify-center py-1 px-2.5 text-red-600 focus:outline-none">
+      <i class="fas fa-home text-lg"></i>
+      <span class="text-[10px] font-bold mt-0.5">Beranda</span>
+    </a>
+
+    <a href="#modul-huruf"
+      class="flex flex-col items-center justify-center py-1 px-2.5 text-gray-600 hover:text-red-600 focus:outline-none">
+      <span class="text-japanese text-base font-bold leading-none">あ</span>
+      <span class="text-[10px] font-medium mt-0.5">Abjad</span>
+    </a>
+
+    <!-- Highlighted Quick Learning Launcher (Center Action) -->
+    <button onclick="openStartModal()"
+      class="touch-bounce -mt-4 bg-gradient-to-r from-red-600 to-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-red-500/40 focus:outline-none border-2 border-white"
+      aria-label="Pilih Materi Belajar">
+      <i class="fas fa-graduation-cap text-base"></i>
+    </button>
+
+    <a href="#modul-kosakata"
+      class="flex flex-col items-center justify-center py-1 px-2.5 text-gray-600 hover:text-blue-600 focus:outline-none">
+      <i class="fas fa-book-open text-base"></i>
+      <span class="text-[10px] font-medium mt-0.5">Kosakata</span>
+    </a>
+
+    <a href="#quick-quiz"
+      class="flex flex-col items-center justify-center py-1 px-2.5 text-gray-600 hover:text-amber-600 focus:outline-none">
+      <i class="fas fa-gamepad text-base"></i>
+      <span class="text-[10px] font-medium mt-0.5">Kuis</span>
+    </a>
+  </div>
+
+  <!-- Modern Slide-up Mobile Bottom Sheet / Modal -->
+  <div id="start-learning-modal" class="fixed inset-0 hidden items-end sm:items-center justify-center p-0 sm:p-4"
+    style="z-index: 99999 !important;"
+    aria-modal="true" role="dialog">
+    <!-- Backdrop -->
+    <div id="modal-backdrop" onclick="closeStartModal()"
+      class="fixed inset-0 sheet-backdrop"
+      style="background: rgba(0, 0, 0, 0.75); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);"></div>
+
+    <!-- Sheet Container -->
+    <div
+      class="relative bg-white w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 pb-8 sm:pb-6 max-h-[85vh] overflow-y-auto z-10 bottom-sheet"
+      style="box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45); border: 1px solid rgba(229, 231, 235, 0.8);">
+
+      <!-- Mobile drag handle indicator -->
+      <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4 sm:hidden"></div>
+
+      <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
+        <div>
+          <h3 class="text-lg font-extrabold text-gray-900">Pilih Modul Pembelajaran</h3>
+          <p class="text-xs text-gray-600">Mau belajar apa hari ini?</p>
+        </div>
+        <button onclick="closeStartModal()" id="close-start-modal"
+          class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 flex items-center justify-center focus:outline-none"
+          aria-label="Tutup">
+          <i class="fas fa-times text-sm"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4">
+
+        <!-- Kategori 1: Abjad -->
+        <div>
+          <span class="text-[11px] font-bold text-red-600 uppercase tracking-wider block mb-2">
+            🈸 Abjad Dasar
+          </span>
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="hiragana.html"
+              class="touch-bounce p-3 rounded-2xl bg-red-50 hover:bg-red-100 border border-red-100 flex items-center justify-between">
+              <div>
+                <span class="font-bold text-sm text-gray-900 block">Hiragana</span>
+                <span class="text-[11px] text-red-600">46 Huruf Dasar</span>
+              </div>
+              <span class="text-japanese text-2xl font-bold text-red-500">あ</span>
+            </a>
+
+            <a href="katakana.html"
+              class="touch-bounce p-3 rounded-2xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 flex items-center justify-between">
+              <div>
+                <span class="font-bold text-sm text-gray-900 block">Katakana</span>
+                <span class="text-[11px] text-indigo-600">46 Huruf Serapan</span>
+              </div>
+              <span class="text-japanese text-2xl font-bold text-indigo-500">ア</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kategori 2: Kosakata -->
+        <div>
+          <span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider block mb-2">
+            📚 Perbendaharaan Kata
+          </span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <a href="katakerja.html"
+              class="touch-bounce p-3 rounded-2xl bg-blue-50 hover:bg-blue-100 border border-blue-100 flex sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+              <div
+                class="w-8 h-8 rounded-lg bg-blue-200 text-blue-700 flex items-center justify-center sm:mb-2 mr-3 sm:mr-0">
+                <i class="fas fa-running text-xs"></i>
+              </div>
+              <div>
+                <span class="font-bold text-xs text-gray-900 block">Kata Kerja</span>
+                <span class="text-[10px] text-blue-600">500+ kata</span>
+              </div>
+            </a>
+
+            <a href="katasifat.html"
+              class="touch-bounce p-3 rounded-2xl bg-green-50 hover:bg-green-100 border border-green-100 flex sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+              <div
+                class="w-8 h-8 rounded-lg bg-green-200 text-green-700 flex items-center justify-center sm:mb-2 mr-3 sm:mr-0">
+                <i class="fas fa-star text-xs"></i>
+              </div>
+              <div>
+                <span class="font-bold text-xs text-gray-900 block">Kata Sifat</span>
+                <span class="text-[10px] text-green-600">300+ kata</span>
+              </div>
+            </a>
+
+            <a href="katabenda.html"
+              class="touch-bounce p-3 rounded-2xl bg-purple-50 hover:bg-purple-100 border border-purple-100 flex sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+              <div
+                class="w-8 h-8 rounded-lg bg-purple-200 text-purple-700 flex items-center justify-center sm:mb-2 mr-3 sm:mr-0">
+                <i class="fas fa-cube text-xs"></i>
+              </div>
+              <div>
+                <span class="font-bold text-xs text-gray-900 block">Kata Benda</span>
+                <span class="text-[10px] text-purple-600">1000+ kata</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kategori 3: Waktu & Kalender -->
+        <div>
+          <span class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider block mb-2">
+            ⏰ Waktu & Penanggalan
+          </span>
+          <div class="grid grid-cols-2 gap-2.5">
+            <a href="tanggaldanbulan.html"
+              class="touch-bounce p-3 rounded-2xl bg-orange-50 hover:bg-orange-100 border border-orange-100 flex items-center justify-between">
+              <div>
+                <span class="font-bold text-xs text-gray-900 block">Tanggal & Bulan</span>
+                <span class="text-[10px] text-orange-600">12 Bulan & Kalender</span>
+              </div>
+              <i class="fas fa-calendar-alt text-orange-500 text-lg"></i>
+            </a>
+
+            <a href="haridanwaktu.html"
+              class="touch-bounce p-3 rounded-2xl bg-teal-50 hover:bg-teal-100 border border-teal-100 flex items-center justify-between">
+              <div>
+                <span class="font-bold text-xs text-gray-900 block">Hari & Jam</span>
+                <span class="text-[10px] text-teal-600">7 Hari & Waktu</span>
+              </div>
+              <i class="fas fa-clock text-teal-500 text-lg"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kuis Launcher in Modal -->
+        <div class="pt-2">
+          <a href="#quick-quiz" onclick="closeStartModal()"
+            class="touch-bounce block w-full py-3 text-white font-extrabold text-xs sm:text-sm text-center rounded-2xl shadow-md transition duration-200 hover:opacity-95"
+            style="background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);">
+            <i class="fas fa-gamepad mr-2"></i> Main Kuis Kilat 60 Detik
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Popup -->
+  <div id="toast-notification"
+    class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-gray-900/95 text-white px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center space-x-2 transition-all duration-300 opacity-0 pointer-events-none">
+    <i id="toast-icon" class="fas fa-check-circle text-green-400"></i>
+    <span id="toast-message">Pesan notifikasi</span>
+  </div>
+
+  <!-- MAIN INTERACTIVE JAVASCRIPT -->
+  <script>
+    // ==========================================
+    // 1. WEB AUDIO API SYNTHESIZER (0 DEPENDENCY SOUND EFFECTS)
+    // ==========================================
+    let audioCtx = null;
+    let isSoundEnabled = localStorage.getItem('nihongo_sound_pref') !== '0';
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) audioCtx = new AudioContextClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playChimeSound() {
+      if (!isSoundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        // Pleasant harmonic chord (C5 -> E5 -> G5)
+        const freqs = [523.25, 659.25, 783.99];
+        freqs.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+
+          gain.gain.setValueAtTime(0, now + idx * 0.08);
+          gain.gain.linearRampToValueAtTime(0.15, now + idx * 0.08 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + idx * 0.08);
+          osc.stop(now + idx * 0.08 + 0.4);
         });
+      } catch (e) {
+        console.warn("Audio chime error:", e);
+      }
+    }
 
-      // === Toggle mobile submenus ===
-      function toggleMobileSubmenu(id) {
-        const submenu = document.getElementById(id);
-        const arrow = document.getElementById(id.split("-")[0] + "-arrow");
-        submenu.classList.toggle("hidden");
-        arrow.classList.toggle("rotate-180");
+    function playErrorSound() {
+      if (!isSoundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(180, now);
+        osc.frequency.linearRampToValueAtTime(120, now + 0.2);
+
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } catch (e) {
+        console.warn("Audio error sound:", e);
+      }
+    }
+
+    function playTapSound() {
+      if (!isSoundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.06);
+
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.07);
+      } catch (e) {
+        console.warn("Audio tap sound:", e);
+      }
+    }
+
+    // Sound toggle handler
+    const soundToggleBtn = document.getElementById("sound-toggle-btn");
+    const soundIcon = document.getElementById("sound-icon");
+    if (soundIcon && !isSoundEnabled) {
+      soundIcon.className = "fas fa-volume-mute text-base text-gray-400";
+    }
+    if (soundToggleBtn) {
+      soundToggleBtn.addEventListener("click", () => {
+        isSoundEnabled = !isSoundEnabled;
+        localStorage.setItem('nihongo_sound_pref', isSoundEnabled ? '1' : '0');
+        if (isSoundEnabled) {
+          soundIcon.className = "fas fa-volume-up text-base text-red-600";
+          showToast("Suara Aktif 🔊", "info");
+          playTapSound();
+        } else {
+          soundIcon.className = "fas fa-volume-mute text-base text-gray-400";
+          showToast("Suara Dibisukan 🔇", "info");
+          if (window.speechSynthesis) window.speechSynthesis.cancel();
+        }
+      });
+    }
+
+    // ==========================================
+    // 2. WEB SPEECH API (NATIVE JAPANESE TTS)
+    // ==========================================
+    function speakJapanese(text, onEndCallback) {
+      if (!text) {
+        if (onEndCallback) onEndCallback();
+        return;
+      }
+      if (!isSoundEnabled) {
+        if (onEndCallback) onEndCallback();
+        return;
       }
 
-      // === Dropdown Desktop (klik untuk buka, klik di luar untuk tutup) ===
-      const dropdownButtons = document.querySelectorAll(
-        ".dropdown-container > button"
-      );
+      if (!("speechSynthesis" in window)) {
+        showToast("Browser tidak mendukung Speech Synthesis", "warning");
+        if (onEndCallback) onEndCallback();
+        return;
+      }
 
-      dropdownButtons.forEach((button) => {
-        const menu = button.nextElementSibling;
-        const arrow = button.querySelector(".dropdown-arrow");
+      window.speechSynthesis.cancel(); // Stop prior speech
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "ja-JP";
+      utterance.rate = 0.85; // Slightly slower for language learners
+      utterance.pitch = 1.0;
 
-        button.addEventListener("click", function (e) {
-          e.stopPropagation();
+      // Try to pick Japanese voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const jaVoice = voices.find(v => v.lang.startsWith("ja") || v.lang === "ja-JP");
+      if (jaVoice) {
+        utterance.voice = jaVoice;
+      }
 
-          // Tutup semua dropdown lain
-          document
-            .querySelectorAll(".dropdown-menu.show")
-            .forEach((openMenu) => {
-              if (openMenu !== menu) openMenu.classList.remove("show");
-            });
+      const waveIndicator = document.getElementById("sound-wave-indicator");
+      if (waveIndicator) waveIndicator.style.opacity = "1";
 
-          // Toggle dropdown yang diklik
-          menu.classList.toggle("show");
-          arrow?.classList.toggle("rotate-180");
-        });
-      });
-
-      // Tutup semua dropdown saat klik di luar
-      document.addEventListener("click", function () {
-        document.querySelectorAll(".dropdown-menu.show").forEach((menu) => {
-          menu.classList.remove("show");
-        });
-        document
-          .querySelectorAll(".dropdown-arrow.rotate-180")
-          .forEach((arrow) => {
-            arrow.classList.remove("rotate-180");
-          });
-      });
-
-      // Smooth scrolling untuk anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        });
-      });
-
-      // Animasi untuk elemen saat scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+      utterance.onend = () => {
+        if (waveIndicator) waveIndicator.style.opacity = "0";
+        if (onEndCallback) onEndCallback();
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-          }
-        });
-      }, observerOptions);
+      utterance.onerror = () => {
+        if (waveIndicator) waveIndicator.style.opacity = "0";
+        if (onEndCallback) onEndCallback();
+      };
 
-      // Terapkan animasi pada elemen yang diinginkan
-      document.querySelectorAll(".card-hover").forEach((card) => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(20px)";
-        card.style.transition = "all 0.6s ease";
-        observer.observe(card);
-      });
+      window.speechSynthesis.speak(utterance);
+    }
 
-      // === Start learning modal handlers ===
-      const startBtn = document.getElementById("start-learning-btn");
-      const modal = document.getElementById("start-learning-modal");
-      const closeModalBtn = document.getElementById("close-start-modal");
+    // Pre-load voices on voicechange event
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
 
-      function openStartModal() {
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-        startBtn.setAttribute("aria-expanded", "true");
-        // focus first link inside modal
-        const firstLink = modal.querySelector("a, button");
-        if (firstLink) firstLink.focus();
-        trapFocus(modal);
+    // ==========================================
+    // 3. TOAST NOTIFICATIONS
+    // ==========================================
+    let toastTimer = null;
+    function showToast(message, type = "success") {
+      const toast = document.getElementById("toast-notification");
+      const msgEl = document.getElementById("toast-message");
+      const iconEl = document.getElementById("toast-icon");
+      if (!toast || !msgEl || !iconEl) return;
+
+      msgEl.textContent = message;
+      if (type === "success") {
+        iconEl.className = "fas fa-check-circle text-green-400";
+      } else if (type === "warning") {
+        iconEl.className = "fas fa-exclamation-triangle text-yellow-400";
+      } else {
+        iconEl.className = "fas fa-info-circle text-blue-400";
       }
 
-      function closeStartModal() {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-        startBtn.setAttribute("aria-expanded", "false");
-        startBtn.focus();
+      toast.classList.remove("opacity-0", "pointer-events-none");
+      toast.classList.add("opacity-100");
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("opacity-100");
+        toast.classList.add("opacity-0", "pointer-events-none");
+      }, 2200);
+    }
+
+    // ==========================================
+    // 4. HERO INTERACTIVE CHARACTER PLAYGROUND
+    // ==========================================
+    const heroCharacterData = {
+      hiragana: {
+        vowel: [
+          { char: "あ", romaji: "a", example: "Arigatou (Terima kasih)" },
+          { char: "い", romaji: "i", example: "Inu (Anjing)" },
+          { char: "う", romaji: "u", example: "Umi (Laut)" },
+          { char: "え", romaji: "e", example: "Eki (Stasiun)" },
+          { char: "お", romaji: "o", example: "Onigiri (Nasi kepal)" },
+        ],
+        k: [
+          { char: "か", romaji: "ka", example: "Kasa (Payung)" },
+          { char: "き", romaji: "ki", example: "Ki (Pohon)" },
+          { char: "く", romaji: "ku", example: "Kuruma (Mobil)" },
+          { char: "け", romaji: "ke", example: "Keki (Kue)" },
+          { char: "こ", romaji: "ko", example: "Koko (Di sini)" },
+        ],
+        s: [
+          { char: "さ", romaji: "sa", example: "Sakura (Bunga ceri)" },
+          { char: "し", romaji: "shi", example: "Shinkansen (Kereta cepat)" },
+          { char: "す", romaji: "su", example: "Sushi (Makanan khas)" },
+          { char: "せ", romaji: "se", example: "Sensei (Guru)" },
+          { char: "そ", romaji: "so", example: "Sora (Langit)" },
+        ],
+        t: [
+          { char: "た", romaji: "ta", example: "Tamago (Telur)" },
+          { char: "ち", romaji: "chi", example: "Chizu (Peta)" },
+          { char: "つ", romaji: "tsu", example: "Tsukue (Meja)" },
+          { char: "て", romaji: "te", example: "Tegami (Surat)" },
+          { char: "と", romaji: "to", example: "Tokei (Jam)" },
+        ],
+      },
+      katakana: {
+        vowel: [
+          { char: "ア", romaji: "a", example: "Amerika (Amerika)" },
+          { char: "イ", romaji: "i", example: "Indoneshia (Indonesia)" },
+          { char: "ウ", romaji: "u", example: "Uirusu (Virus)" },
+          { char: "エ", romaji: "e", example: "Erebeta (Lift)" },
+          { char: "オ", romaji: "o", example: "Orenji (Jeruk)" },
+        ],
+        k: [
+          { char: "カ", romaji: "ka", example: "Kamera (Kamera)" },
+          { char: "キ", romaji: "ki", example: "Kiro (Kilogram)" },
+          { char: "ク", romaji: "ku", example: "Kurasu (Kelas)" },
+          { char: "ケ", romaji: "ke", example: "Keki (Kue)" },
+          { char: "コ", romaji: "ko", example: "Kohi (Kopi)" },
+        ],
+        s: [
+          { char: "サ", romaji: "sa", example: "Sarada (Salad)" },
+          { char: "シ", romaji: "shi", example: "Shatsu (Kemeja)" },
+          { char: "ス", romaji: "su", example: "Supun (Sendok)" },
+          { char: "セ", romaji: "se", example: "Seta (Sweter)" },
+          { char: "ソ", romaji: "so", example: "Sofa (Sofa)" },
+        ],
+        t: [
+          { char: "タ", romaji: "ta", example: "Takushi (Taksi)" },
+          { char: "チ", romaji: "chi", example: "Chizu (Keju)" },
+          { char: "ツ", romaji: "tsu", example: "Tsua (Tur)" },
+          { char: "テ", romaji: "te", example: "Terebi (Televisi)" },
+          { char: "ト", romaji: "to", example: "Tomato (Tomat)" },
+        ],
       }
+    };
 
-      startBtn.addEventListener("click", openStartModal);
-      closeModalBtn.addEventListener("click", closeStartModal);
+    let currentHeroScript = "hiragana";
+    let currentHeroRow = "vowel";
+    let practiceCount = 1;
 
-      // Close when clicking backdrop
-      modal.addEventListener("click", function (e) {
-        if (e.target === modal) closeStartModal();
+    function renderHeroCharacters() {
+      const grid = document.getElementById("hero-character-grid");
+      if (!grid) return;
+      const list = heroCharacterData[currentHeroScript][currentHeroRow];
+
+      grid.innerHTML = "";
+      list.forEach((item, idx) => {
+        const card = document.createElement("button");
+        card.className = "char-chip bg-gradient-to-b from-red-50/70 to-red-100/50 hover:to-red-200/60 rounded-xl p-2.5 sm:p-3 text-center border border-red-200/80 shadow-sm focus:outline-none";
+        card.setAttribute("aria-label", `Huruf ${item.char}, baca ${item.romaji}`);
+        card.onclick = () => onHeroCharClicked(item, card);
+
+        card.innerHTML = `
+            <div class="text-[10px] text-red-500 font-bold flex items-center justify-end -mt-1 mb-0.5">
+              <i class="fas fa-volume-up text-[9px] opacity-70"></i>
+            </div>
+            <div class="text-2xl sm:text-3xl text-japanese font-black text-gray-900 leading-tight">
+              ${item.char}
+            </div>
+            <div class="char-romaji text-xs sm:text-sm font-semibold text-gray-600 mt-0.5">
+              ${item.romaji}
+            </div>
+          `;
+        grid.appendChild(card);
+      });
+    }
+
+    function onHeroCharClicked(item, cardElement) {
+      // Visual active feedback
+      document.querySelectorAll(".char-chip.playing").forEach(c => c.classList.remove("playing"));
+      cardElement.classList.add("playing");
+
+      // Sound & speech
+      speakJapanese(item.char, () => {
+        cardElement.classList.remove("playing");
       });
 
-      // Close on Escape
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-          closeStartModal();
+      // Update status text
+      const statusText = document.getElementById("audio-status-text");
+      if (statusText) {
+        statusText.innerHTML = `Melafalkan: <strong class="text-red-700 text-japanese">${item.char}</strong> (${item.romaji}) &bull; <span class="italic text-[11px]">${item.example}</span>`;
+      }
+
+      // Increment practice target
+      if (practiceCount < 5) {
+        practiceCount++;
+        updatePracticeProgress();
+      } else if (practiceCount === 5) {
+        practiceCount++;
+        updatePracticeProgress();
+        playChimeSound();
+        showToast("🎉 Hebat! Target 5 karakter hari ini tercapai!", "success");
+      }
+    }
+
+    function updatePracticeProgress() {
+      const text = document.getElementById("practice-counter-text");
+      const bar = document.getElementById("practice-progress-bar");
+      const count = Math.min(practiceCount, 5);
+      if (text) text.textContent = `${count} / 5 Karakter`;
+      if (bar) bar.style.width = `${(count / 5) * 100}%`;
+    }
+
+    function switchHeroScript(scriptType) {
+      currentHeroScript = scriptType;
+      playTapSound();
+
+      const btnHira = document.getElementById("tab-btn-hiragana");
+      const btnKata = document.getElementById("tab-btn-katakana");
+
+      if (scriptType === "hiragana") {
+        btnHira.className = "px-2.5 sm:px-3 py-1 text-xs font-bold rounded-lg transition duration-200 bg-red-600 text-white shadow-sm";
+        btnKata.className = "px-2.5 sm:px-3 py-1 text-xs font-bold rounded-lg transition duration-200 text-gray-600 hover:text-gray-900";
+      } else {
+        btnKata.className = "px-2.5 sm:px-3 py-1 text-xs font-bold rounded-lg transition duration-200 bg-indigo-600 text-white shadow-sm";
+        btnHira.className = "px-2.5 sm:px-3 py-1 text-xs font-bold rounded-lg transition duration-200 text-gray-600 hover:text-gray-900";
+      }
+
+      renderHeroCharacters();
+    }
+
+    function selectHeroRow(row) {
+      currentHeroRow = row;
+      playTapSound();
+
+      document.querySelectorAll(".hero-row-btn").forEach(btn => {
+        btn.className = "hero-row-btn px-3 py-1 rounded-full font-semibold whitespace-nowrap bg-gray-100 text-gray-600 hover:bg-gray-200";
+      });
+
+      const activeBtn = document.getElementById(`row-btn-${row}`);
+      if (activeBtn) {
+        activeBtn.className = "hero-row-btn px-3 py-1 rounded-full font-semibold whitespace-nowrap bg-red-100 text-red-700 border border-red-200";
+      }
+
+      renderHeroCharacters();
+    }
+
+    // ==========================================
+    // 5. INTERACTIVE DAILY PHRASES
+    // ==========================================
+    const dailyPhrases = [
+      { jp: "こんにちは", romaji: "Konnichiwa", meaning: "Halo / Selamat Siang", tip: "Sapaan ramah di siang hari" },
+      { jp: "ありがとう", romaji: "Arigatou", meaning: "Terima kasih", tip: "Bentuk sopan: Arigatou gozaimasu" },
+      { jp: "おはようございます", romaji: "Ohayou gozaimasu", meaning: "Selamat pagi", tip: "Gunakan saat menyapa di pagi hari" },
+      { jp: "こんばんは", romaji: "Konbanwa", meaning: "Selamat malam", tip: "Sapaan saat hari sudah mulai gelap" },
+      { jp: "おやすみなさい", romaji: "Oyasuminasai", meaning: "Selamat tidur / istirahat", tip: "Diucapkan sebelum tidur" },
+      { jp: "いただきます", romaji: "Itadakimasu", meaning: "Selamat makan", tip: "Ungkapan rasa syukur sebelum makan" },
+      { jp: "ごちそうさまでした", romaji: "Gochisousama deshita", meaning: "Terima kasih atas makanannya", tip: "Diucapkan setelah selesai makan" },
+      { jp: "はじめまして", romaji: "Hajimemashite", meaning: "Senang berkenalan dengan Anda", tip: "Diucapkan saat pertama kali bertemu" },
+      { jp: "よろしくお願いします", romaji: "Yoroshiku onegaishimasu", meaning: "Mohon bantuannya / kerja samanya", tip: "Ungkapan sopan khas Jepang" },
+      { jp: "すみません", romaji: "Sumimasen", meaning: "Permisi / Maaf", tip: "Bisa untuk minta tolong atau memanggil pelayan" },
+      { jp: "だいじょうぶです", romaji: "Daijoubu desu", meaning: "Tidak apa-apa / Baik-baik saja", tip: "Menjawab saat ada orang yang khawatir" },
+      { jp: "またね", romaji: "Mata ne", meaning: "Sampai jumpa lagi", tip: "Ungkapan santai antar teman" },
+    ];
+
+    let currentPhraseIdx = 0;
+
+    function renderDailyPhrase() {
+      const item = dailyPhrases[currentPhraseIdx];
+      const jpEl = document.getElementById("daily-phrase-jp");
+      const romajiEl = document.getElementById("daily-phrase-romaji");
+      const meaningEl = document.getElementById("daily-phrase-meaning");
+      if (jpEl) jpEl.textContent = item.jp;
+      if (romajiEl) romajiEl.textContent = item.romaji;
+      if (meaningEl) meaningEl.textContent = item.meaning;
+    }
+
+    function nextDailyPhrase() {
+      playTapSound();
+      currentPhraseIdx = (currentPhraseIdx + 1) % dailyPhrases.length;
+      renderDailyPhrase();
+      speakDailyPhrase();
+    }
+
+    function speakDailyPhrase() {
+      const item = dailyPhrases[currentPhraseIdx];
+      speakJapanese(item.jp);
+    }
+
+    function copyDailyPhrase() {
+      const item = dailyPhrases[currentPhraseIdx];
+      const textToCopy = `${item.jp} (${item.romaji}) - ${item.meaning}`;
+      navigator.clipboard?.writeText(textToCopy).then(() => {
+        playTapSound();
+        showToast("Frasa berhasil disalin ke clipboard! 📋", "success");
+      }).catch(() => {
+        showToast("Berhasil disalin!", "success");
+      });
+    }
+
+    // Quick word soundboard click
+    function playQuickWord(japaneseText, label) {
+      playTapSound();
+      speakJapanese(japaneseText);
+      showToast(`🔊 ${label}`, "info");
+    }
+
+    // ==========================================
+    // 6. REAL-TIME JAPANESE CLOCK & CALENDAR
+    // ==========================================
+    const kanjiDays = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
+    const indoDays = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+
+    function updateJapaneseClock() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      const dayIdx = now.getDay();
+
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let seconds = now.getSeconds();
+
+      const period = hours < 12 ? "午前 (Gozen - Pagi)" : "午後 (Gogo - Sore/Malam)";
+      const paddedHours = String(hours).padStart(2, '0');
+      const paddedMinutes = String(minutes).padStart(2, '0');
+      const paddedSeconds = String(seconds).padStart(2, '0');
+
+      const timeEl = document.getElementById("live-jp-time");
+      const dateEl = document.getElementById("live-jp-date");
+
+      if (timeEl) {
+        timeEl.textContent = `${paddedHours}:${paddedMinutes}:${paddedSeconds} • ${period}`;
+      }
+      if (dateEl) {
+        dateEl.textContent = `${year}年 ${month}月 ${date}日 (${kanjiDays[dayIdx]} - ${indoDays[dayIdx]})`;
+      }
+    }
+    setInterval(updateJapaneseClock, 1000);
+    updateJapaneseClock();
+
+    // ==========================================
+    // 7. INTERACTIVE 60-SECOND QUICK QUIZ
+    // ==========================================
+    const quizQuestions = [
+      {
+        category: "Tebak Hiragana",
+        prompt: "Bagaimana cara membaca huruf Hiragana ini?",
+        target: "あ",
+        audio: "あ",
+        options: ["a", "i", "u", "e"],
+        correct: 0,
+        explanation: "Huruf 'あ' dibaca 'a', merupakan huruf vokal pertama dalam Hiragana."
+      },
+      {
+        category: "Tebak Hiragana",
+        prompt: "Bagaimana cara membaca huruf Hiragana ini?",
+        target: "か",
+        audio: "か",
+        options: ["sa", "ka", "ta", "na"],
+        correct: 1,
+        explanation: "Huruf 'か' dibaca 'ka'."
+      },
+      {
+        category: "Tebak Katakana",
+        prompt: "Huruf Katakana berikut dibaca apa?",
+        target: "ア",
+        audio: "ア",
+        options: ["i", "o", "a", "u"],
+        correct: 2,
+        explanation: "Huruf Katakana 'ア' setara dengan Hiragana 'あ' (a)."
+      },
+      {
+        category: "Tebak Katakana",
+        prompt: "Huruf Katakana berikut berbunyi apa?",
+        target: "ス",
+        audio: "ス",
+        options: ["su", "shi", "sa", "se"],
+        correct: 0,
+        explanation: "Huruf 'ス' dibaca 'su', contohnya pada kata 'Supun' (sendok)."
+      },
+      {
+        category: "Arti Kosakata",
+        prompt: "Apa arti dari frasa salam ini?",
+        target: "ありがとう",
+        audio: "ありがとう",
+        options: ["Selamat pagi", "Terima kasih", "Sampai jumpa", "Permisi"],
+        correct: 1,
+        explanation: "'Arigatou' artinya 'Terima kasih'."
+      },
+      {
+        category: "Tebak Hiragana",
+        prompt: "Bagaimana pelafalan huruf ini?",
+        target: "ね",
+        audio: "ね",
+        options: ["nu", "no", "ne", "ni"],
+        correct: 2,
+        explanation: "Huruf 'ね' dibaca 'ne', seperti pada kata 'Neko' (kucing)."
+      },
+      {
+        category: "Tebak Angka & Hari",
+        prompt: "Apa arti dari kanji hari berikut?",
+        target: "日曜日",
+        audio: "にちようび",
+        options: ["Hari Senin", "Hari Minggu", "Hari Jumat", "Hari Rabu"],
+        correct: 1,
+        explanation: "'Nichiyoubi' (日曜日) adalah hari Minggu (Sun-day)."
+      },
+      {
+        category: "Arti Kosakata",
+        prompt: "Apa arti dari kata ini?",
+        target: "ねこ",
+        audio: "ねこ",
+        options: ["Anjing", "Kucing", "Burung", "Ikan"],
+        correct: 1,
+        explanation: "'Neko' (ねこ) berarti 'Kucing'."
+      },
+      {
+        category: "Tebak Katakana",
+        prompt: "Huruf Katakana ini dibaca?",
+        target: "コ",
+        audio: "コ",
+        options: ["ro", "ko", "yu", "yo"],
+        correct: 1,
+        explanation: "Huruf 'コ' dibaca 'ko', misalnya pada 'Kohi' (kopi)."
+      },
+      {
+        category: "Arti Kosakata",
+        prompt: "Apa arti dari ungkapan ini?",
+        target: "いただきます",
+        audio: "いただきます",
+        options: ["Selamat tidur", "Selamat makan", "Maafkan saya", "Halo"],
+        correct: 1,
+        explanation: "'Itadakimasu' diucapkan sebelum makan sebagai tanda syukur."
+      },
+    ];
+
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+    let quizStreak = 0;
+    let quizAnswered = false;
+
+    function loadQuizQuestion() {
+      quizAnswered = false;
+      const q = quizQuestions[currentQuizIndex];
+
+      document.getElementById("quiz-question-num").textContent = currentQuizIndex + 1;
+      document.getElementById("quiz-progress-fill").style.width = `${((currentQuizIndex + 1) / quizQuestions.length) * 100}%`;
+      document.getElementById("quiz-question-category").textContent = q.category;
+      document.getElementById("quiz-question-prompt").textContent = q.prompt;
+      document.getElementById("quiz-target-char").textContent = q.target;
+
+      const feedbackBox = document.getElementById("quiz-feedback-box");
+      feedbackBox.classList.add("hidden");
+      const nextBtn = document.getElementById("quiz-next-btn");
+      nextBtn.classList.add("hidden");
+
+      const container = document.getElementById("quiz-options-container");
+      container.innerHTML = "";
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "quiz-option-btn touch-bounce w-full py-3.5 px-4 rounded-2xl bg-white border-2 border-gray-200 hover:border-amber-400 text-gray-800 font-bold text-sm sm:text-base transition duration-150 shadow-sm focus:outline-none flex items-center justify-between";
+        btn.innerHTML = `
+            <span>${opt}</span>
+            <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center text-xs font-bold">${String.fromCharCode(65 + idx)}</span>
+          `;
+        btn.onclick = () => checkQuizAnswer(idx, btn);
+        container.appendChild(btn);
+      });
+    }
+
+    function checkQuizAnswer(selectedIdx, btnElement) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      const q = quizQuestions[currentQuizIndex];
+      const allOptionBtns = document.querySelectorAll(".quiz-option-btn");
+
+      const feedbackBox = document.getElementById("quiz-feedback-box");
+      const feedbackText = document.getElementById("quiz-feedback-text");
+      const nextBtn = document.getElementById("quiz-next-btn");
+
+      if (selectedIdx === q.correct) {
+        // Benar!
+        btnElement.classList.add("quiz-correct");
+        playChimeSound();
+        speakJapanese(q.audio);
+
+        quizScore += 10;
+        quizStreak += 1;
+        document.getElementById("quiz-score-val").textContent = `${quizScore} XP`;
+        document.getElementById("quiz-streak-val").textContent = `${quizStreak} 🔥`;
+
+        feedbackBox.className = "rounded-2xl p-3 text-center mb-3 bg-green-100 text-green-800 border border-green-200";
+        feedbackText.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Benar Sekali! (+10 XP)<br><span class="text-xs text-green-700 font-normal">${q.explanation}</span>`;
+      } else {
+        // Salah
+        btnElement.classList.add("quiz-wrong");
+        playErrorSound();
+
+        // Highlight correct answer
+        if (allOptionBtns[q.correct]) {
+          allOptionBtns[q.correct].classList.add("quiz-correct");
         }
-      });
 
-      // Simple focus trap for modal
-      function trapFocus(container) {
-        const focusable = container.querySelectorAll(
-          'a, button, input, [tabindex]:not([tabindex="-1"])'
-        );
-        if (!focusable.length) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
+        quizStreak = 0;
+        document.getElementById("quiz-streak-val").textContent = "0";
 
-        function handleTab(e) {
-          if (e.key !== "Tab") return;
-          if (e.shiftKey) {
-            // shift + tab
-            if (document.activeElement === first) {
-              e.preventDefault();
-              last.focus();
-            }
+        feedbackBox.className = "rounded-2xl p-3 text-center mb-3 bg-red-100 text-red-800 border border-red-200";
+        feedbackText.innerHTML = `<i class="fas fa-times-circle mr-1"></i> Belum tepat!<br><span class="text-xs text-red-700 font-normal">Jawaban benar: <strong>${q.options[q.correct]}</strong>. ${q.explanation}</span>`;
+      }
+
+      feedbackBox.classList.remove("hidden");
+      nextBtn.classList.remove("hidden");
+      nextBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function speakQuizPrompt() {
+      const q = quizQuestions[currentQuizIndex];
+      speakJapanese(q.audio);
+    }
+
+    function nextQuizQuestion() {
+      playTapSound();
+      currentQuizIndex = (currentQuizIndex + 1) % quizQuestions.length;
+      loadQuizQuestion();
+    }
+
+    function skipQuizQuestion() {
+      playTapSound();
+      currentQuizIndex = (currentQuizIndex + 1) % quizQuestions.length;
+      loadQuizQuestion();
+    }
+
+    // ==========================================
+    // 8. MOBILE BOTTOM SHEET & MODAL HANDLERS
+    // ==========================================
+    function openStartModal() {
+      playTapSound();
+      const m = document.getElementById("start-learning-modal");
+      if (m) {
+        m.classList.remove("hidden");
+        m.classList.add("flex");
+        document.body.style.overflow = "hidden"; // Prevent background scroll on mobile
+      }
+    }
+
+    function closeStartModal() {
+      playTapSound();
+      const m = document.getElementById("start-learning-modal");
+      if (m) {
+        m.classList.add("hidden");
+        m.classList.remove("flex");
+        document.body.style.overflow = "";
+      }
+    }
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      const m = document.getElementById("start-learning-modal");
+      if (e.key === "Escape" && m && !m.classList.contains("hidden")) {
+        closeStartModal();
+      }
+    });
+
+    // ==========================================
+    // 9. NAVBAR & SUBMENU TOGGLES
+    // ==========================================
+    function toggleMobileMenu() {
+      if (typeof playTapSound === "function") playTapSound();
+      const menu = document.getElementById("mobile-menu");
+      const icon = document.getElementById("mobile-menu-icon") || document.querySelector("#mobile-menu-button i");
+      if (menu) {
+        const isNowHidden = menu.classList.toggle("hidden");
+        if (icon) {
+          if (isNowHidden) {
+            icon.className = "fas fa-bars text-xl";
           } else {
-            // tab
-            if (document.activeElement === last) {
-              e.preventDefault();
-              first.focus();
-            }
+            icon.className = "fas fa-times text-xl text-red-600";
           }
         }
-
-        container.addEventListener("keydown", handleTab);
-        // remove listener when modal closed
-        const observerClose = new MutationObserver(() => {
-          if (container.classList.contains("hidden")) {
-            container.removeEventListener("keydown", handleTab);
-            observerClose.disconnect();
-          }
-        });
-        observerClose.observe(container, {
-          attributes: true,
-          attributeFilter: ["class"],
-        });
       }
-    </script>
-  </body>
+    }
+
+    function toggleMobileSubmenu(id) {
+      playTapSound();
+      const submenu = document.getElementById(id);
+      const prefix = id.split("-")[0];
+      const arrow = document.getElementById(`${prefix}-arrow`);
+      if (submenu) submenu.classList.toggle("hidden");
+      if (arrow) arrow.classList.toggle("rotate-180");
+    }
+
+    // Desktop Dropdowns
+    document.querySelectorAll(".dropdown-container > button").forEach((button) => {
+      const menu = button.nextElementSibling;
+      const arrow = button.querySelector(".dropdown-arrow");
+
+      button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        document.querySelectorAll(".dropdown-menu.show").forEach((openMenu) => {
+          if (openMenu !== menu) openMenu.classList.remove("show");
+        });
+        if (menu) menu.classList.toggle("show");
+        if (arrow) arrow.classList.toggle("rotate-180");
+      });
+    });
+
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".dropdown-menu.show").forEach((menu) => {
+        menu.classList.remove("show");
+      });
+      document.querySelectorAll(".dropdown-arrow.rotate-180").forEach((arrow) => {
+        arrow.classList.remove("rotate-180");
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (href === "#") return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          // Close mobile menu if open
+          if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.add("hidden");
+          }
+        }
+      });
+    });
+
+    // ==========================================
+    // 10. INITIALIZATION ON DOM READY
+    // ==========================================
+    document.addEventListener("DOMContentLoaded", () => {
+      renderHeroCharacters();
+      renderDailyPhrase();
+      loadQuizQuestion();
+    });
+  </script>
+</body>
+
 </html>
