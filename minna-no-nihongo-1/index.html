@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Minna no Nihongo 1 (Bab 1 - 25) - NihongoDesu</title>
+  <meta name="description" content="Dashboard belajar bahasa Jepang Minna no Nihongo 1 (Bab 1 sampai 25). 1100+ kosakata lengkap dengan flashcard 3D, refleks cepat 8 detik, kuis interaktif, dan audio native." />
+
+  <!-- Tailwind CSS & Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .font-jp {
+      font-family: 'Noto Sans JP', 'Hiragino Sans', 'Meiryo', sans-serif;
+    }
+
+    .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .touch-bounce {
+      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+    }
+
+    .touch-bounce:active {
+      transform: scale(0.95);
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #831843 100%);
+    }
+
+    .card-hover {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (hover: hover) {
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.12);
+      }
+    }
+  
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: absolute;
+    }
+    .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .dropdown-content { position: absolute; top: 100%; left: 0; z-index: 1000; }
+
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col pb-20 md:pb-8">
+
+    <!-- UNIFIED TOP NAVIGATION BAR -->
+  <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-3.5">
+        
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center group mr-2 sm:mr-4">
+          <div class="w-10 h-10 bg-red-600 group-hover:bg-red-700 rounded-2xl flex items-center justify-center mr-2.5 transition duration-300 shadow-md">
+            <span class="text-white font-bold text-lg font-jp">日</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-base sm:text-xl font-black text-gray-900 leading-tight">Nihongo<span class="text-red-600">Desu</span></span>
+            <span class="text-[9px] sm:text-[10px] font-extrabold text-red-600 tracking-wider uppercase">Minna no Nihongo 1</span>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center space-x-6 text-xs font-bold text-gray-700">
+          <a href="../index.html" class="hover:text-red-600 transition py-2 flex items-center">
+            <i class="fas fa-home mr-1.5 text-gray-400"></i>Beranda
+          </a>
+
+          <a href="index.html" class="text-red-600 font-black bg-red-50 border border-red-100 px-3 py-1.5 rounded-xl flex items-center">
+            <i class="fas fa-th-large mr-1.5 text-red-500"></i>Dashboard MNN 1
+          </a>
+
+          <!-- Dropdown: Pilih Bab (1-25) -->
+          <div class="dropdown dropdown-container">
+            <button class="hover:text-red-600 transition py-2 flex items-center focus:outline-none">
+              <i class="fas fa-book-open mr-1.5 text-gray-400"></i>Pilih Bab
+              <i class="fas fa-chevron-down ml-1 text-[10px] text-gray-400"></i>
+            </button>
+            <div class="dropdown-menu dropdown-content mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 p-3 z-50">
+              <div class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider px-2 mb-2 flex items-center justify-between">
+                <span>Bab 1 - 25</span>
+                <span class="text-[10px] text-red-600 font-bold">1.173 Kata</span>
+              </div>
+              <div class="grid grid-cols-5 gap-1.5 max-h-60 overflow-y-auto pr-1">
+                <a href="bab.html?bab=1" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B1
+        </a>
+<a href="bab.html?bab=2" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B2
+        </a>
+<a href="bab.html?bab=3" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B3
+        </a>
+<a href="bab.html?bab=4" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B4
+        </a>
+<a href="bab.html?bab=5" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B5
+        </a>
+<a href="bab.html?bab=6" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B6
+        </a>
+<a href="bab.html?bab=7" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B7
+        </a>
+<a href="bab.html?bab=8" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B8
+        </a>
+<a href="bab.html?bab=9" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B9
+        </a>
+<a href="bab.html?bab=10" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B10
+        </a>
+<a href="bab.html?bab=11" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B11
+        </a>
+<a href="bab.html?bab=12" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B12
+        </a>
+<a href="bab.html?bab=13" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B13
+        </a>
+<a href="bab.html?bab=14" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B14
+        </a>
+<a href="bab.html?bab=15" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B15
+        </a>
+<a href="bab.html?bab=16" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B16
+        </a>
+<a href="bab.html?bab=17" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B17
+        </a>
+<a href="bab.html?bab=18" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B18
+        </a>
+<a href="bab.html?bab=19" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B19
+        </a>
+<a href="bab.html?bab=20" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B20
+        </a>
+<a href="bab.html?bab=21" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B21
+        </a>
+<a href="bab.html?bab=22" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B22
+        </a>
+<a href="bab.html?bab=23" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B23
+        </a>
+<a href="bab.html?bab=24" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B24
+        </a>
+<a href="bab.html?bab=25" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B25
+        </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown: Kategori Tematik -->
+          <div class="dropdown dropdown-container">
+            <button class="hover:text-red-600 transition py-2 flex items-center focus:outline-none">
+              <i class="fas fa-layer-group mr-1.5 text-gray-400"></i>Kategori Kosakata
+              <i class="fas fa-chevron-down ml-1 text-[10px] text-gray-400"></i>
+            </button>
+            <div class="dropdown-menu dropdown-content mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 p-3 z-50">
+              <div class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider px-2 mb-2">
+                14 Kategori Tematik MNN 1
+              </div>
+              <div class="grid grid-cols-1 gap-1 max-h-80 overflow-y-auto pr-1">
+                <a href="negara.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-globe-asia"></i>
+          </span>
+          <span class="truncate">Negara, Bangsa & Bahasa</span>
+        </a>
+<a href="profesi.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-user-tie"></i>
+          </span>
+          <span class="truncate">Profesi & Pekerjaan</span>
+        </a>
+<a href="keluarga.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-users"></i>
+          </span>
+          <span class="truncate">Orang & Keluarga</span>
+        </a>
+<a href="makanan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-utensils"></i>
+          </span>
+          <span class="truncate">Makanan & Minuman</span>
+        </a>
+<a href="tempat.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-cyan-50 text-cyan-700 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-building"></i>
+          </span>
+          <span class="truncate">Tempat, Ruangan & Fasilitas</span>
+        </a>
+<a href="transportasi.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-subway"></i>
+          </span>
+          <span class="truncate">Transportasi & Barang Harian</span>
+        </a>
+<a href="tubuh.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-red-50 text-red-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-heartbeat"></i>
+          </span>
+          <span class="truncate">Anggota Tubuh & Kesehatan</span>
+        </a>
+<a href="ungkapan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-fuchsia-50 text-fuchsia-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-comments"></i>
+          </span>
+          <span class="truncate">Ungkapan & Salam Sehari-hari</span>
+        </a>
+<a href="bilangan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-calculator"></i>
+          </span>
+          <span class="truncate">Bilangan & Satuan Hitung</span>
+        </a>
+<a href="katabenda.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-cube"></i>
+          </span>
+          <span class="truncate">Kata Benda (名詞)</span>
+        </a>
+<a href="katakerja.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-running"></i>
+          </span>
+          <span class="truncate">Kata Kerja (動詞)</span>
+        </a>
+<a href="katasifat.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-star"></i>
+          </span>
+          <span class="truncate">Kata Sifat (形容詞)</span>
+        </a>
+<a href="haridanwaktu.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-clock"></i>
+          </span>
+          <span class="truncate">Hari & Waktu Relatif</span>
+        </a>
+<a href="tanggaldanbulan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-calendar-alt"></i>
+          </span>
+          <span class="truncate">Tanggal & Kalender Bulan</span>
+        </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown: Abjad Kana -->
+          <div class="dropdown dropdown-container">
+            <button class="hover:text-red-600 transition py-2 flex items-center focus:outline-none">
+              <i class="fas fa-language mr-1.5 text-gray-400"></i>Abjad
+              <i class="fas fa-chevron-down ml-1 text-[10px] text-gray-400"></i>
+            </button>
+            <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 z-50">
+              <a href="../hiragana.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition">
+                <span class="font-jp text-base font-bold text-red-600 mr-2.5">あ</span>
+                <div>
+                  <div class="font-bold">Hiragana</div>
+                  <div class="text-[10px] text-gray-400">46 Huruf Dasar</div>
+                </div>
+              </a>
+              <a href="../katakana.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition">
+                <span class="font-jp text-base font-bold text-red-600 mr-2.5">ア</span>
+                <div>
+                  <div class="font-bold">Katakana</div>
+                  <div class="text-[10px] text-gray-400">46 Huruf Dasar</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Quick Action / Mobile Toggle -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <button onclick="window.MNN1_UX && window.MNN1_UX.openSearch()" class="inline-flex items-center px-3 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition border border-gray-200" title="Pencarian Global (Ctrl+K)">
+            <i class="fas fa-search text-gray-500 sm:mr-1.5"></i><span class="hidden sm:inline">Cari</span> <kbd class="hidden sm:inline mnn1-kbd ml-1">Ctrl+K</kbd>
+          </button>
+
+          <a href="index.html" class="hidden sm:inline-flex items-center px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold shadow-md shadow-red-500/20 transition">
+            <i class="fas fa-th-large mr-1.5"></i>Semua Bab
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button onclick="toggleMnnMobileMenu()" class="lg:hidden text-gray-700 hover:text-red-600 p-2 rounded-xl border border-gray-200 transition focus:outline-none" aria-label="Buka Menu">
+            <i class="fas fa-bars text-lg" id="mnn-mobile-icon"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mnn-mobile-menu" class="hidden lg:hidden border-t border-gray-100 py-4 space-y-4 max-h-[80vh] overflow-y-auto">
+        <div class="flex flex-col space-y-1">
+          <a href="../index.html" class="px-3 py-2.5 rounded-xl text-gray-700 font-bold hover:bg-red-50 hover:text-red-600 flex items-center">
+            <i class="fas fa-home mr-3 text-gray-400 w-5"></i>Beranda Utama
+          </a>
+          <a href="index.html" class="px-3 py-2.5 rounded-xl bg-red-50 text-red-600 font-black flex items-center">
+            <i class="fas fa-th-large mr-3 text-red-500 w-5"></i>Dashboard MNN 1 (Bab 1 - 25)
+          </a>
+          <a href="../hiragana.html" class="px-3 py-2 rounded-xl text-gray-700 font-bold hover:bg-red-50 hover:text-red-600 flex items-center">
+            <span class="font-jp mr-3 font-bold text-red-500 w-5 text-center">あ</span>Hiragana
+          </a>
+          <a href="../katakana.html" class="px-3 py-2 rounded-xl text-gray-700 font-bold hover:bg-red-50 hover:text-red-600 flex items-center">
+            <span class="font-jp mr-3 font-bold text-red-500 w-5 text-center">ア</span>Katakana
+          </a>
+        </div>
+
+        <!-- Mobile Bab Grid -->
+        <div class="pt-2 border-t border-gray-100">
+          <div class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider mb-2 px-1 flex justify-between">
+            <span>Pilih Bab (1 - 25)</span>
+            <span class="text-red-600 font-bold">1.173 Kata</span>
+          </div>
+          <div class="grid grid-cols-5 gap-1.5">
+            <a href="bab.html?bab=1" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B1
+        </a>
+<a href="bab.html?bab=2" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B2
+        </a>
+<a href="bab.html?bab=3" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B3
+        </a>
+<a href="bab.html?bab=4" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B4
+        </a>
+<a href="bab.html?bab=5" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B5
+        </a>
+<a href="bab.html?bab=6" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B6
+        </a>
+<a href="bab.html?bab=7" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B7
+        </a>
+<a href="bab.html?bab=8" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B8
+        </a>
+<a href="bab.html?bab=9" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B9
+        </a>
+<a href="bab.html?bab=10" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B10
+        </a>
+<a href="bab.html?bab=11" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B11
+        </a>
+<a href="bab.html?bab=12" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B12
+        </a>
+<a href="bab.html?bab=13" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B13
+        </a>
+<a href="bab.html?bab=14" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B14
+        </a>
+<a href="bab.html?bab=15" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B15
+        </a>
+<a href="bab.html?bab=16" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B16
+        </a>
+<a href="bab.html?bab=17" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B17
+        </a>
+<a href="bab.html?bab=18" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B18
+        </a>
+<a href="bab.html?bab=19" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B19
+        </a>
+<a href="bab.html?bab=20" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B20
+        </a>
+<a href="bab.html?bab=21" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B21
+        </a>
+<a href="bab.html?bab=22" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B22
+        </a>
+<a href="bab.html?bab=23" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B23
+        </a>
+<a href="bab.html?bab=24" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B24
+        </a>
+<a href="bab.html?bab=25" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-500 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B25
+        </a>
+          </div>
+        </div>
+
+        <!-- Mobile Categories List -->
+        <div class="pt-2 border-t border-gray-100">
+          <div class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider mb-2 px-1">
+            14 Kategori Tematik Kosakata
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
+            <a href="negara.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-globe-asia"></i>
+          </span>
+          <span class="truncate">Negara, Bangsa & Bahasa</span>
+        </a>
+<a href="profesi.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-user-tie"></i>
+          </span>
+          <span class="truncate">Profesi & Pekerjaan</span>
+        </a>
+<a href="keluarga.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-users"></i>
+          </span>
+          <span class="truncate">Orang & Keluarga</span>
+        </a>
+<a href="makanan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-utensils"></i>
+          </span>
+          <span class="truncate">Makanan & Minuman</span>
+        </a>
+<a href="tempat.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-cyan-50 text-cyan-700 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-building"></i>
+          </span>
+          <span class="truncate">Tempat, Ruangan & Fasilitas</span>
+        </a>
+<a href="transportasi.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-subway"></i>
+          </span>
+          <span class="truncate">Transportasi & Barang Harian</span>
+        </a>
+<a href="tubuh.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-red-50 text-red-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-heartbeat"></i>
+          </span>
+          <span class="truncate">Anggota Tubuh & Kesehatan</span>
+        </a>
+<a href="ungkapan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-fuchsia-50 text-fuchsia-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-comments"></i>
+          </span>
+          <span class="truncate">Ungkapan & Salam Sehari-hari</span>
+        </a>
+<a href="bilangan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-calculator"></i>
+          </span>
+          <span class="truncate">Bilangan & Satuan Hitung</span>
+        </a>
+<a href="katabenda.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-cube"></i>
+          </span>
+          <span class="truncate">Kata Benda (名詞)</span>
+        </a>
+<a href="katakerja.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-running"></i>
+          </span>
+          <span class="truncate">Kata Kerja (動詞)</span>
+        </a>
+<a href="katasifat.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-star"></i>
+          </span>
+          <span class="truncate">Kata Sifat (形容詞)</span>
+        </a>
+<a href="haridanwaktu.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-clock"></i>
+          </span>
+          <span class="truncate">Hari & Waktu Relatif</span>
+        </a>
+<a href="tanggaldanbulan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center mr-2 text-xs">
+            <i class="fas fa-calendar-alt"></i>
+          </span>
+          <span class="truncate">Tanggal & Kalender Bulan</span>
+        </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO BANNER -->
+  <section class="hero-gradient text-white py-12 px-4 sm:px-6 relative overflow-hidden">
+    <div class="absolute right-0 top-0 opacity-10 font-jp text-[160px] font-black pointer-events-none select-none -mr-10 -mt-12">
+      日本語
+    </div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-extrabold text-red-200 mb-4 border border-white/10">
+        <i class="fas fa-book-reader"></i>
+        <span>Kurikulum Resmi JLPT N5</span>
+      </div>
+
+      <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
+        Minna no Nihongo <span class="text-red-400">1</span>
+      </h1>
+      <p class="text-xs sm:text-sm md:text-base text-indigo-200 max-w-2xl mb-8 leading-relaxed">
+        Kuasai seluruh kosakata Bab 1 sampai Bab 25 secara terstruktur. Dilengkapi dengan tabel kosakata interaktif, audio suara pengucapan asli, latihan 3D Flashcard, Refleks Cepat (8 detik), dan Kuis per bab.
+      </p>
+
+      <!-- Grid of Stats Progress & Gamification Habit Widget -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-4xl">
+        <!-- Overall Stats & Progress Widget -->
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-bold mb-2">
+              <span class="text-indigo-200 flex items-center">
+                <i class="fas fa-chart-line mr-1.5 text-amber-400"></i> Progres Total Hafalan:
+              </span>
+              <span id="hero-progress-text" class="text-white font-extrabold">0 / 1173 Kata (0%)</span>
+            </div>
+            <div class="w-full bg-black/30 h-3 rounded-full overflow-hidden mb-3">
+              <div id="hero-progress-bar" class="bg-gradient-to-r from-red-500 to-amber-400 h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-[11px] text-indigo-300 pt-2 border-t border-white/10">
+            <span>25 Bab Lengkap</span>
+            <span>1.173 Kosakata</span>
+            <span class="text-yellow-300 font-bold"><i class="fas fa-graduation-cap mr-1"></i> 85 Pola Tata Bahasa</span>
+          </div>
+        </div>
+
+        <!-- Gamification Habit & Streak Widget Card -->
+        <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-3xl p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-400/30 flex items-center justify-center text-lg">
+                <i class="fas fa-fire animate-pulse"></i>
+              </div>
+              <div>
+                <div class="text-[10px] font-extrabold uppercase text-amber-300 tracking-wider">Habit & Konsistensi</div>
+                <div class="font-heading font-extrabold text-white text-sm flex items-center gap-1.5">
+                  <span>Streak <strong class="text-amber-400 mnn1-streak-value">1</strong> Hari</span>
+                  <span class="text-xs text-indigo-300">•</span>
+                  <span class="text-xs text-indigo-200 font-jp mnn1-level-title">Lv.1 初心者</span>
+                </div>
+              </div>
+            </div>
+            <button type="button" onclick="window.MNN1_GAME && window.MNN1_GAME.openProfileModal()" class="px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold transition border border-white/20 flex items-center gap-1 cursor-pointer">
+              <i class="fas fa-trophy text-amber-300 text-xs"></i> Lencana
+            </button>
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] text-indigo-200 pt-2 border-t border-white/10">
+            <span>Total XP: <strong class="text-amber-300 mnn1-xp-value">0</strong></span>
+            <span>Target Harian: <strong class="text-emerald-300">10 Aksi</strong></span>
+            <a href="javascript:void(0)" onclick="window.MNN1_GAME && window.MNN1_GAME.openProfileModal()" class="text-amber-300 hover:underline font-bold">
+              Buka Profil <i class="fas fa-arrow-right text-[9px] ml-0.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 14 THEMATIC CATEGORIES SECTION -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 -mt-6 relative z-20 mb-10">
+    <div class="bg-white rounded-3xl p-5 sm:p-7 shadow-xl border border-gray-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+        <div>
+          <div class="inline-flex items-center space-x-2 bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-1">
+            <i class="fas fa-th-list"></i>
+            <span>Tematik Kosakata</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-gray-900">
+            14 Kategori Tematik Minna no Nihongo 1
+          </h2>
+        </div>
+        <p class="text-xs text-gray-500 max-w-xs">
+          Pelajari kosakata sesuai kelompok makna tematik dengan mode <strong>Flashcard 3D</strong> dan <strong>Refleks Cepat (8s)</strong>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+      <a href="negara.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-globe-asia"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200 font-jp">
+              国・語
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Negara, Bangsa & Bahasa
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Koleksi nama-nama negara dunia, kewarganegaraan (~jin), dan bahasa (~go).
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            NEGARA
+          </span>
+        </div>
+      </a>
+      <a href="profesi.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-200 font-jp">
+              職業
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Profesi & Pekerjaan
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Kosakata pekerjaan, profesi, jabatan kerja, dan status sosial di kantor & sekolah.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            PROFESI
+          </span>
+        </div>
+      </a>
+      <a href="keluarga.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-users"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 border border-rose-200 font-jp">
+              家族
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Orang, Keluarga & Hubungan
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Kata ganti orang (saya, kamu...), sebutan keluarga, dan relasi sosial.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            KELUARGA
+          </span>
+        </div>
+      </a>
+      <a href="makanan.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 font-jp">
+              飲食
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Makanan & Minuman
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Aneka hidangan khas Jepang, makanan pokok, lauk pauk, minuman, dan bumbu dapur.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            MAKANAN
+          </span>
+        </div>
+      </a>
+      <a href="tempat.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-cyan-50 text-cyan-700 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-building"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200 font-jp">
+              場所
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Tempat, Ruangan & Fasilitas
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Ruangan sekolah, perkantoran, fasilitas umum kota, toko belanja, dan rumah.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            TEMPAT
+          </span>
+        </div>
+      </a>
+      <a href="transportasi.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-subway"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-violet-50 text-violet-600 border border-violet-200 font-jp">
+              乗物・物
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Transportasi & Barang Harian
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Kendaraan umum, sarana transportasi, alat kantor, perabot, dan barang sehari-hari.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            TRANSPORTASI
+          </span>
+        </div>
+      </a>
+      <a href="tubuh.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-200 font-jp">
+              体・健康
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Anggota Tubuh & Kesehatan
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Bagian tubuh dari kepala hingga kaki, gejala sakit, demam, flu, dan istilah medis.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            TUBUH
+          </span>
+        </div>
+      </a>
+      <a href="ungkapan.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-fuchsia-50 text-fuchsia-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-comments"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-fuchsia-50 text-fuchsia-600 border border-fuchsia-200 font-jp">
+              挨拶
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Ungkapan & Salam Sehari-hari
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Salam sapaan resmi/santai, ucapan terima kasih, perpisahan, dan ungkapan percakapan.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            UNGKAPAN
+          </span>
+        </div>
+      </a>
+      <a href="bilangan.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-200 font-jp">
+              数字
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Bilangan & Satuan Hitung
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Angka dasar, satuan hitung benda (-mai, -dai, -ko, -bon, dll), orang, dan urutan.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            BILANGAN
+          </span>
+        </div>
+      </a>
+      <a href="katabenda.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-cube"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-purple-50 text-purple-600 border border-purple-200 font-jp">
+              名詞
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Kata Benda (名詞)
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Koleksi lengkap seluruh kata benda (Meishi) dari Bab 1 hingga Bab 25.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            BENDA
+          </span>
+        </div>
+      </a>
+      <a href="katakerja.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-running"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200 font-jp">
+              動詞
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Kata Kerja (動詞)
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Seluruh kata kerja (Doushi) bentuk ~masu, kelompok I, II, III dan aktivitas harian.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            KERJA
+          </span>
+        </div>
+      </a>
+      <a href="katasifat.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-200 font-jp">
+              形容詞
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Kata Sifat (形容詞)
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Kata sifat -i (I-keiyoushi) dan kata sifat -na (Na-keiyoushi) untuk mendeskripsikan sesuatu.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            SIFAT
+          </span>
+        </div>
+      </a>
+      <a href="haridanwaktu.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-clock"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-teal-50 text-teal-600 border border-teal-200 font-jp">
+              日時
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Hari & Waktu Relatif
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Nama hari Senin s/d Minggu, waktu relatif (pagi, siang, malam, kemarin, besok, lusa).
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            WAKTU
+          </span>
+        </div>
+      </a>
+      <a href="tanggaldanbulan.html" class="touch-bounce p-4 sm:p-5 rounded-3xl bg-white shadow-sm border border-gray-200 hover:border-red-300 hover:shadow-md transition flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-base group-hover:scale-110 transition">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-orange-50 text-orange-600 border border-orange-200 font-jp">
+              月日
+            </span>
+          </div>
+          <h3 class="font-heading font-extrabold text-sm sm:text-base text-gray-900 group-hover:text-red-600 transition mb-1 leading-snug">
+            Tanggal & Kalender Bulan
+          </h3>
+          <p class="text-[11px] text-gray-500 line-clamp-2 leading-relaxed mb-3">
+            Penanggalan khusus tanggal 1 s/d 31 (tsuitachi, dll), nama 12 bulan, dan periode waktu.
+          </p>
+        </div>
+        <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-gray-400">
+          <span class="group-hover:text-red-600 transition flex items-center">
+            Buka Kategori <i class="fas fa-arrow-right ml-1 text-[9px]"></i>
+          </span>
+          <span class="bg-gray-50 text-gray-600 px-2 py-0.5 rounded-lg border border-gray-100">
+            WAKTU
+          </span>
+        </div>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH GLOBAL SECTION -->
+  <section id="search-section" class="max-w-6xl mx-auto px-4 sm:px-6 mt-8">
+    <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-sm border border-gray-200">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="font-heading font-bold text-gray-900 text-base flex items-center">
+            <i class="fas fa-search text-red-500 mr-2"></i> Kamus Cepat Bab 1 - 25
+          </h3>
+          <p class="text-xs text-gray-400">Ketik kata Jepang, Romaji, atau arti bahasa Indonesia untuk mencari.</p>
+        </div>
+        <div class="relative w-full sm:w-80">
+          <i class="fas fa-search absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
+          <input type="text" id="global-search-input" oninput="handleGlobalSearch()" placeholder="Contoh: makan, tabemasu, 食べる..." class="w-full pl-10 pr-20 py-2.5 text-xs sm:text-sm bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition" />
+          <button type="button" onclick="window.MNN1_UX && window.MNN1_UX.openSearch(document.getElementById('global-search-input').value)" class="absolute right-2 top-2 px-2.5 py-1 bg-white border border-gray-200 rounded-xl text-[10px] font-bold text-gray-500 hover:text-red-600 hover:border-red-300 transition shadow-xs" title="Buka Spotlight Search Universal (Ctrl+K)">
+            <kbd class="mnn1-kbd">Ctrl+K</kbd>
+          </button>
+        </div>
+      </div>
+
+      <!-- Search Results Drop Container -->
+      <div id="search-results-box" class="hidden mt-4 pt-4 border-t border-gray-100">
+        <div class="text-xs font-bold text-gray-400 mb-3 flex items-center justify-between">
+          <span>Hasil Pencarian: <strong id="search-count-text" class="text-gray-900">0</strong> kata ditemukan</span>
+          <button onclick="clearSearch()" class="text-red-600 hover:underline">Tutup</button>
+        </div>
+        <div id="search-results-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-96 overflow-y-auto pr-1">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 25 BAB GRID SECTION -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-10">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="font-heading text-xl sm:text-2xl font-extrabold text-gray-900">
+          Daftar Materi Bab 1 s/d Bab 25
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500">Pilih bab untuk mulai belajar kosakata, flashcard, dan kuis.</p>
+      </div>
+      <button onclick="resetLearnedStorage()" class="text-xs text-gray-400 hover:text-red-600 transition" title="Reset semua tanda hafalan">
+        <i class="fas fa-undo-alt mr-1"></i> Reset Progres
+      </button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div id="bab-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Injected dynamically via JS from window.MNN1_DATA -->
+    </div>
+  </section>
+
+  <!-- BOTTOM MOBILE NAVBAR -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 py-2 px-6 flex justify-between items-center z-50 shadow-lg text-[10px] font-bold text-gray-500">
+    <a href="index.html" class="flex flex-col items-center text-red-600">
+      <i class="fas fa-th-large text-base mb-1"></i>
+      <span>Daftar Bab</span>
+    </a>
+    <a href="katabenda.html" class="flex flex-col items-center hover:text-red-600">
+      <i class="fas fa-cube text-base mb-1"></i>
+      <span>Benda</span>
+    </a>
+    <a href="katakerja.html" class="flex flex-col items-center hover:text-red-600">
+      <i class="fas fa-running text-base mb-1"></i>
+      <span>Kerja</span>
+    </a>
+    <a href="katasifat.html" class="flex flex-col items-center hover:text-red-600">
+      <i class="fas fa-star text-base mb-1"></i>
+      <span>Sifat</span>
+    </a>
+    <a href="../index.html" class="flex flex-col items-center hover:text-red-600">
+      <i class="fas fa-home text-base mb-1"></i>
+      <span>Beranda</span>
+    </a>
+  </nav>
+
+  <!-- DATA & LOGIC -->
+  <script src="data/mnn1-data.js"></script>
+  <script src="data/mnn1-grammar.js"></script>
+  <script src="data/mnn1-ux.js"></script>
+  <script src="data/mnn1-gamification.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderDashboard();
+    });
+
+    function renderDashboard() {
+      // 1. Overall Progress
+      const overall = window.getTotalProgress();
+      document.getElementById('hero-progress-text').textContent = `${overall.learned} / ${overall.total} Kata (${overall.percent}%)`;
+      document.getElementById('hero-progress-bar').style.width = `${overall.percent}%`;
+
+      // 2. Render 25 Bab Cards
+      const grid = document.getElementById('bab-cards-grid');
+      grid.innerHTML = '';
+
+      window.MNN1_DATA.forEach(bab => {
+        const prog = window.getBabProgress(bab.bab);
+        const grammarCount = window.getGrammarPatternCount ? window.getGrammarPatternCount(bab.bab) : 0;
+        const card = document.createElement('div');
+        card.className = 'card-hover bg-white rounded-3xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between';
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-red-600 text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-sm">
+                Bab ${bab.bab}
+              </span>
+              <span class="text-xs font-bold text-gray-500 bg-gray-50 px-2.5 py-1 rounded-xl border border-gray-100 flex items-center gap-1.5">
+                <span>${bab.vocab.length} kata</span>
+                <span class="text-gray-300">•</span>
+                <span class="text-purple-600 font-extrabold"><i class="fas fa-graduation-cap mr-0.5"></i> ${grammarCount} pola</span>
+              </span>
+            </div>
+
+            <h3 class="font-heading font-extrabold text-lg text-gray-900 mb-2 leading-snug">
+              ${bab.title}
+            </h3>
+            
+            <p class="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed">
+              ${bab.description}
+            </p>
+          </div>
+
+          <div>
+            <!-- Mini Progress Bar -->
+            <div class="mb-4">
+              <div class="flex items-center justify-between text-[11px] font-bold text-gray-400 mb-1">
+                <span>Hafal: ${prog.learned}/${prog.total}</span>
+                <span class="${prog.percent === 100 ? 'text-green-600' : 'text-gray-600'}">${prog.percent}%</span>
+              </div>
+              <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                <div class="bg-green-500 h-full rounded-full transition-all duration-300" style="width: ${prog.percent}%;"></div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-3 gap-1.5">
+              <a href="bab.html?bab=${bab.bab}" class="touch-bounce col-span-3 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl text-center shadow-md transition flex items-center justify-center">
+                <i class="fas fa-book-open mr-1.5"></i> Buka Bab ${bab.bab}
+              </a>
+              <a href="bab.html?bab=${bab.bab}&tab=grammar" onclick="sessionStorage.setItem('openTab', 'tab-grammar')" class="touch-bounce py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs rounded-xl text-center border border-purple-200 transition flex items-center justify-center" title="Pelajari Tata Bahasa & Pola Kalimat">
+                <i class="fas fa-graduation-cap mr-1 text-purple-600"></i> Tata Bahasa
+              </a>
+              <a href="bab.html?bab=${bab.bab}&tab=flashcard" onclick="sessionStorage.setItem('openTab', 'tab-flashcard')" class="touch-bounce py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs rounded-xl text-center border border-indigo-200 transition flex items-center justify-center">
+                <i class="fas fa-clone mr-1 text-indigo-500"></i> Flashcard
+              </a>
+              <a href="bab.html?bab=${bab.bab}&tab=reflex" onclick="sessionStorage.setItem('openTab', 'tab-reflex')" class="touch-bounce py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold text-xs rounded-xl text-center border border-amber-200 transition flex items-center justify-center">
+                <i class="fas fa-bolt mr-1 text-amber-500"></i> Refleks 8s
+              </a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // =========================================================================
+    // SEARCH GLOBAL LOGIC
+    // =========================================================================
+    function handleGlobalSearch() {
+      const q = document.getElementById('global-search-input').value.trim();
+      const resultsBox = document.getElementById('search-results-box');
+      const resultsList = document.getElementById('search-results-list');
+      const countText = document.getElementById('search-count-text');
+
+      if (!q) {
+        resultsBox.classList.add('hidden');
+        return;
+      }
+
+      const results = window.searchVocab(q);
+      countText.textContent = results.length;
+      resultsList.innerHTML = '';
+
+      if (results.length === 0) {
+        resultsList.innerHTML = '<div class="col-span-3 text-center py-6 text-gray-400 text-xs">Kata tidak ditemukan di database Bab 1 - 25.</div>';
+      } else {
+        results.slice(0, 30).forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'p-3 bg-gray-50 rounded-2xl border border-gray-200 flex items-center justify-between hover:bg-red-50/50 hover:border-red-200 transition';
+          itemEl.innerHTML = `
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="font-jp font-bold text-sm text-gray-900">${item.kanji}</span>
+                <span class="text-xs text-red-600 font-jp">${item.kana}</span>
+              </div>
+              <div class="text-[11px] text-gray-600 font-medium">${item.arti}</div>
+            </div>
+            <a href="bab.html?bab=${item.bab}" class="text-[10px] font-bold px-2 py-1 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition whitespace-nowrap">
+              Bab ${item.bab}
+            </a>
+          `;
+          resultsList.appendChild(itemEl);
+        });
+      }
+
+      resultsBox.classList.remove('hidden');
+    }
+
+    function clearSearch() {
+      document.getElementById('global-search-input').value = '';
+      document.getElementById('search-results-box').classList.add('hidden');
+    }
+
+    function resetLearnedStorage() {
+      if (confirm('Apakah kamu yakin ingin mereset seluruh progres hafalan?')) {
+        localStorage.removeItem('nihongo_mnn1_learned_ids');
+        renderDashboard();
+      }
+    }
+  </script>
+</body>
+
+</html>

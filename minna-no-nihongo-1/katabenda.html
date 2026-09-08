@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kata Benda Umum (名詞) - Minna no Nihongo 1 | NihongoDesu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .font-jp { font-family: 'Noto Sans JP', sans-serif; }
+    .touch-bounce { transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease; }
+    .touch-bounce:active { transform: scale(0.96); }
+    
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: absolute;
+    }
+    .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .dropdown-content { position: absolute; top: 100%; left: 0; z-index: 1000; }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .perspective-1000 { perspective: 1000px; }
+    .flashcard-inner {
+      position: relative; width: 100%; height: 100%;
+      text-align: center; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d; cursor: pointer;
+    }
+    .flashcard-inner.is-flipped { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back {
+      position: absolute; width: 100%; height: 100%;
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
+      border-radius: 1.75rem;
+    }
+    .flashcard-back { transform: rotateY(180deg); }
+
+    @keyframes popCorrect {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+    .reflex-correct {
+      animation: popCorrect 0.25s ease-out;
+      background-color: #10b981 !important;
+      border-color: #059669 !important;
+      color: white !important;
+    }
+    @keyframes shakeWrong {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .reflex-wrong {
+      animation: shakeWrong 0.35s ease-in-out;
+      background-color: #ef4444 !important;
+      border-color: #dc2626 !important;
+      color: white !important;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col pb-20 md:pb-8">
+
+  <!-- UNIFIED TOP NAVIGATION BAR -->
+  <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-3.5">
+        
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center group mr-2 sm:mr-4">
+          <div class="w-10 h-10 bg-red-600 group-hover:bg-red-700 rounded-2xl flex items-center justify-center mr-2.5 transition duration-300 shadow-md">
+            <span class="text-white font-bold text-lg font-jp">日</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-base sm:text-xl font-black text-gray-900 leading-tight">Nihongo<span class="text-red-600">Desu</span></span>
+            <span class="text-[9px] sm:text-[10px] font-extrabold text-red-600 tracking-wider uppercase">Minna no Nihongo 1</span>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center space-x-6 text-xs font-bold text-gray-700">
+          <a href="../index.html" class="hover:text-red-600 transition py-2 flex items-center">
+            <i class="fas fa-home mr-1.5 text-gray-400"></i>Beranda
+          </a>
+
+          <a href="index.html" class="hover:text-red-600 transition py-2 flex items-center">
+            <i class="fas fa-th-large mr-1.5 text-gray-400"></i>Dashboard MNN 1
+          </a>
+
+          <!-- Dropdown: Pilih Bab (1-25) -->
+          <div class="dropdown dropdown-container">
+            <button class="hover:text-red-600 transition py-2 flex items-center focus:outline-none">
+              <i class="fas fa-book-open mr-1.5 text-gray-400"></i>Pilih Bab
+              <i class="fas fa-chevron-down ml-1 text-[10px] text-gray-400"></i>
+            </button>
+            <div class="dropdown-menu dropdown-content mt-2 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 p-3 z-50">
+              <div class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider px-2 mb-2 flex items-center justify-between">
+                <span>Bab 1 - 25</span>
+                <span class="text-[10px] text-red-600 font-bold">1.173 Kata</span>
+              </div>
+              <div class="grid grid-cols-5 gap-1.5 max-h-60 overflow-y-auto pr-1">
+                <a href="bab.html?bab=1" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B1
+        </a>
+<a href="bab.html?bab=2" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B2
+        </a>
+<a href="bab.html?bab=3" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B3
+        </a>
+<a href="bab.html?bab=4" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B4
+        </a>
+<a href="bab.html?bab=5" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B5
+        </a>
+<a href="bab.html?bab=6" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B6
+        </a>
+<a href="bab.html?bab=7" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B7
+        </a>
+<a href="bab.html?bab=8" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B8
+        </a>
+<a href="bab.html?bab=9" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B9
+        </a>
+<a href="bab.html?bab=10" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B10
+        </a>
+<a href="bab.html?bab=11" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B11
+        </a>
+<a href="bab.html?bab=12" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B12
+        </a>
+<a href="bab.html?bab=13" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B13
+        </a>
+<a href="bab.html?bab=14" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B14
+        </a>
+<a href="bab.html?bab=15" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B15
+        </a>
+<a href="bab.html?bab=16" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B16
+        </a>
+<a href="bab.html?bab=17" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B17
+        </a>
+<a href="bab.html?bab=18" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B18
+        </a>
+<a href="bab.html?bab=19" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B19
+        </a>
+<a href="bab.html?bab=20" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B20
+        </a>
+<a href="bab.html?bab=21" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B21
+        </a>
+<a href="bab.html?bab=22" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B22
+        </a>
+<a href="bab.html?bab=23" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B23
+        </a>
+<a href="bab.html?bab=24" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B24
+        </a>
+<a href="bab.html?bab=25" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B25
+        </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown: Kategori Tematik -->
+          <div class="dropdown dropdown-container">
+            <button class="text-red-600 font-black transition py-2 flex items-center focus:outline-none">
+              <i class="fas fa-layer-group mr-1.5 text-gray-400"></i>Kategori Kosakata
+              <i class="fas fa-chevron-down ml-1 text-[10px] text-gray-400"></i>
+            </button>
+            <div class="dropdown-menu dropdown-content mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 p-3 z-50">
+              <div class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider px-2 mb-2">
+                14 Kategori Tematik MNN 1
+              </div>
+              <div class="grid grid-cols-1 gap-1 max-h-80 overflow-y-auto pr-1">
+                <a href="negara.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #dbeafe; color: #1e40af;">
+            <i class="fas fa-globe-asia"></i>
+          </span>
+          <span class="truncate font-semibold">Negara, Bangsa & Bahasa</span>
+        </a>
+<a href="profesi.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #fef3c7; color: #92400e;">
+            <i class="fas fa-user-tie"></i>
+          </span>
+          <span class="truncate font-semibold">Profesi & Pekerjaan</span>
+        </a>
+<a href="keluarga.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ffe4e6; color: #9f1239;">
+            <i class="fas fa-users"></i>
+          </span>
+          <span class="truncate font-semibold">Keluarga & Hubungan Sosial</span>
+        </a>
+<a href="makanan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #d1fae5; color: #065f46;">
+            <i class="fas fa-utensils"></i>
+          </span>
+          <span class="truncate font-semibold">Makanan & Minuman</span>
+        </a>
+<a href="tempat.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #cffafe; color: #155e75;">
+            <i class="fas fa-building"></i>
+          </span>
+          <span class="truncate font-semibold">Tempat, Ruangan & Fasilitas</span>
+        </a>
+<a href="transportasi.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ede9fe; color: #5b21b6;">
+            <i class="fas fa-subway"></i>
+          </span>
+          <span class="truncate font-semibold">Transportasi & Kendaraan</span>
+        </a>
+<a href="tubuh.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #fee2e2; color: #991b1b;">
+            <i class="fas fa-heartbeat"></i>
+          </span>
+          <span class="truncate font-semibold">Anggota Tubuh & Kesehatan</span>
+        </a>
+<a href="ungkapan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #fae8ff; color: #86198f;">
+            <i class="fas fa-comments"></i>
+          </span>
+          <span class="truncate font-semibold">Ungkapan & Salam Sehari-hari</span>
+        </a>
+<a href="bilangan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #e0e7ff; color: #3730a3;">
+            <i class="fas fa-calculator"></i>
+          </span>
+          <span class="truncate font-semibold">Bilangan & Satuan Hitung</span>
+        </a>
+<a href="katabenda.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #f3e8ff; color: #6b21a8;">
+            <i class="fas fa-cube"></i>
+          </span>
+          <span class="truncate font-semibold">Kata Benda Umum (名詞)</span>
+        </a>
+<a href="katakerja.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #dbeafe; color: #1e40af;">
+            <i class="fas fa-running"></i>
+          </span>
+          <span class="truncate font-semibold">Kata Kerja (動詞)</span>
+        </a>
+<a href="katasifat.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ffedd5; color: #9a3412;">
+            <i class="fas fa-star"></i>
+          </span>
+          <span class="truncate font-semibold">Kata Sifat (形容詞)</span>
+        </a>
+<a href="haridanwaktu.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ccfbf1; color: #115e59;">
+            <i class="fas fa-clock"></i>
+          </span>
+          <span class="truncate font-semibold">Hari & Waktu Relatif</span>
+        </a>
+<a href="tanggaldanbulan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ffedd5; color: #9a3412;">
+            <i class="fas fa-calendar-alt"></i>
+          </span>
+          <span class="truncate font-semibold">Tanggal & Kalender Bulan</span>
+        </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown: Abjad Kana -->
+          <div class="dropdown dropdown-container">
+            <button class="hover:text-red-600 transition py-2 flex items-center focus:outline-none">
+              <i class="fas fa-language mr-1.5 text-gray-400"></i>Abjad
+              <i class="fas fa-chevron-down ml-1 text-[10px] text-gray-400"></i>
+            </button>
+            <div class="dropdown-menu dropdown-content mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 z-50">
+              <a href="../hiragana.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition">
+                <span class="font-jp text-base font-bold text-red-600 mr-2.5">あ</span>
+                <div>
+                  <div class="font-bold">Hiragana</div>
+                  <div class="text-[10px] text-gray-400">46 Huruf Dasar</div>
+                </div>
+              </a>
+              <a href="../katakana.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition">
+                <span class="font-jp text-base font-bold text-red-600 mr-2.5">ア</span>
+                <div>
+                  <div class="font-bold">Katakana</div>
+                  <div class="text-[10px] text-gray-400">46 Huruf Dasar</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Quick Action / Mobile Toggle -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <a href="index.html" class="hidden sm:inline-flex items-center px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold shadow-md shadow-red-500/20 transition">
+            <i class="fas fa-th-large mr-1.5"></i>Semua Bab
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button onclick="toggleMnnMobileMenu()" class="lg:hidden text-gray-700 hover:text-red-600 p-2 rounded-xl border border-gray-200 transition focus:outline-none" aria-label="Buka Menu">
+            <i class="fas fa-bars text-lg" id="mnn-mobile-icon"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mnn-mobile-menu" class="hidden lg:hidden border-t border-gray-100 py-4 space-y-4 max-h-[80vh] overflow-y-auto">
+        <div class="flex flex-col space-y-1">
+          <a href="../index.html" class="px-3 py-2.5 rounded-xl text-gray-700 font-bold hover:bg-red-50 hover:text-red-600 flex items-center">
+            <i class="fas fa-home mr-3 text-gray-400 w-5"></i>Beranda Utama
+          </a>
+          <a href="index.html" class="px-3 py-2.5 rounded-xl bg-red-50 text-red-600 font-black flex items-center">
+            <i class="fas fa-th-large mr-3 text-red-500 w-5"></i>Dashboard MNN 1 (Bab 1 - 25)
+          </a>
+          <a href="../hiragana.html" class="px-3 py-2 rounded-xl text-gray-700 font-bold hover:bg-red-50 hover:text-red-600 flex items-center">
+            <span class="font-jp mr-3 font-bold text-red-500 w-5 text-center">あ</span>Hiragana
+          </a>
+          <a href="../katakana.html" class="px-3 py-2 rounded-xl text-gray-700 font-bold hover:bg-red-50 hover:text-red-600 flex items-center">
+            <span class="font-jp mr-3 font-bold text-red-500 w-5 text-center">ア</span>Katakana
+          </a>
+        </div>
+
+        <!-- Mobile Bab Grid -->
+        <div class="pt-2 border-t border-gray-100">
+          <div class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider mb-2 px-1 flex justify-between">
+            <span>Pilih Bab (1 - 25)</span>
+            <span class="text-red-600 font-bold">1.173 Kata</span>
+          </div>
+          <div class="grid grid-cols-5 gap-1.5">
+            <a href="bab.html?bab=1" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B1
+        </a>
+<a href="bab.html?bab=2" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B2
+        </a>
+<a href="bab.html?bab=3" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B3
+        </a>
+<a href="bab.html?bab=4" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B4
+        </a>
+<a href="bab.html?bab=5" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B5
+        </a>
+<a href="bab.html?bab=6" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B6
+        </a>
+<a href="bab.html?bab=7" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B7
+        </a>
+<a href="bab.html?bab=8" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B8
+        </a>
+<a href="bab.html?bab=9" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B9
+        </a>
+<a href="bab.html?bab=10" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B10
+        </a>
+<a href="bab.html?bab=11" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B11
+        </a>
+<a href="bab.html?bab=12" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B12
+        </a>
+<a href="bab.html?bab=13" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B13
+        </a>
+<a href="bab.html?bab=14" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B14
+        </a>
+<a href="bab.html?bab=15" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B15
+        </a>
+<a href="bab.html?bab=16" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B16
+        </a>
+<a href="bab.html?bab=17" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B17
+        </a>
+<a href="bab.html?bab=18" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B18
+        </a>
+<a href="bab.html?bab=19" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B19
+        </a>
+<a href="bab.html?bab=20" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B20
+        </a>
+<a href="bab.html?bab=21" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B21
+        </a>
+<a href="bab.html?bab=22" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B22
+        </a>
+<a href="bab.html?bab=23" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B23
+        </a>
+<a href="bab.html?bab=24" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B24
+        </a>
+<a href="bab.html?bab=25" class="text-center py-1.5 px-2 rounded-xl bg-gray-50 hover:bg-red-600 hover:text-white text-gray-700 font-extrabold text-xs transition border border-gray-100">
+          B25
+        </a>
+          </div>
+        </div>
+
+        <!-- Mobile Categories List -->
+        <div class="pt-2 border-t border-gray-100">
+          <div class="text-[11px] font-extrabold text-gray-400 uppercase tracking-wider mb-2 px-1">
+            14 Kategori Tematik Kosakata
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
+            <a href="negara.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #dbeafe; color: #1e40af;">
+            <i class="fas fa-globe-asia"></i>
+          </span>
+          <span class="truncate font-semibold">Negara, Bangsa & Bahasa</span>
+        </a>
+<a href="profesi.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #fef3c7; color: #92400e;">
+            <i class="fas fa-user-tie"></i>
+          </span>
+          <span class="truncate font-semibold">Profesi & Pekerjaan</span>
+        </a>
+<a href="keluarga.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ffe4e6; color: #9f1239;">
+            <i class="fas fa-users"></i>
+          </span>
+          <span class="truncate font-semibold">Keluarga & Hubungan Sosial</span>
+        </a>
+<a href="makanan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #d1fae5; color: #065f46;">
+            <i class="fas fa-utensils"></i>
+          </span>
+          <span class="truncate font-semibold">Makanan & Minuman</span>
+        </a>
+<a href="tempat.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #cffafe; color: #155e75;">
+            <i class="fas fa-building"></i>
+          </span>
+          <span class="truncate font-semibold">Tempat, Ruangan & Fasilitas</span>
+        </a>
+<a href="transportasi.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ede9fe; color: #5b21b6;">
+            <i class="fas fa-subway"></i>
+          </span>
+          <span class="truncate font-semibold">Transportasi & Kendaraan</span>
+        </a>
+<a href="tubuh.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #fee2e2; color: #991b1b;">
+            <i class="fas fa-heartbeat"></i>
+          </span>
+          <span class="truncate font-semibold">Anggota Tubuh & Kesehatan</span>
+        </a>
+<a href="ungkapan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #fae8ff; color: #86198f;">
+            <i class="fas fa-comments"></i>
+          </span>
+          <span class="truncate font-semibold">Ungkapan & Salam Sehari-hari</span>
+        </a>
+<a href="bilangan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #e0e7ff; color: #3730a3;">
+            <i class="fas fa-calculator"></i>
+          </span>
+          <span class="truncate font-semibold">Bilangan & Satuan Hitung</span>
+        </a>
+<a href="katabenda.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #f3e8ff; color: #6b21a8;">
+            <i class="fas fa-cube"></i>
+          </span>
+          <span class="truncate font-semibold">Kata Benda Umum (名詞)</span>
+        </a>
+<a href="katakerja.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #dbeafe; color: #1e40af;">
+            <i class="fas fa-running"></i>
+          </span>
+          <span class="truncate font-semibold">Kata Kerja (動詞)</span>
+        </a>
+<a href="katasifat.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ffedd5; color: #9a3412;">
+            <i class="fas fa-star"></i>
+          </span>
+          <span class="truncate font-semibold">Kata Sifat (形容詞)</span>
+        </a>
+<a href="haridanwaktu.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ccfbf1; color: #115e59;">
+            <i class="fas fa-clock"></i>
+          </span>
+          <span class="truncate font-semibold">Hari & Waktu Relatif</span>
+        </a>
+<a href="tanggaldanbulan.html" class="flex items-center px-3 py-2 rounded-xl hover:bg-red-50 hover:text-red-600 transition text-gray-700">
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center mr-2 text-xs" style="background-color: #ffedd5; color: #9a3412;">
+            <i class="fas fa-calendar-alt"></i>
+          </span>
+          <span class="truncate font-semibold">Tanggal & Kalender Bulan</span>
+        </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- CATEGORY HERO HEADER (WITH 100% RELIABLE INLINE GRADIENT) -->
+  <section class="text-white py-10 px-4 sm:px-6 relative overflow-hidden shadow-lg" style="background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);">
+    <div class="absolute right-0 top-0 opacity-15 font-jp text-[130px] sm:text-[160px] font-black pointer-events-none select-none -mr-8 -mt-10">
+      名詞
+    </div>
+
+    <div class="max-w-6xl mx-auto relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-black tracking-wider uppercase mb-3 border border-white/25">
+          <i class="fas fa-cube mr-1 text-yellow-300"></i>
+          <span>Kategori Tematik Minna no Nihongo 1</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight mb-2 flex items-center flex-wrap gap-2">
+          <span>Kata Benda Umum (名詞)</span>
+          <span class="text-xs font-black px-3 py-1 rounded-full bg-white text-gray-900 shadow-sm">名詞</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-white/95 leading-relaxed max-w-xl font-medium">
+          Koleksi lengkap seluruh kata benda (Meishi) dari Bab 1 hingga Bab 25.
+        </p>
+      </div>
+
+      <!-- Quick Back to Dashboard -->
+      <div>
+        <a href="index.html" class="touch-bounce inline-flex items-center px-4 py-2.5 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/30 text-xs font-extrabold transition shadow-sm">
+          <i class="fas fa-th-large mr-2"></i>
+          <span>Dashboard MNN 1</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- SUB-TABS (KOSAKATA, FLASHCARD, REFLEKS CEPAT) -->
+    <div class="max-w-6xl mx-auto mt-6 pt-4 border-t border-white/25">
+      <div class="flex space-x-2 overflow-x-auto no-scrollbar">
+        <button onclick="switchCategoryTab('tab-list')" id="tab-btn-list" class="cat-tab-btn flex items-center px-4 py-2.5 rounded-2xl font-black text-xs sm:text-sm bg-white text-gray-900 shadow-md transition whitespace-nowrap">
+          <i class="fas fa-list mr-2 text-red-600"></i> 1. Daftar Kata (<span id="total-count-badge">0</span>)
+        </button>
+        <button onclick="switchCategoryTab('tab-flashcard')" id="tab-btn-flashcard" class="cat-tab-btn flex items-center px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-white/20 text-white hover:bg-white/30 transition whitespace-nowrap">
+          <i class="fas fa-clone mr-2 text-yellow-300"></i> 2. 3D Flashcard
+        </button>
+        <button onclick="switchCategoryTab('tab-reflex')" id="tab-btn-reflex" class="cat-tab-btn flex items-center px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-white/20 text-white hover:bg-white/30 transition whitespace-nowrap">
+          <i class="fas fa-bolt mr-2 text-yellow-300"></i> 3. Refleks Cepat (8s) 🔥
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6">
+
+    <!-- TOP FILTER & BAB SELECTOR -->
+    <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-200 mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+      <!-- Search Input -->
+      <div class="relative w-full md:w-80">
+        <i class="fas fa-search absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
+        <input type="text" id="filter-search-input" oninput="applyFilters()" placeholder="Cari kanji, kana, romaji, arti..." class="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 transition" />
+      </div>
+
+      <!-- Bab Filter Dropdown & Romaji Toggle -->
+      <div class="flex items-center space-x-2 w-full md:w-auto overflow-x-auto no-scrollbar">
+        <!-- Romaji Toggle Button -->
+        <button type="button" onclick="window.MNN1_UX && window.MNN1_UX.toggleRomaji()" class="mnn1-romaji-toggle-btn study-mode-toggle bg-gray-100 text-gray-700 hover:bg-gray-200 flex-shrink-0" title="Klik untuk menyembunyikan/menampilkan Romaji">
+          <i class="fas fa-eye mr-1.5 text-gray-500"></i><span>Romaji: <strong>Tampil</strong></span>
+        </button>
+
+        <span class="text-xs font-bold text-gray-400 whitespace-nowrap"><i class="fas fa-filter mr-1"></i> Filter Bab:</span>
+        <select id="select-filter-bab" onchange="applyFilters()" class="text-xs font-bold bg-gray-50 border border-gray-200 text-gray-800 py-2.5 px-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500">
+          <option value="all">Semua Bab (Bab 1 - 25)</option>
+          <script>
+            for (let i = 1; i <= 25; i++) {
+              document.write(`<option value="${i}">Bab ${i}</option>`);
+            }
+          </script>
+        </select>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- TAB 1: LIST / GRID VIEW -->
+    <!-- ======================================================== -->
+    <section id="tab-list" class="cat-content">
+      <div id="items-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Injected via JS -->
+      </div>
+      <div id="empty-state" class="hidden py-16 text-center text-gray-400">
+        <i class="fas fa-search-minus text-4xl mb-3"></i>
+        <p class="font-bold text-sm">Tidak ada kosakata yang cocok dengan pencarian.</p>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 2: 3D FLASHCARD -->
+    <!-- ======================================================== -->
+    <section id="tab-flashcard" class="cat-content hidden">
+      <div class="max-w-md mx-auto">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-bold text-gray-500">Kartu <span id="fc-curr">1</span> dari <span id="fc-total">0</span></span>
+          <button onclick="shuffleFC()" class="touch-bounce text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-xl transition">
+            <i class="fas fa-random mr-1"></i> Acak Kartu
+          </button>
+        </div>
+
+        <div class="perspective-1000 w-full h-80 sm:h-96">
+          <div id="fc-card-inner" class="flashcard-inner shadow-xl" onclick="toggleFC()">
+            <!-- FRONT -->
+            <div class="flashcard-front bg-white p-6 flex flex-col justify-between border-2 border-red-100">
+              <div class="flex justify-between items-center">
+                <span id="fc-badge-bab" class="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-red-50 text-red-700">Bab 1</span>
+                <button onclick="event.stopPropagation(); playFCAudio();" class="touch-bounce w-9 h-9 rounded-full bg-red-50 text-red-600 flex items-center justify-center transition hover:bg-red-100" title="Dengarkan Audio">
+                  <i class="fas fa-volume-up"></i>
+                </button>
+              </div>
+
+              <div class="text-center my-auto">
+                <div id="fc-front-kanji" class="font-jp text-4xl sm:text-5xl font-black text-gray-900 mb-2"></div>
+                <div id="fc-front-kana" class="font-jp text-lg font-bold text-red-600"></div>
+              </div>
+
+              <div class="text-center text-xs text-gray-400">
+                <i class="fas fa-sync-alt mr-1"></i> Klik untuk membalik kartu
+              </div>
+            </div>
+
+            <!-- BACK -->
+            <div class="flashcard-back bg-gradient-to-br from-gray-900 to-red-950 text-white p-6 flex flex-col justify-between border-2 border-red-800">
+              <div class="flex justify-between items-center">
+                <span class="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-white/20 text-red-200">Arti & Romaji</span>
+                <button onclick="event.stopPropagation(); playFCAudio();" class="touch-bounce w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center transition hover:bg-white/25" title="Dengarkan Audio">
+                  <i class="fas fa-volume-up"></i>
+                </button>
+              </div>
+
+              <div class="text-center my-auto">
+                <div id="fc-back-romaji" class="text-sm font-bold text-red-300 mb-2 uppercase tracking-widest"></div>
+                <div id="fc-back-arti" class="font-heading text-2xl sm:text-3xl font-extrabold text-white leading-tight"></div>
+              </div>
+
+              <div class="text-center text-xs text-red-300">
+                <i class="fas fa-undo-alt mr-1"></i> Klik untuk kembali ke depan
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FLASHCARD CONTROLS -->
+        <div class="flex items-center justify-between mt-6 gap-3">
+          <button onclick="prevFC()" class="touch-bounce flex-1 py-3 bg-white border border-gray-200 rounded-2xl font-bold text-xs sm:text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-center shadow-sm">
+            <i class="fas fa-arrow-left mr-2"></i> Sebelumnya
+          </button>
+          <button onclick="markFCLearned()" id="btn-fc-learned" class="touch-bounce px-4 py-3 bg-green-50 border border-green-200 text-green-700 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center shadow-sm">
+            <i class="fas fa-check mr-1.5"></i> Hafal
+          </button>
+          <button onclick="nextFC()" class="touch-bounce flex-1 py-3 bg-red-600 text-white rounded-2xl font-extrabold text-xs sm:text-sm hover:bg-red-700 flex items-center justify-center shadow-lg shadow-red-500/25">
+            Selanjutnya <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+
+        <!-- Flashcard Keyboard Shortcuts Helper -->
+        <div class="mt-4 pt-3 border-t border-gray-100 flex flex-wrap items-center justify-center gap-2 text-[11px] text-gray-400 font-medium">
+          <span class="font-bold text-gray-500"><i class="fas fa-keyboard mr-1 text-gray-400"></i>Pintasan:</span>
+          <span><kbd class="mnn1-kbd">Spasi</kbd> Balik</span>
+          <span><kbd class="mnn1-kbd">←</kbd> <kbd>→</kbd> Navigasi</span>
+          <span><kbd class="mnn1-kbd">1</kbd> Ulangi</span>
+          <span><kbd class="mnn1-kbd">2</kbd> Hafal</span>
+          <span><kbd class="mnn1-kbd">S</kbd> Suara</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 3: REFLEKS CEPAT (8 DETIK) -->
+    <!-- ======================================================== -->
+    <section id="tab-reflex" class="cat-content hidden">
+      <div class="max-w-lg mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-200">
+        
+        <!-- Score & Combo Header -->
+        <div class="flex justify-between items-center mb-6">
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Skor:</span>
+            <span id="reflex-score" class="font-extrabold text-xl text-gray-900">0</span>
+          </div>
+          <div class="flex items-center space-x-1.5 bg-amber-50 text-amber-600 border border-amber-200 px-3 py-1 rounded-full text-xs font-black">
+            <i class="fas fa-fire"></i>
+            <span>Combo x<span id="reflex-combo">0</span></span>
+          </div>
+        </div>
+
+        <!-- 8-Second Timer Progress Bar -->
+        <div class="mb-6">
+          <div class="flex justify-between text-[11px] font-bold text-gray-400 mb-1">
+            <span>Sisa Waktu</span>
+            <span><span id="reflex-timer-text">8.0</span>s</span>
+          </div>
+          <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+            <div id="reflex-timer-bar" class="bg-gradient-to-r from-red-500 to-amber-400 h-full rounded-full transition-all duration-100" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- Prompt Card -->
+        <div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl p-6 text-center mb-6 relative overflow-hidden shadow-inner">
+          <span id="reflex-prompt-bab" class="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-white/20 text-gray-300 absolute top-3 left-3">Bab 1</span>
+          <button onclick="playReflexAudio()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center absolute top-3 right-3 transition" title="Dengarkan Audio">
+            <i class="fas fa-volume-up text-xs"></i>
+          </button>
+          
+          <div class="my-3">
+            <div id="reflex-prompt-kanji" class="font-jp text-3xl sm:text-4xl font-black mb-1"></div>
+            <div id="reflex-prompt-kana" class="font-jp text-lg text-red-400 font-bold"></div>
+            <div id="reflex-prompt-romaji" class="text-xs text-gray-400 uppercase tracking-widest mt-1"></div>
+          </div>
+          <p class="text-[11px] text-gray-400">Pilih arti bahasa Indonesia yang tepat secepatnya!</p>
+        </div>
+
+        <!-- 4 Multiple Choice Options -->
+        <div id="reflex-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Start / Restart Controls -->
+        <div class="text-center">
+          <button onclick="startReflexGame()" id="btn-start-reflex" class="touch-bounce w-full py-3.5 bg-gradient-to-r from-red-600 to-amber-500 hover:from-red-700 hover:to-amber-600 text-white rounded-2xl font-black text-sm shadow-lg shadow-red-500/30 flex items-center justify-center">
+            <i class="fas fa-play mr-2"></i> Mulai Latihan Refleks (8 Detik)
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LOAD DATABASE, UX, GAMIFICATION & CATEGORY RUNNER -->
+  <script src="data/mnn1-data.js"></script>
+  <script src="data/mnn1-grammar.js"></script>
+  <script src="data/mnn1-ux.js"></script>
+  <script src="data/mnn1-gamification.js"></script>
+  <script src="data/mnn1-category-runner.js"></script>
+  <script>
+    window.initCategoryRunner("benda");
+  </script>
+</body>
+</html>

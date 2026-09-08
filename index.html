@@ -391,6 +391,55 @@
     .shadow-emerald-50\/50 {
       box-shadow: 0 10px 25px -5px rgba(236, 253, 245, 0.50);
     }
+
+    /* Spotlight MNN Banner Enhancements */
+    .mnn-spotlight-banner {
+      background: linear-gradient(135deg, #991b1b 0%, #dc2626 42%, #b91c1c 78%, #881337 100%) !important;
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.75rem;
+      box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.2) inset !important;
+    }
+
+    .mnn-spotlight-banner::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.18) 0%, rgba(220, 38, 38, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .mnn-spotlight-banner::after {
+      content: "";
+      position: absolute;
+      bottom: -40%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, rgba(153, 27, 27, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .mnn-watermark {
+      position: absolute;
+      right: 1%;
+      bottom: -22px;
+      font-family: "Hiragino Sans", "Meiryo", "MS PGothic", sans-serif;
+      font-size: clamp(4.5rem, 11vw, 9.5rem);
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.08);
+      line-height: 0.9;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      letter-spacing: -2px;
+      z-index: 1;
+    }
   </style>
 </head>
 
@@ -413,6 +462,13 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-8">
           <a href="index.html" class="text-red-600 font-bold border-b-2 border-red-600 py-2">Beranda</a>
+
+          <!-- Minna no Nihongo 1 Menu -->
+          <a href="minna-no-nihongo-1/index.html"
+            class="text-gray-700 hover:text-red-600 font-bold transition duration-300 py-2 flex items-center group">
+            <span class="bg-red-100 text-red-600 text-xs px-2 py-0.5 rounded-full mr-1.5 font-extrabold group-hover:bg-red-600 group-hover:text-white transition">MNN 1</span>
+            Minna no Nihongo
+          </a>
 
           <!-- Abjad Dropdown -->
           <div class="dropdown dropdown-container">
@@ -530,7 +586,7 @@
           <a href="index.html#register"
             class="hidden md:inline-block bg-red-600 text-white px-6 py-2 rounded-full font-medium hover:bg-red-700 transition duration-300 shadow-lg hover:shadow-xl">
             Mulai Belajar
-          </a>
+        </a>
 
           <!-- Mobile menu button -->
           <button class="md:hidden text-gray-600 hover:text-red-600 focus:outline-none p-2 rounded-lg transition"
@@ -545,6 +601,16 @@
         <div class="space-y-2">
           <a href="index.html"
             class="block py-3 px-4 bg-red-50 text-red-600 font-bold rounded-lg transition duration-200">Beranda</a>
+
+          <!-- Mobile Minna no Nihongo 1 -->
+          <a href="minna-no-nihongo-1/index.html"
+            class="block py-3 px-4 text-gray-800 hover:text-red-600 hover:bg-red-50 font-bold rounded-lg transition duration-200 flex items-center justify-between border border-red-100 bg-red-50/40">
+            <div class="flex items-center">
+              <span class="w-7 h-7 rounded-lg bg-red-600 text-white font-black text-xs flex items-center justify-center mr-3 font-jp">日</span>
+              <span>Minna no Nihongo 1</span>
+            </div>
+            <span class="text-[10px] bg-red-100 text-red-700 font-extrabold px-2 py-0.5 rounded-full">Bab 1 - 25</span>
+          </a>
 
           <!-- Mobile Abjad Submenu -->
           <div class="px-4 py-2">
@@ -654,17 +720,18 @@
           <!-- Mobile Touch Quick Buttons -->
           <div
             class="pt-2 flex flex-col sm:flex-row space-y-2.5 sm:space-y-0 sm:space-x-3 justify-center lg:justify-start">
+            <a href="minna-no-nihongo-1/index.html"
+              class="touch-bounce w-full sm:w-auto bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-600 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-xl shadow-red-600/40 border border-red-400/40 flex items-center justify-center space-x-2 text-base">
+              <span class="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center font-jp text-xs font-black">日</span>
+              <span>Minna no Nihongo 1 (Bab 1-25)</span>
+              <span class="bg-yellow-400 text-gray-900 text-[10px] font-black px-2 py-0.5 rounded-full uppercase ml-1 animate-pulse">Baru</span>
+            </a>
+
             <button onclick="openStartModal()"
               class="touch-bounce w-full sm:w-auto bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-300 hover:to-yellow-400 text-gray-900 font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-yellow-500/30 flex items-center justify-center space-x-2 text-base">
               <i class="fas fa-rocket text-red-600"></i>
-              <span>Mulai Belajar Sekarang</span>
+              <span>Mulai Belajar Mandiri</span>
             </button>
-
-            <a href="#quick-quiz"
-              class="touch-bounce w-full sm:w-auto bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 font-semibold px-6 py-3.5 rounded-2xl flex items-center justify-center space-x-2 text-base">
-              <i class="fas fa-gamepad text-yellow-300"></i>
-              <span>Coba Kuis Kilat</span>
-            </a>
           </div>
 
           <!-- Mini stats / trust badges -->
@@ -834,6 +901,103 @@
         <p class="text-xs sm:text-sm text-gray-600 mt-1">
           Sentuh modul di bawah untuk langsung membuka materi pembelajaran interaktif
         </p>
+      </div>
+
+      <!-- FEATURED SPOTLIGHT: MINNA NO NIHONGO 1 (BAB 1 - 25) -->
+      <div class="mnn-spotlight-banner mb-10 p-6 sm:p-8 md:p-10 text-white relative overflow-hidden">
+        <!-- Japanese Typography Watermark -->
+        <div class="mnn-watermark" aria-hidden="true">みんなの日本語</div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <!-- Left Content -->
+          <div class="max-w-2xl space-y-3.5">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-black tracking-wider uppercase shadow-sm"
+                 style="background: rgba(255, 255, 255, 0.16); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.28); color: #fef08a;">
+              <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-400"></span>
+              </span>
+              <i class="fas fa-fire text-amber-300"></i>
+              <span>KURIKULUM UTAMA • 1.173 KOSAKATA RESMI</span>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight tracking-tight flex items-center flex-wrap gap-2.5">
+              <span>Minna no Nihongo 1</span>
+              <span class="text-xs sm:text-sm font-extrabold px-3 py-1 rounded-xl bg-amber-400 text-red-950 shadow-md">Bab 1 — 25</span>
+            </h3>
+
+            <p class="text-xs sm:text-sm md:text-base leading-relaxed font-medium" style="color: rgba(255, 245, 245, 0.95);">
+              Kuasai kosakata buku Minna no Nihongo 1 secara terstruktur! Dilengkapi dengan <strong class="text-white font-bold underline decoration-amber-400 decoration-2">14 Kategori Tematik</strong>, <strong class="text-white font-bold">Flashcard 3D</strong>, mode <strong class="text-white font-bold">Refleks Cepat (8 Detik)</strong> 🔥 untuk kecepatan daya ingat, dan <strong class="text-white font-bold">Kuis Evaluasi Bab</strong>.
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-1 text-[11px] sm:text-xs font-bold">
+              <span class="px-3 py-1.5 rounded-xl flex items-center shadow-sm" style="background: rgba(0, 0, 0, 0.22); border: 1px solid rgba(255, 255, 255, 0.18); color: #ffffff;">
+                <i class="fas fa-book-open text-amber-300 mr-2"></i> 25 Bab Lengkap
+              </span>
+              <span class="px-3 py-1.5 rounded-xl flex items-center shadow-sm" style="background: rgba(0, 0, 0, 0.22); border: 1px solid rgba(255, 255, 255, 0.18); color: #ffffff;">
+                <i class="fas fa-layer-group text-yellow-300 mr-2"></i> 14 Kategori Tematik
+              </span>
+              <span class="px-3 py-1.5 rounded-xl flex items-center shadow-sm" style="background: rgba(0, 0, 0, 0.22); border: 1px solid rgba(255, 255, 255, 0.18); color: #ffffff;">
+                <i class="fas fa-bolt text-amber-300 mr-2"></i> Refleks Cepat (8s)
+              </span>
+              <span class="px-3 py-1.5 rounded-xl flex items-center shadow-sm" style="background: rgba(0, 0, 0, 0.22); border: 1px solid rgba(255, 255, 255, 0.18); color: #ffffff;">
+                <i class="fas fa-volume-up text-red-200 mr-2"></i> Audio Native ja-JP
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Action Card Hub -->
+          <div class="w-full lg:w-80 flex-shrink-0 p-5 rounded-2xl flex flex-col gap-3 shadow-2xl relative z-10"
+               style="background: rgba(0, 0, 0, 0.26); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.22);">
+            
+            <div class="flex items-center justify-between pb-2" style="border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+              <span class="text-xs font-black uppercase tracking-wider text-amber-300 flex items-center">
+                <i class="fas fa-compass mr-1.5"></i> Mulai Sekarang
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full text-white" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2);">
+                Akses Cepat
+              </span>
+            </div>
+
+            <!-- Primary Action -->
+            <a href="minna-no-nihongo-1/index.html" 
+               class="touch-bounce px-5 py-3.5 rounded-xl text-center font-black text-sm transition flex items-center justify-center space-x-2 group shadow-lg"
+               style="background: #ffffff; color: #dc2626; box-shadow: 0 8px 20px rgba(0,0,0,0.25);">
+              <span>Buka Dashboard MNN 1</span>
+              <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+
+            <!-- Secondary Action -->
+            <a href="minna-no-nihongo-1/bab.html?bab=1" 
+               class="touch-bounce px-5 py-3 rounded-xl text-center font-extrabold text-xs sm:text-sm text-white transition flex items-center justify-center space-x-2"
+               style="background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.3);">
+              <i class="fas fa-play text-amber-300 text-xs"></i>
+              <span>Mulai Belajar Bab 1</span>
+            </a>
+
+            <!-- Jump to Bab Selector -->
+            <div class="p-2.5 rounded-xl flex items-center justify-between gap-2"
+                 style="background: rgba(0, 0, 0, 0.24); border: 1px solid rgba(255, 255, 255, 0.14);">
+              <span class="text-xs font-bold text-white flex items-center whitespace-nowrap">
+                <i class="fas fa-bookmark text-amber-400 mr-1.5"></i> Lompat Bab:
+              </span>
+              <select onchange="if(this.value) window.location.href='minna-no-nihongo-1/bab.html?bab=' + this.value" 
+                      class="text-xs font-bold rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-amber-400 border-0 cursor-pointer shadow-sm flex-1 max-w-[140px]"
+                      style="background: #ffffff; color: #111827;">
+                <option value="">Pilih Bab...</option>
+                <script>
+                  for(let i=1;i<=25;i++) document.write(`<option value="${i}">Bab ${i}</option>`);
+                </script>
+              </select>
+            </div>
+
+            <!-- Card Bottom Feature Note -->
+            <div class="flex items-center justify-between text-[11px] pt-1" style="color: rgba(255, 255, 255, 0.8);">
+              <span class="flex items-center"><i class="fas fa-check-circle text-emerald-400 mr-1"></i> 100% Interaktif</span>
+              <span>25 Kuis & Evaluasi</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- 3 Major Interactive Learning Cards -->
